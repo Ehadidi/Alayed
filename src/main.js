@@ -1,8 +1,9 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import VueGoogleMaps from "@fawmi/vue-google-maps";
+import VueGoogleMaps from '@fawmi/vue-google-maps'
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
+
 // import my scss
 import '@/assets/scss/defaults.scss'
 // import lightbox
@@ -29,8 +30,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // import i18n 
 import { createI18n } from 'vue-i18n'
 const i18n = createI18n({
-    // something vue-i18n options here ...
-  })
+  // something vue-i18n options here ...
+})
 
 
 // Vuetify
@@ -39,20 +40,20 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 const vuetify = createVuetify({
-    components,
-    directives,
-  })
+  components,
+  directives,
+})
 
-  const VueMaps = (VueGoogleMaps, {
-    load: {
-      key: "AIzaSyBYTS-hi8VVLRkf1y70RJnVlU6Q-VLrV5I"
-    }
-  })
 // createApp
 createApp(App)
-    .use(router)
-    .component("font-awesome-icon", FontAwesomeIcon)
-    .use(vuetify)
-    .use(VueMaps)
-    .use(i18n)
-    .mount('#app')
+  .use(router)
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .use(vuetify)
+  .use(VueGoogleMaps , {
+    load: {
+      key: "AIzaSyBNLoYGrbnQI_GMqHt6m0PSN9yA7Zvq7gA",
+      // language: 'de',
+    },
+  })
+  .use(i18n)
+  .mount('#app')

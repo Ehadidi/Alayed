@@ -47,7 +47,7 @@
                                         <router-link class="default_link" to="/contact">تواصل معنا</router-link>
                                     </li>
                                     <li>
-                                        <router-link class="default_link" to="/HR">الموارد البشرية</router-link>
+                                        <router-link class="default_link" to="/humanResources">الموارد البشرية</router-link>
                                     </li>
                                 </ul>
                             </div>

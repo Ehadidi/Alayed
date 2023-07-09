@@ -52,9 +52,15 @@
                                     </template>
 
                                     <v-list>
-                                        <v-list-item v-for="(item, i) in items" :key="i">
+                                        <v-list-item>
                                             <v-list-item-title class="dropList">
-                                                <router-link class="default_link" to="">{{ item.title }}</router-link>
+                                                <router-link class="default_link" to="/commonQuestions">الاسئلة الشائعه</router-link>
+                                            </v-list-item-title>
+                                            <v-list-item-title class="dropList">
+                                                <router-link class="default_link" to="/downloadSource">ملفات للتحميل</router-link>
+                                            </v-list-item-title>
+                                            <v-list-item-title class="dropList">
+                                                <router-link class="default_link" to="/B2B">B2B</router-link>
                                             </v-list-item-title>
                                         </v-list-item>
                                     </v-list>
@@ -65,7 +71,7 @@
                             <router-link class="default_link" to="/contact">تواصل معنا</router-link>
                         </li>
                         <li>
-                            <router-link class="default_link" to="/HR">الموارد البشرية</router-link>
+                            <router-link class="default_link" to="/humanResources">الموارد البشرية</router-link>
                         </li>
                         <li>
                             <div class="user_option">

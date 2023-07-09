@@ -888,3 +888,15 @@ textarea.default_input {
         line-height: 35px;
     }
 }
+.v-expansion-panel__shadow{
+    box-shadow: none !important;
+}
+.v-expansion-panel:not(:first-child)::after{
+    display: none !important;
+}
+.v-expansion-panel--active > .v-expansion-panel-title{
+    min-height: unset !important;
+}
+.v-expansion-panel-title{
+    background-color: #F5F5F5;
+}

@@ -47,9 +47,24 @@ const routes = [
     component: () => import('../views/contactView.vue')
   },
   {
-    path: '/HR',
-    name: 'HR',
+    path: '/humanResources',
+    name: 'humanResources',
     component: () => import('../views/humanResources.vue')
+  },
+  {
+    path: '/commonQuestions',
+    name: 'commonQuestions',
+    component: () => import('../views/commonQuestions.vue')
+  },
+  {
+    path: '/downloadSource',
+    name: 'downloadSource',
+    component: () => import('../views/downloadSource.vue')
+  },
+  {
+    path: '/B2B',
+    name: 'B2B',
+    component: () => import('../views/B2bView.vue')
   },
 ]
 

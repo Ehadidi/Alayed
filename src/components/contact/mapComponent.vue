@@ -1,48 +1,27 @@
 <template>
-    <div class="container P_top_50 P_bottom_50">
-        <div id="map-google">
-            <div class="google-map" ref="googleMap"></div>
+    <section class="M_top_50 M_bottom_50">
+        <div class="container">
+            <GMapMap :center="center" :zoom="16" map-type-id="terrain" style="width: 100%; height: 400px">
+                <GMapMarker :key="marker.id" v-for="marker in markers" :position="marker.position" />
+            </GMapMap>
         </div>
-    </div>
+    </section>
 </template>
-
 <script>
-import GoogleMapsApiLoader from 'google-maps-api-loader'
-
 export default {
-    props: {
-        mapConfig: Object,
-        apiKey: String,
-    },
-
+    name: 'App',
     data() {
         return {
-            google: null,
-            map: null
-        }
-    },
-
-    async mounted() {
-        const googleMapApi = await GoogleMapsApiLoader({
-            apiKey: this.apiKey
-        })
-        this.google = googleMapApi
-        this.initializeMap()
-    },
-
-    methods: {
-        initializeMap() {
-            const mapContainer = this.$refs.googleMap
-            this.map = new this.google.maps.Map(
-                mapContainer, this.mapConfig
-            )
+            center: { lat: 24.774265, lng: 46.738586 },
+            markers: [
+                {
+                    id: 'dfsldjl3r',
+                    position: {
+                        lat: 24.774265, lng: 46.738586
+                    },
+                }
+            ]
         }
     }
 }
 </script>
-
-<style scoped>
-.google-map {
-    height: 300px;
-}
-</style>
