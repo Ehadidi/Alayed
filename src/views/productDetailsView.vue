@@ -1,72 +1,36 @@
 <template>
     <section class="details-sec">
-        <div class="bg-title"></div>
-        <product-define></product-define>
+        <img class="product--cover" :src="productDetails.cover" alt="">
+        <product-define :icons="icons" :productName="productName" :category="category" :subSection="subSection"></product-define>
         <txt-deatails>
             <template #title>المميزات</template>
             <template #txt>
-                هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا. هذا النص
-                يمكن استبداله بنص اخر
-                هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا. هذا النص
-                يمكن استبداله بنص اخر
+                {{ advantages }}
             </template>
         </txt-deatails>
         <txt-deatails>
             <template #title>درجة حرارة الاستخدام</template>
             <template #txt>
-                هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا. هذا النص
-                يمكن استبداله بنص اخر
-                هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا. هذا النص
-                يمكن استبداله بنص اخر
+                {{ useTemperatures }}
             </template>
         </txt-deatails>
         <txt-deatails>
             <template #title>الاستخدامات</template>
             <template #txt>
-                هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا. هذا النص
-                يمكن استبداله بنص اخر
-                هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا. هذا النص
-                يمكن استبداله بنص اخر
+                {{ uses }}
             </template>
         </txt-deatails>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-6">
-                    <a data-fancybox="gallery" :href='require("@/assets/images/products_sli2.png")'>
-                        <img class="w-75" :src="require('@/assets/images/products_sli2.png')" alt="products">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <a data-fancybox="gallery" :href='require("@/assets/images/products_sli2.png")'>
-                        <img class="w-75" :src="require('@/assets/images/products_sli2.png')" alt="products">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <a data-fancybox="gallery" :href='require("@/assets/images/products_sli2.png")'>
-                        <img class="w-75" :src="require('@/assets/images/products_sli2.png')" alt="products">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <a data-fancybox="gallery" :href='require("@/assets/images/products_sli2.png")'>
-                        <img class="w-75" :src="require('@/assets/images/products_sli2.png')" alt="products">
+                <div v-for="img in images" :key="img" class="col-lg-3 col-md-4 col-6">
+                    <a data-fancybox="gallery" :href='img'>
+                        <img class="w-75" :src="img" alt="products">
                     </a>
                 </div>
             </div>
             <div class="grid-row">
-                <div class="grid-item">
-                    <img :src="require('@/assets/images/pf_tecno1.png')" alt="products">
-                </div>
-                <div class="grid-item">
-                    <img :src="require('@/assets/images/pf_tecno2.png')" alt="products">
-                </div>
-                <div class="grid-item">
-                    <img :src="require('@/assets/images/pf_tecno3.png')" alt="products">
-                </div>
-                <div class="grid-item">
-                    <img :src="require('@/assets/images/pf_tecno4.png')" alt="products">
-                </div>
-                <div class="grid-item">
-                    <img :src="require('@/assets/images/pf_tecno5.png')" alt="products">
+                <div v-for="tic in tickets" :key="tic" class="grid-item">
+                    <img :src="tic" alt="products">
                 </div>
             </div>
         </div>
@@ -97,13 +61,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="item in desserts" :key="item.name">
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.calories }}</td>
-                            <td>{{ item.calories }}</td>
-                            <td>{{ item.calories }}</td>
-                            <td>{{ item.calories }}</td>
-                            <td>{{ item.calories }}</td>
+                        <tr v-for="item in details" :key="item">
+                            <!-- <td>{{ item.product_id }}</td> -->
+                            <td>{{ item.product_number }}</td>
+                            <td>{{ item.weight }}</td>
+                            <td>{{ item.height }}</td>
+                            <td>{{ item.thickness }}</td>
+                            <td>{{ item.color }}</td>
+                            <td>{{ item.work_pressure }}</td>
                         </tr>
                     </tbody>
                 </v-table>
@@ -113,6 +78,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import productDefine from '@/components/productsDetails/productDefine.vue'
 import txtDeatails from '@/components/productsDetails/txtDeatails.vue'
 export default {
@@ -122,49 +88,37 @@ export default {
     },
     data() {
         return {
-            desserts: [
-                {
-                    name: 'Frozen Yogurt',
-                    calories: 159,
-                },
-                {
-                    name: 'Ice cream sandwich',
-                    calories: 237,
-                },
-                {
-                    name: 'Eclair',
-                    calories: 262,
-                },
-                {
-                    name: 'Cupcake',
-                    calories: 305,
-                },
-                {
-                    name: 'Gingerbread',
-                    calories: 356,
-                },
-                {
-                    name: 'Jelly bean',
-                    calories: 375,
-                },
-                {
-                    name: 'Lollipop',
-                    calories: 392,
-                },
-                {
-                    name: 'Honeycomb',
-                    calories: 408,
-                },
-                {
-                    name: 'Donut',
-                    calories: 452,
-                },
-                {
-                    name: 'KitKat',
-                    calories: 518,
-                },
-            ],
+            productDetails: [],
+            advantages: '',
+            useTemperatures:'',
+            uses:'',
+            details: [],
+            icons: [],
+            images: [],
+            tickets:[],
+            category: this.$route.params.mainCategory,
+            productName: this.$route.params.productName,
+            subSection: this.$route.params.sub,
         }
+    },
+    methods: {
+        async get_product_details() {
+
+            await axios.get(`product/detail?id=${this.$route.params.id}`)
+                .then((res) => {
+                    this.productDetails = res.data.data
+                    this.advantages = this.productDetails.advantages[0]
+                    this.useTemperatures = this.productDetails.use_temperatures[0]
+                    this.uses = this.productDetails.uses[0]
+                    this.details = res.data.data.details
+                    this.icons = res.data.data.icons
+                    this.images = res.data.data.images
+                    this.tickets = res.data.data.tickets
+                })
+        },
+    },
+    mounted() {
+        this.get_product_details()
     },
 }
 </script>
@@ -186,6 +140,7 @@ export default {
         }
     }
 }
+
 .dash-title {
     position: relative;
     width: fit-content;
@@ -203,15 +158,21 @@ export default {
         border-radius: 5px;
     }
 }
-.bg-title {
-    background: url('@/assets/images/tube.png') no-repeat center;
-    background-size: cover;
+
+.product--cover {
+    width: 100%;
     height: 350px;
-    padding: 40px;
-    color: #fff;
 }
 
 .details-sec {
     background-color: #f5f5f5;
+}
+thead{
+    th{
+        background-color: #1e368c !important;
+        color: #fff !important;
+        font-size: 14px;
+        font-weight: 600;
+    }
 }
 </style>

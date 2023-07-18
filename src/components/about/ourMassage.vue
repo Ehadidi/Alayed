@@ -2,16 +2,19 @@
   <section class="our--massage">
       <div class="d-flex flex-column align-items-center gap20 w-75 M_auto">
         <h4>رسالتنا</h4>
-        <p class="our--massage--txt">
-            هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا. هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا. 
-        </p>
+        <div v-if="aboutData">
+            <p class="our--massage--txt" v-html="aboutData.message"></p>
+        </div>
+        <div v-else>
+            <p></p>
+        </div>
       </div>
   </section>
 </template>
 
 <script>
 export default {
-
+    props:['aboutData']
 }
 </script>
 

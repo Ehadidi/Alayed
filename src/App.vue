@@ -8,7 +8,7 @@
       <router-view />
     </v-main>
 
-    <SiteFooter></SiteFooter>
+    <SiteFooter :socials="socials" :Partners="Partners"></SiteFooter>
     <!-- </v-main> -->
     <siteOption></siteOption>
   </v-app>
@@ -16,6 +16,7 @@
 
 
 <script>
+import axios from 'axios';
 import SiteHeader from '@/components/Layouts/SiteHeader.vue'
 import SiteFooter from '@/components/Layouts/SiteFooter.vue'
 import siteOption from '@/components/Layouts/siteOptions.vue'
@@ -28,6 +29,24 @@ export default {
     SiteFooter,
     siteOption,
     // SemipolarSpinner
+  },
+  data(){
+    return{
+      socials:[],
+      Partners:[]
+    }
+  },
+  methods: {
+    async get_home(){
+      await axios.get('home')
+      .then( (res)=>{
+          this.socials = res.data.data.socials
+          this.Partners = res.data.data.Partners
+      } )
+    }
+  },
+  mounted(){
+    this.get_home()
   },
   computed: {
     isIndexPage() {

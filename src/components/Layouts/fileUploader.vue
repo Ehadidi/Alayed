@@ -3,7 +3,7 @@
         <div class="file-uploader">
             <span class="fontBold txt_start d-block mb-2">{{ label }}</span>
             <div class="form__label">
-                <input id="file-upload" class="uploadCv" ref="uploadCv" type="file" hidden accept="application/*"
+                <input id="file-upload" class="uploadCv" :name="name" :ref="refre" type="file" hidden accept="application/*"
                     @change="fileUploder" />
                 <label for="file-upload" class="default_input txt_start d-flex align-items-center mainDark">
                     {{ placeholder }}
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-    props: ['width', 'label', 'placeholder'],
+    props: ['width', 'label', 'placeholder' , 'name' , 'refre'],
     data() {
         return {
             fileName: null,

@@ -2,9 +2,10 @@
     <div class="item_grid" v-for="item in products" :key="item">
         <router-link to="/product">
             <div class="categ_item">
-                <span class="fontBold mainColor font15">{{ item.title }}</span>
-                <span class="icon_round">
-                    <img :src="item.img1" alt="product image">
+                <span class="fontBold mainColor font15">{{ item.name }}</span>
+                <span class="icon_round text-white">
+                    <img :src="item.item" alt="product image">
+                    <!-- {{ item.name }} -->
                 </span>
             </div>
         </router-link>
@@ -13,7 +14,7 @@
 
 <script>
 export default {
-    inject: ['products'],
+    props: ['products'],
 }
 </script>
 
@@ -31,8 +32,6 @@ export default {
         transition: .6s all ease;
         width: 100%;
         height: 150px;
-        background-color: #1E368C;
-        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -40,6 +39,7 @@ export default {
 
     img {
         width: 150px;
+        height: 100%;
         // box-shadow: 0 0 5px #eee;
     }
 
@@ -55,7 +55,6 @@ export default {
         transition: .6s all ease;
         width: 150px;
         height: 150px;
-        background-color: #1E368C;
         border-radius: 50%;
         display: flex;
         align-items: center;

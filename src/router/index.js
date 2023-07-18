@@ -17,12 +17,12 @@ const routes = [
     component: () => import('../views/ProductView.vue')
   },
   {
-    path: '/productsGroup',
+    path: '/productsGroup/:mainCategory/:sub/:id',
     name: 'productsGroup',
     component: () => import('../views/productsGroupView.vue')
   },
   {
-    path: '/productDetails',
+    path: '/productDetails/:mainCategory/:sub/:productName/:id',
     name: 'productDetails',
     component: () => import('../views/productDetailsView.vue')
   },
@@ -32,7 +32,7 @@ const routes = [
     component: () => import('../views/newsView.vue')
   },
   {
-    path: '/newsDetails',
+    path: '/newsDetails/:id',
     name: 'newsDetails',
     component: () => import('../views/newsDetailsView.vue')
   },

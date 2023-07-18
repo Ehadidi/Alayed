@@ -1,8 +1,13 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import VueGoogleMaps from '@fawmi/vue-google-maps'
+import VueGoogleMaps from '@fawmi/vue-google-maps';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
+
+import PrimeVue from 'primevue/config';
+import ToastService from 'primevue/toastservice';
+import Toast from 'primevue/toast';
+
 
 // import my scss
 import '@/assets/scss/defaults.scss'
@@ -33,7 +38,6 @@ const i18n = createI18n({
   // something vue-i18n options here ...
 })
 
-
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
@@ -44,16 +48,25 @@ const vuetify = createVuetify({
   directives,
 })
 
+import "primevue/resources/themes/lara-light-indigo/theme.css";
+
+// import axios 
+import axios from 'axios';
+axios.defaults.baseURL = 'http://aleayid.aait-sa.com/api/'
+
 // createApp
 createApp(App)
   .use(router)
   .component("font-awesome-icon", FontAwesomeIcon)
+  .component('Toast', Toast)
   .use(vuetify)
+  .use(i18n)
+  .use(ToastService)
+  .use(PrimeVue)
   .use(VueGoogleMaps , {
     load: {
-      key: "AIzaSyBNLoYGrbnQI_GMqHt6m0PSN9yA7Zvq7gA",
-      // language: 'de',
+      key: "",
+      language: 'ar',
     },
   })
-  .use(i18n)
   .mount('#app')

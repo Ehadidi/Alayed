@@ -2,41 +2,37 @@
   <section class="P_top_60">
     <div class="container">
       <div class="title--sec">
-        <h1 class="fontBold font25 mainColor">منتجاتنا</h1>
-        <p class="mb-0 font12 fontBold mb-5 P_top_40 P_bottom_50 w-50">
-          هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا. هذا النص يمكن
-          استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر هذا النص يمكن استبداله بنص اخر
-          هذا.
-        </p>
+        <h1 class="fontBold font25 mainColor">{{ title }}</h1>
+        <p class="mb-0 font12 fontBold mb-5 P_top_40 P_bottom_50 w-50">{{ txt }}</p>
       </div>
     </div>
-    <div class="wrapper">
-      <div class="item_grid" v-for="item in products" :key="item">
-        <div class="categ_item">
-          <span class="fontBold mainColor font15">{{ item.title }}</span>
-          <div class="d-flex flex-column align-items-center gap15">
-            <router-link to="/productsGroup">
-              <span class="icon_round">
-                <img :src="item.img1" alt="product image">
-              </span>
-            </router-link>
-            <router-link to="/productsGroup">
-              <img class="sub--img" :src="item.img2" alt="product image">
-            </router-link>
-            <ul class="sections-list">
-              <li>
-                <router-link class="default_link" to="/productsGroup">القسم الفرعي</router-link>
-              </li>
-              <li>
-                <router-link class="default_link" to="/productsGroup">القسم الفرعي</router-link>
-              </li>
-              <li>
-                <router-link class="default_link" to="/productsGroup">القسم الفرعي</router-link>
-              </li>
-              <li>
-                <router-link class="default_link" to="/productsGroup">القسم الفرعي</router-link>
-              </li>
-            </ul>
+    <div class="categories">
+      <div class="categories-content">
+        <div class="container">
+          <div class="d-flex align-items-center justify-content-center gap20" v-if="loader">
+            <div class="d-flex flex-column gap15" v-for="i in 4" :key="i">
+              <Skeleton width="10rem" class="mb-2"></Skeleton>
+              <Skeleton shape="circle" size="10rem" class="mr-2"></Skeleton>
+            </div>
+          </div>
+          <div v-else class="row justify-content-center">
+            <div class="col-lg-2 col-md-4 col-6" v-for="item in products" :key="item">
+              <div class="categ_item">
+                <span class="fontBold mainColor font15">{{ item.name }}</span>
+                <div class="d-flex flex-column align-items-center gap15">
+                  <span class="icon_round">
+                    <img :src="item.image" alt="product image">
+                  </span>
+                  <img class="sub--img" :src="item.icon" alt="product image">
+                  <ul class="sections-list">
+                    <li v-for="subItem in item.subCategories" :key="subItem">
+                      
+                      <router-link class="default_link" :to="{name: 'productsGroup', params : { id: item.id , mainCategory: item.name , sub: subItem.name} }">{{ subItem.name }}</router-link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -45,26 +41,38 @@
 </template>
 
 <script>
+import axios from 'axios';
+import Skeleton from 'primevue/skeleton';
 
 export default {
+  components:{
+    Skeleton
+  },
   data() {
     return {
-      products: [
-        { img1: require('@/assets/images/Group1.png'), img2: require('@/assets/images/Ellipse1.png'), title: 'الماء و الحدائق' },
-        { img1: require('@/assets/images/Group2.png'), img2: require('@/assets/images/Ellipse2.png'), title: 'الدفع' },
-        { img1: require('@/assets/images/Group3.png'), img2: require('@/assets/images/Ellipse3.png'), title: 'الشفط' },
-        { img1: require('@/assets/images/Group4.png'), img2: require('@/assets/images/Ellipse4.png'), title: 'التمديدات' },
-        { img1: require('@/assets/images/Group5.png'), img2: require('@/assets/images/Ellipse5.png'), title: 'الغاز' },
-        { img1: require('@/assets/images/Group6.png'), img2: require('@/assets/images/Ellipse6.png'), title: 'الهواء' },
-        { img1: require('@/assets/images/Group7.png'), img2: require('@/assets/images/Ellipse7.png'), title: 'الحريق' },
-        { img1: require('@/assets/images/Group8.png'), img2: require('@/assets/images/Ellipse8.png'), title: 'النيوماتيك' },
-        { img1: require('@/assets/images/Group9.png'), img2: require('@/assets/images/Ellipse9.png'), title: 'الرش المحوري' },
-        { img1: require('@/assets/images/Group10.png'), img2: require('@/assets/images/Ellipse10.png'), title: 'رش المبيدات' },
-        { img1: require('@/assets/images/Group11.png'), img2: require('@/assets/images/Ellipse11.png'), title: 'الادوات و الاكسسوارات' },
-        { img1: require('@/assets/images/Group4.png'), img2: require('@/assets/images/Ellipse12.png'), title: 'منتجات خاصه' },
-      ]
+      products: [],
+      loader: true,
+      title: '',
+      txt: '',
+      // mainCategory : ''
     }
   },
+  methods: {
+    async get_home() {
+      await axios.get('mainCategory')
+        .then((res) => {
+          this.products = res.data.data.category
+          // this.mainCategory = res.data.data.category.name
+          // console.log(this.mainCategory);
+          this.title = res.data.data.paragraph.title
+          this.txt = res.data.data.paragraph.paragraph
+          this.loader = false
+        })
+    }
+  },
+  created() {
+    this.get_home()
+  }
 }
 </script>
 
@@ -92,6 +100,18 @@ export default {
       z-index: -1;
       height: calc(100% - 320px);
     }
+  }
+}
+
+.categories {
+  position: relative;
+  background-color: #1E368C;
+  padding-top: 5%;
+  padding-bottom: 70px;
+  margin-top: 15%;
+
+  .categories-content {
+    margin-top: -20%;
   }
 }
 
@@ -139,23 +159,19 @@ export default {
   }
 
   .icon_round {
-    transition: .6s all ease;
-    width: 150px;
-    height: 150px;
-    background-color: #1E368C;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      box-shadow: 0px 5px 10px 0px rgba(30, 54, 140, .69);
+        transition: .6s all ease;
+        width: 100%;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     img {
-      width: 60%;
+        width: 150px;
+        height: 100%;
+        // box-shadow: 0 0 5px #eee;
     }
-  }
 
   // &:hover {
   // transform: translateY(-5px);
@@ -164,4 +180,5 @@ export default {
   // }
   // }
 
-}</style>
+}
+</style>

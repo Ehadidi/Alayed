@@ -1,35 +1,13 @@
 <template>
     <div class="position-relative">
-        <swiper :pagination="pagination" :modules="modules" class="mySwiper"
-            :autoplay="{
-                delay: 3000,
-                disableOnInteraction: false,
-            }"
-        >
-            <swiper-slide>
-                <img :src="require('@/assets/images/sliderPic.png')" alt="">
+        <swiper :pagination="pagination" :modules="modules" class="mySwiper" :autoplay="{
+            delay: 3000,
+            disableOnInteraction: false,
+        }">
+            <swiper-slide v-for="slide in sliders" :key="slide">
+                <img :src="slide.image" alt="">
                 <div class="sliderCategory">
-                    <h2>العنايه بالحدائق</h2>
-                    <span>
-                        <img :src="require('@/assets/images/categoryicon.png')" alt="">
-                    </span>
-                </div>
-                <img :src="require('@/assets/images/Intersect.png')" class="dropOver" alt="">
-            </swiper-slide>
-            <swiper-slide>
-                <img :src="require('@/assets/images/sliderPic1.png')" alt="">
-                <div class="sliderCategory">
-                    <h2>العنايه بالحدائق</h2>
-                    <span>
-                        <img :src="require('@/assets/images/categoryicon.png')" alt="">
-                    </span>
-                </div>
-                <img :src="require('@/assets/images/Intersect.png')" class="dropOver" alt="">
-            </swiper-slide>
-            <swiper-slide>
-                <img :src="require('@/assets/images/sliderPic1.png')" alt="">
-                <div class="sliderCategory">
-                    <h2>العنايه بالحدائق</h2>
+                    <h2>{{ slide.title }}</h2>
                     <span>
                         <img :src="require('@/assets/images/categoryicon.png')" alt="">
                     </span>
@@ -38,7 +16,7 @@
             </swiper-slide>
         </swiper>
         <h1 class="swiper_title">هذا النص يمكن استبداله</h1>
-        <button class="btn skipSlider" @click="goto('art1')"><font-awesome-icon :icon="['fas', 'chevron-down']" /></button>
+        <button class="btn skipSlider" @click="skipSlider"><font-awesome-icon :icon="['fas', 'chevron-down']" /></button>
     </div>
 </template>
 <script>
@@ -54,9 +32,18 @@ import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper';
 
 export default {
+
     components: {
         Swiper,
         SwiperSlide,
+    },
+    props: { sliders: Array },
+
+    methods: {
+        skipSlider() {
+            window.scrollTo(0,600);
+            // this.$refs.art1.scrollIntoView({ behavior: 'smooth' });
+        }
     },
     setup() {
         return {
@@ -131,7 +118,8 @@ export default {
     height: fit-content;
     color: #fff;
 }
-.skipSlider{
+
+.skipSlider {
     position: absolute;
     bottom: 8%;
     left: 0;
@@ -141,7 +129,8 @@ export default {
     font-size: 35px;
     color: #fff;
     width: fit-content;
-    &:hover{
+
+    &:hover {
         color: #1E368C;
     }
 }

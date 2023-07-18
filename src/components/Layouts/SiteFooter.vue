@@ -73,10 +73,12 @@
                         </div>
                     </topMenu>
                     <div class="d-flex align-items-center justify-content-center gap15 w-100 pt-5">
-                        <span v-for="item in social" :key="item">
-                            <router-link to="" class="social-icon default_link">
-                                <img :src="item.src" :alt="item.alt">
-                            </router-link>
+                        <span v-for="item in socials" :key="item">
+                            <a :href="item.link" class="social-icon default_link">
+                                <!-- <img :src="item.src" :alt="item.name"> -->
+                                <!-- <font-awesome-icon :icon="item.name" /> -->
+                                <i :class="item.icon"></i>
+                            </a>
                         </span>
                     </div>
                 </div>
@@ -84,11 +86,9 @@
         </footer>
         <div class="d-flex align-items-center justify-content-center gap15 w-100 pt-5">
              <img class="partener-img" 
-                :class="partener.width" 
-                v-for="partener in parteners" 
-                :key="partener" 
-                :src="partener.src" 
-                :alt="partener.alt"
+                v-for="Partner in Partners" 
+                :key="Partner" 
+                :src="Partner.image"
              >
         </div>
     </section>
@@ -97,23 +97,12 @@
 <script>
 import topMenu from '@/components/Layouts/topMenu.vue'
 export default {
+    props:['socials' , 'Partners'],
     components: {
         topMenu
     },
     data(){
         return{
-            social :[
-                {src : require('@/assets/images/youtube.png') , alt : 'youtube'},
-                {src : require('@/assets/images/FacebookIcon.png') , alt : 'Facebook'},
-                {src : require('@/assets/images/TwitterIcon.png') , alt : 'Twitter'},
-                {src : require('@/assets/images/instegram.png') , alt : 'instegram'},
-                {src : require('@/assets/images/snap.png') , alt : 'snap'},
-            ],
-            parteners :[
-                {src : require('@/assets/images/Asset10.png') , alt : 'partener' , width : 'width55'},
-                {src : require('@/assets/images/Asset9.png') , alt : 'partener'},
-                {src : require('@/assets/images/Asset8.png') , alt : 'partener'},
-            ]
         }
     }
 }
@@ -148,7 +137,7 @@ footer {
             align-items: center;
             gap: 20px;
             margin: 0;
-            padding: 0;
+            padding: 0 40px;
 
             li {
                 a {
@@ -166,14 +155,11 @@ footer {
         border-radius: 50%;
         background-color: transparent;
         transition: .5s all ease;
-        img{
-            transition: .5s all ease;
-        }
+        font-size: 18px;
+        color: #fff;
         &:hover{
             background-color: #fff;
-            img{    
-               filter: invert(1);
-            }
+            color: #000;
         }
     }
 }

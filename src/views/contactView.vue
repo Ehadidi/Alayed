@@ -1,152 +1,41 @@
 <template>
   <section>
+    <div class="card flex justify-content-center">
+      <Toast />
+      <!-- <Button @click="showSticky" label="Sticky" /> -->
+    </div>
     <div class="bg-title">
       <div class="container h-100">
         <div class="flex-end-content">
           <h1 class="font25 fontBold">تواصل معنا</h1>
-          <p>هذا النص هو مثال لنص يمكن ان يستبدل</p>
         </div>
       </div>
     </div>
     <map-component></map-component>
     <div class="container P_bottom_50">
-      <h3 class="fontBold mainColor txt_start M_bottom_50">الفرع الرئيسي</h3>
       <div class="row">
-        <div class="col-lg-4 col-md-6 col-12">
-          <div class="contact-items">
+        <div class="col-lg-4 col-md-6 col-12 M_bottom_40" v-for="depart in departments" :key="depart">
+          <div class="d-flex flex-column align-items-start font16 fontBold gap15">
+            <h5 class="fontBold mainColor txt_start">{{ depart.title }}</h5>
+            <div class="d-flex align-items-center gap10">
+              <img class="width20" :src="require('@/assets/images/location.png')" alt="">
+              <span>{{ depart.address }}</span>
+            </div>
             <div class="d-flex align-items-start gap10">
               <img class="width20" :src="require('@/assets/images/call-calling.png')" alt="">
-              <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-                <span>+9661 2345 6789</span>
-                <span>+9661 2345 6789</span>
-                <span>+9661 2345 6789</span>
+              <div class="d-flex flex-column gap10">
+                <div v-for="phone in depart.phone" :key="phone">
+                  <span>{{ phone }}</span>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12">
-          <div class="contact-items">
             <div class="d-flex align-items-start gap10">
               <img class="width20" :src="require('@/assets/images/sms.png')" alt="">
-              <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-                <span>sample.email@provider.com</span>
-                <span>sample.email@provider.com</span>
+              <div class="d-flex flex-column gap10">
+                <div v-for="mail in depart.email" :key="mail">
+                  <span>{{ mail }}</span>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12">
-          <div class="contact-items">
-            <div class="d-flex align-items-start gap10">
-              <img class="width20" :src="require('@/assets/images/location.png')" alt="">
-              <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-                <span>الدولة - المدينة - الحي - الشارع</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-12 M_bottom_40">
-          <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-            <h5 class="fontBold mainColor txt_start">التصدير</h5>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/location.png')" alt="">
-              <span>الدولة - المدينة - الحي - الشارع</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/call-calling.png')" alt="">
-              <span>+9661 2345 6789</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/sms.png')" alt="">
-              <span>sample.email@provider.com</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 M_bottom_40">
-          <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-            <h5 class="fontBold mainColor txt_start">الانتاج</h5>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/location.png')" alt="">
-              <span>الدولة - المدينة - الحي - الشارع</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/call-calling.png')" alt="">
-              <span>+9661 2345 6789</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/sms.png')" alt="">
-              <span>sample.email@provider.com</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 M_bottom_40">
-          <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-            <h5 class="fontBold mainColor txt_start">الادارة</h5>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/location.png')" alt="">
-              <span>الدولة - المدينة - الحي - الشارع</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/call-calling.png')" alt="">
-              <span>+9661 2345 6789</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/sms.png')" alt="">
-              <span>sample.email@provider.com</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 M_bottom_40">
-          <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-            <h5 class="fontBold mainColor txt_start">المالية</h5>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/location.png')" alt="">
-              <span>الدولة - المدينة - الحي - الشارع</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/call-calling.png')" alt="">
-              <span>+9661 2345 6789</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/sms.png')" alt="">
-              <span>sample.email@provider.com</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 M_bottom_40">
-          <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-            <h5 class="fontBold mainColor txt_start">الشؤون القانونيه</h5>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/location.png')" alt="">
-              <span>الدولة - المدينة - الحي - الشارع</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/call-calling.png')" alt="">
-              <span>+9661 2345 6789</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/sms.png')" alt="">
-              <span>sample.email@provider.com</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-12 M_bottom_40">
-          <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-            <h5 class="fontBold mainColor txt_start">التسويق</h5>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/location.png')" alt="">
-              <span>الدولة - المدينة - الحي - الشارع</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/call-calling.png')" alt="">
-              <span>+9661 2345 6789</span>
-            </div>
-            <div class="d-flex align-items-center gap10">
-              <img class="width20" :src="require('@/assets/images/sms.png')" alt="">
-              <span>sample.email@provider.com</span>
             </div>
           </div>
         </div>
@@ -155,51 +44,28 @@
     <div class="container P_bottom_50">
       <h3 class="fontBold mainColor txt_start M_bottom_50">مبيعات الفروع</h3>
       <div class="branchs">
-        <div class="branch-item">
-          <h5 class="fontBold mainColor txt_start">الرياض</h5>
+        <div class="branch-item" v-for="branch in branchs" :key="branch">
+          <h5 class="fontBold mainColor txt_start">{{ branch.title }}</h5>
           <div class="d-flex align-items-start gap10">
             <img class="width20" :src="require('@/assets/images/location.png')" alt="">
             <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-              <span>الدولة - المدينة - الحي - الشارع</span>
+              <span>{{ branch.address }}</span>
             </div>
           </div>
           <div class="d-flex align-items-start gap10">
             <img class="width20" :src="require('@/assets/images/sms.png')" alt="">
             <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-              <span>sample.email@provider.com</span>
-              <span>sample.email@provider.com</span>
+              <div v-for="email in branch.email" :key="email">
+                <span>{{ email }}</span>
+              </div>
             </div>
           </div>
           <div class="d-flex align-items-start gap10">
             <img class="width20" :src="require('@/assets/images/call-calling.png')" alt="">
             <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-              <span>+9661 2345 6789</span>
-              <span>+9661 2345 6789</span>
-              <span>+9661 2345 6789</span>
-            </div>
-          </div>
-        </div>
-        <div class="branch-item">
-          <h5 class="fontBold mainColor txt_start">الرياض</h5>
-          <div class="d-flex align-items-start gap10">
-            <img class="width20" :src="require('@/assets/images/location.png')" alt="">
-            <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-              <span>الدولة - المدينة - الحي - الشارع</span>
-            </div>
-          </div>
-          <div class="d-flex align-items-start gap10">
-            <img class="width20" :src="require('@/assets/images/sms.png')" alt="">
-            <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-              <span>sample.email@provider.com</span>
-              <span>sample.email@provider.com</span>
-            </div>
-          </div>
-          <div class="d-flex align-items-start gap10">
-            <img class="width20" :src="require('@/assets/images/call-calling.png')" alt="">
-            <div class="d-flex flex-column align-items-start font16 fontBold gap15">
-              <span>+9661 2345 6789</span>
-              <span>+9661 2345 6789</span>
-              <span>+9661 2345 6789</span>
+              <div v-for="phone in branch.phone" :key="phone">
+                <span>{{ phone }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -208,55 +74,123 @@
     <div class="offWhite P_top_50 P_bottom_50">
       <div class="container">
         <h3 class="fontBold mainColor M_bottom_50">ارسل لنا</h3>
-        <div class="row align-items-center flex-column">
-          <div class="col-lg-6 col-12 mb-5">
-            <form-group>
-              <form-input label="الاسم" placeholder="يرجي إدخال الإسم" type="text" width="col-lg-6 col-12">
-                <template #img><img :src="require('@/assets/images/profile-circle.png')" alt=""></template>
-              </form-input>
+        <form ref="regestForm" @submit.prevent="submitForm">
+          <div class="row align-items-center flex-column">
+            <div class="col-lg-6 col-12 mb-5">
+              <form-group>
+                <form-input label="الاسم" placeholder="يرجي إدخال الإسم" vmodal="name" name="name" type="text"
+                  width="col-lg-6 col-12">
+                  <template #img><img :src="require('@/assets/images/profile-circle.png')" alt=""></template>
+                </form-input>
 
-              <form-input label="رقم الجوال" placeholder="يرجي إدخال رقم الجوال" type="number" width="col-lg-6 col-12">
-                <template #img><img :src="require('@/assets/images/call-outgoing.png')" alt=""></template>
-              </form-input>
+                <form-input label="رقم الجوال" placeholder="يرجي إدخال رقم الجوال" vmodal="phone" name="phone"
+                  type="number" width="col-lg-6 col-12">
+                  <template #img><img :src="require('@/assets/images/call-outgoing.png')" alt=""></template>
+                </form-input>
 
-              <form-input label="البريد الإلكتروني" placeholder="يرجي إدخال البريد الإلكتروني" type="email"
-                width="col-12">
-                <template #img><img :src="require('@/assets/images/sms2.png')" alt=""></template>
-              </form-input>
+                <form-input label="البريد الإلكتروني" placeholder="يرجي إدخال البريد الإلكتروني" vmodal="email"
+                  name="email" type="email" width="col-12">
+                  <template #img><img :src="require('@/assets/images/sms2.png')" alt=""></template>
+                </form-input>
 
-              <form-input label="موضوع الرساله" placeholder="يرجي إدخال موضوع الرساله" type="text" width="col-12">
-                <template #img><img :src="require('@/assets/images/message-question.png')" alt=""></template>
-              </form-input>
+                <form-input label="موضوع الرساله" placeholder="يرجي إدخال موضوع الرساله" type="text" vmodal="title"
+                  name="title" width="col-12">
+                  <template #img><img :src="require('@/assets/images/message-question.png')" alt=""></template>
+                </form-input>
 
-              <form-input label="موضوع الرساله" placeholder="يرجي إدخال موضوع الرساله" width="col-12" :textarea="true">
-                <template #img><img :src="require('@/assets/images/message-text.png')" alt=""></template>
-              </form-input>
-            </form-group>
-          </div>
-          <div class="col-lg-4 col-6">
-            <div class="d-flex align-items-center justify-content-center gap15">
-              <button class="btn main_btn up fill font10 width100">ارسال</button>
-              <button class="btn main_btn up font10">مسح الكل</button>
+                <form-input label="موضوع الرساله" placeholder="يرجي إدخال موضوع الرساله" width="col-12" vmodal="message"
+                  name="message" :textarea="true">
+                  <template #img><img :src="require('@/assets/images/message-text.png')" alt=""></template>
+                </form-input>
+              </form-group>
+            </div>
+            <div class="col-lg-4 col-6">
+              <div class="d-flex align-items-center justify-content-center gap15">
+                <!-- <button class="btn main_btn up fill font10 width100" :loading="loading" @click="load">ارسال</button> -->
+                <button class="btn main_btn up fill font10 width100" :loading="loading" :disabled="loading === true">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <div class="spinner-border spinner-border-sm d-none" :class="{ 'd-block': loading }" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <span>ارسال</span>
+                  </div>
+                </button>
+                <button type="button" @click="resetForm" class="btn main_btn up font10">مسح الكل</button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import axios from 'axios';
 import mapComponent from '@/components/contact/mapComponent.vue'
 import formGroup from '@/components/Layouts/formGroup.vue'
 import formInput from '@/components/Layouts/formInput.vue'
 
-
+// import { useToast } from 'primevue/usetoast';
 export default {
   components: {
     mapComponent,
     formGroup,
-    formInput
+    formInput,
   },
+  data() {
+    return {
+      departments: [],
+      loader: true,
+      branchs: [],
+      vadlid: '',
+      loading: false
+    }
+  },
+
+  methods: {
+    resetForm() {
+      this.$refs.regestForm.reset();
+    },
+    showSuccess() {
+      this.$toast.add({ severity: 'success', summary: '', detail: `${this.vadlid}`, life: 3000 })
+    },
+    showFail() {
+      this.$toast.add({ severity: 'error', summary: '', detail: `${this.vadlid}`, life: 3000 })
+    },
+    async get_contact_us() {
+      await axios.get('contactUsInfo')
+        .then((res) => {
+          this.departments = res.data.data.departments
+          this.branchs = res.data.data.branchs
+          this.loader = false
+        })
+    },
+    async submitForm() {
+      this.loading = true
+      const formData = new FormData(this.$refs.regestForm)
+
+      await axios.post(`message`, formData)
+        .then((response) => {
+          this.vadlid = response.data.msg
+          
+          if (response.data.key == 'success') {
+            this.showSuccess()
+            this.loading = false
+            this.$refs.regestForm.reset();
+          }
+          else {
+            this.showFail()
+            this.loading = false
+          }
+        }).catch(e => {
+          console.error(e);
+        })
+    }
+  },
+  mounted() {
+    this.get_contact_us()
+  }
 };
 </script>
 

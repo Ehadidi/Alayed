@@ -1,18 +1,17 @@
 <template>
     <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-        <router-link to="/newsDetails" class="raise">
+        <router-link :to="'/newsDetails/' + item.id" class="raise">
             <v-card>
-                <v-img class="mb-3" :src="require('@/assets/images/scaled.png')" height="200px" cover></v-img>
+                <v-img class="mb-3" :src="item.image" height="200px" cover></v-img>
                 <div class="newsCard">
                     <v-card-subtitle class="p-0">
-                        28 مايو 2023
+                        {{ item.date }}
                     </v-card-subtitle>
                     <v-card-title class="p-0">
-                        <span class="fontBold font17">هذا النص يمكن استبداله</span>
+                        <span class="fontBold font17">{{ item.title }}</span>
                     </v-card-title>
                     <v-card-text class="p-0 txt_start">
-                        هذا النص يمكن استبداله
-                        هذا النص يمكن استبداله
+                        {{ item.description }}
                     </v-card-text>
                 </div>
             </v-card>
@@ -22,6 +21,7 @@
 
 <script>
 export default {
+    props:['item'],
 
 }
 </script>
