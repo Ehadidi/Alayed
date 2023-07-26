@@ -26,8 +26,7 @@
                   <img class="sub--img" :src="item.icon" alt="product image">
                   <ul class="sections-list">
                     <li v-for="subItem in item.subCategories" :key="subItem">
-                      
-                      <router-link class="default_link" :to="{name: 'productsGroup', params : { id: item.id , mainCategory: item.name , sub: subItem.name} }">{{ subItem.name }}</router-link>
+                      <router-link class="default_link" :to="{name: 'productsGroup', params : { id: subItem.id}}">{{ subItem.name }}</router-link>
                     </li>
                   </ul>
                 </div>
@@ -58,20 +57,18 @@ export default {
     }
   },
   methods: {
-    async get_home() {
+    async get_mainCategory() {
       await axios.get('mainCategory')
         .then((res) => {
           this.products = res.data.data.category
-          // this.mainCategory = res.data.data.category.name
-          // console.log(this.mainCategory);
           this.title = res.data.data.paragraph.title
           this.txt = res.data.data.paragraph.paragraph
           this.loader = false
         })
     }
   },
-  created() {
-    this.get_home()
+  mounted() {
+    this.get_mainCategory()
   }
 }
 </script>

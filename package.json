@@ -15,6 +15,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@intlify/vue-i18n-loader": "^3.0.0",
     "@vue/compat": "^3.1.0",
     "@vuelidate/core": "^2.0.2",
     "@vuelidate/validators": "^2.0.2",
@@ -25,11 +26,12 @@
     "material-design-icons-iconfont": "^6.7.0",
     "popper.js": "^1.16.1",
     "primevue": "^3.30.0",
-    "swiper": "^9.4.0",
     "vue": "^3.3.4",
     "vue-axios": "^3.5.2",
+    "vue-cli-plugin-i18n": "~2.3.1",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.0.3",
+    "vue3-carousel": "^0.3.1",
     "vuetify": "^3.3.3"
   },
   "devDependencies": {

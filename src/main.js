@@ -33,10 +33,9 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // import i18n 
-import { createI18n } from 'vue-i18n'
-const i18n = createI18n({
-  // something vue-i18n options here ...
-})
+import VueI18n from 'vue-i18n';
+import i18n from './i18n';
+
 
 // Vuetify
 import 'vuetify/styles'
@@ -53,6 +52,7 @@ import "primevue/resources/themes/lara-light-indigo/theme.css";
 // import axios 
 import axios from 'axios';
 axios.defaults.baseURL = 'http://aleayid.aait-sa.com/api/'
+axios.defaults.headers.common['lang'] = `${localStorage.getItem('locale')}`;
 
 // createApp
 createApp(App)
@@ -61,6 +61,7 @@ createApp(App)
   .component('Toast', Toast)
   .use(vuetify)
   .use(i18n)
+  .use(VueI18n)
   .use(ToastService)
   .use(PrimeVue)
   .use(VueGoogleMaps , {

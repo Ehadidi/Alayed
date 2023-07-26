@@ -2,8 +2,8 @@
     <div class="bg-title">
         <div class="container h-100">
             <div class="flex-end-content">
-                <h1 class="font25 fontBold">الاخبار</h1>
-                <p>{{ paragraph }}</p>
+                <h1 class="font25 fontBold">{{ $t('news.newsTitle') }}</h1>
+                <p v-html="paragraph"></p>
             </div>
         </div>
     </div>

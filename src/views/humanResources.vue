@@ -4,7 +4,7 @@
         <div class="bg-title">
             <div class="container h-100">
                 <div class="flex-end-content">
-                    <h1 class="font25 fontBold">الموارد البشرية</h1>
+                    <h1 class="font25 fontBold">{{ $t('layout.HR') }}</h1>
                 </div>
             </div>
         </div>
@@ -25,39 +25,37 @@
         </div>
         <div class="offWhite P_top_50 P_bottom_50">
             <div class="container">
-                <h3 class="fontBold mainColor M_bottom_50">انضم الينا</h3>
+                <h3 class="fontBold mainColor M_bottom_50">{{ $t('layout.joinUs') }}</h3>
                 <form ref="regestForm" @submit.prevent="submitForm">
                     <div class="row align-items-center flex-column">
                         <div class="col-lg-6 col-12 mb-5">
                             <form-group>
-                                <form-input label="الاسم" name="name" vmodal="name" placeholder="يرجي إدخال الإسم"
+                                <form-input :label="$t('layout.userName')" :placeholder="$t('layout.writeUserName')" name="name" vmodal="name"
                                     type="text" width="col-lg-6 col-12 mb-3">
                                     <template #img><img :src="require('@/assets/images/profile-circle.png')"
                                             alt=""></template>
                                 </form-input>
 
-                                <form-input label="رقم الجوال" name="phone" vmodal="phone"
-                                    placeholder="يرجي إدخال رقم الجوال" type="number" width="col-lg-6 col-12 mb-3">
+                                <form-input name="phone" vmodal="phone" :label="$t('layout.phone')" :placeholder="$t('layout.writePhone')" type="number" width="col-lg-6 col-12 mb-3">
                                     <template #img><img :src="require('@/assets/images/call-outgoing.png')"
                                             alt=""></template>
                                 </form-input>
 
-                                <form-input label="البريد الإلكتروني" name="email" vmodal="name"
-                                    placeholder="يرجي إدخال البريد الإلكتروني" type="email" width="col-12 mb-3">
+                                <form-input :label="$t('layout.email')" :placeholder="$t('layout.writeEmail')" name="email" vmodal="name" type="email" width="col-12 mb-3">
                                     <template #img><img :src="require('@/assets/images/sms2.png')" alt=""></template>
                                 </form-input>
 
-                                <file-uploader label="السيرة الذاتيه" name="cv" width="col-12 mb-3" refre="uploadCv"
-                                    placeholder="يرجي ارفاق السيره الذاتيه">
+                                <file-uploader :label="$t('layout.CV')" name="cv" width="col-12 mb-3" refre="uploadCv"
+                                    :placeholder="$t('layout.enterCV')">
                                     <template #img><img :src="require('@/assets/images/attach-circle.png')"
                                             alt=""></template>
                                 </file-uploader>
 
                                 <div class="col-12 mb-3">
-                                    <div class="fontBold txt_start d-block mb-2">القسم</div>
+                                    <div class="fontBold txt_start d-block mb-2">{{ $t('products.sections') }}</div>
                                     <div class="input_select">
                                         <select name="category_id" >
-                                            <option selected disabled value="" hidden>اختر القسم</option>
+                                            <option selected disabled value="" hidden>{{ $t('products.selectCategoey') }}</option>
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
@@ -73,10 +71,10 @@
                                     <div class="spinner-border spinner-border-sm d-none" :class="{ 'd-block': loading }" role="status">
                                     <span class="sr-only">Loading...</span>
                                     </div>
-                                    <span>ارسال</span>
+                                    <span>{{ $t('layout.send') }}</span>
                                 </div>
                                 </button>
-                                <button type="button" @click="resetForm" class="btn main_btn up font10">مسح الكل</button>
+                                <button type="button" @click="resetForm" class="btn main_btn up font10">{{ $t('layout.clear') }}</button>
                             </div>
                         </div>
                     </div>

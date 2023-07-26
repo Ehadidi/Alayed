@@ -1,21 +1,22 @@
 <template>
+    <!-- :productName="productName" :category="category" :subSection="subSection" -->
     <section class="details-sec">
         <img class="product--cover" :src="productDetails.cover" alt="">
-        <product-define :icons="icons" :productName="productName" :category="category" :subSection="subSection"></product-define>
+        <product-define :icons="icons" :categoryName="categoryName" :mainCategoryName="mainCategoryName" :productName="productName"></product-define>
         <txt-deatails>
-            <template #title>المميزات</template>
+            <template #title>{{ $t('products.advantages') }}</template>
             <template #txt>
                 {{ advantages }}
             </template>
         </txt-deatails>
         <txt-deatails>
-            <template #title>درجة حرارة الاستخدام</template>
+            <template #title>{{ $t('products.useTemperature') }}</template>
             <template #txt>
                 {{ useTemperatures }}
             </template>
         </txt-deatails>
         <txt-deatails>
-            <template #title>الاستخدامات</template>
+            <template #title>{{ $t('products.uses') }}</template>
             <template #txt>
                 {{ uses }}
             </template>
@@ -35,28 +36,28 @@
             </div>
         </div>
         <div class="container pt-5 pb-5">
-            <h5 class="dash-title fontBold mainColor">تفاصيل قياسية</h5>
+            <h5 class="dash-title fontBold mainColor">{{ $t('products.StandardDetails') }}</h5>
             <v-locale-provider rtl>
                 <v-table fixed-header height="300px">
                     <thead>
                         <tr>
                             <th class="text-center">
-                                رقم المنتج
+                                {{ $t('products.productNumber') }}
                             </th>
                             <th class="text-center">
-                                الوزن
+                                {{ $t('products.weight') }}
                             </th>
                             <th class="text-center">
-                                السمك
+                                {{ $t('products.thickness') }}
                             </th>
                             <th class="text-center">
-                                اللون
+                                {{ $t('products.color') }}
                             </th>
                             <th class="text-center">
-                                ضغط العمل
+                                {{ $t('products.workPressure') }}
                             </th>
                             <th class="text-center">
-                                الطول
+                                {{ $t('products.height') }}
                             </th>
                         </tr>
                     </thead>
@@ -96,9 +97,9 @@ export default {
             icons: [],
             images: [],
             tickets:[],
-            category: this.$route.params.mainCategory,
-            productName: this.$route.params.productName,
-            subSection: this.$route.params.sub,
+            categoryName: '',
+            mainCategoryName: '',
+            productName: '',
         }
     },
     methods: {
@@ -114,6 +115,9 @@ export default {
                     this.icons = res.data.data.icons
                     this.images = res.data.data.images
                     this.tickets = res.data.data.tickets
+                    this.categoryName = res.data.data.category_name
+                    this.mainCategoryName = res.data.data.main_category_name
+                    this.productName = res.data.data.name
                 })
         },
     },

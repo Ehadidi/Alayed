@@ -7,7 +7,7 @@
     <div class="bg-title">
       <div class="container h-100">
         <div class="flex-end-content">
-          <h1 class="font25 fontBold">تواصل معنا</h1>
+          <h1 class="font25 fontBold">{{ $t('layout.contactUs') }}</h1>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="container P_bottom_50">
-      <h3 class="fontBold mainColor txt_start M_bottom_50">مبيعات الفروع</h3>
+      <h3 class="fontBold mainColor txt_start M_bottom_50">{{ $t('layout.BranchSales') }}</h3>
       <div class="branchs">
         <div class="branch-item" v-for="branch in branchs" :key="branch">
           <h5 class="fontBold mainColor txt_start">{{ branch.title }}</h5>
@@ -73,32 +73,32 @@
     </div>
     <div class="offWhite P_top_50 P_bottom_50">
       <div class="container">
-        <h3 class="fontBold mainColor M_bottom_50">ارسل لنا</h3>
+        <h3 class="fontBold mainColor M_bottom_50">{{ $t('layout.footer.sendToUs') }}</h3>
         <form ref="regestForm" @submit.prevent="submitForm">
           <div class="row align-items-center flex-column">
             <div class="col-lg-6 col-12 mb-5">
               <form-group>
-                <form-input label="الاسم" placeholder="يرجي إدخال الإسم" vmodal="name" name="name" type="text"
+                <form-input :label="$t('layout.userName')" :placeholder="$t('layout.writeUserName')" vmodal="name" name="name" type="text"
                   width="col-lg-6 col-12">
                   <template #img><img :src="require('@/assets/images/profile-circle.png')" alt=""></template>
                 </form-input>
 
-                <form-input label="رقم الجوال" placeholder="يرجي إدخال رقم الجوال" vmodal="phone" name="phone"
+                <form-input :label="$t('layout.phone')" :placeholder="$t('layout.writePhone')" vmodal="phone" name="phone"
                   type="number" width="col-lg-6 col-12">
                   <template #img><img :src="require('@/assets/images/call-outgoing.png')" alt=""></template>
                 </form-input>
 
-                <form-input label="البريد الإلكتروني" placeholder="يرجي إدخال البريد الإلكتروني" vmodal="email"
+                <form-input :label="$t('layout.email')" :placeholder="$t('layout.writeEmail')" vmodal="email"
                   name="email" type="email" width="col-12">
                   <template #img><img :src="require('@/assets/images/sms2.png')" alt=""></template>
                 </form-input>
 
-                <form-input label="موضوع الرساله" placeholder="يرجي إدخال موضوع الرساله" type="text" vmodal="title"
+                <form-input :label="$t('layout.messageSubject')" :placeholder="$t('layout.writeMessageSubject')" type="text" vmodal="title"
                   name="title" width="col-12">
                   <template #img><img :src="require('@/assets/images/message-question.png')" alt=""></template>
                 </form-input>
 
-                <form-input label="موضوع الرساله" placeholder="يرجي إدخال موضوع الرساله" width="col-12" vmodal="message"
+                <form-input :label="$t('layout.yourMassage')" :placeholder="$t('layout.writeYourMassge')" width="col-12" vmodal="message"
                   name="message" :textarea="true">
                   <template #img><img :src="require('@/assets/images/message-text.png')" alt=""></template>
                 </form-input>
@@ -112,10 +112,10 @@
                     <div class="spinner-border spinner-border-sm d-none" :class="{ 'd-block': loading }" role="status">
                       <span class="sr-only">Loading...</span>
                     </div>
-                    <span>ارسال</span>
+                    <span>{{ $t('layout.send') }}</span>
                   </div>
                 </button>
-                <button type="button" @click="resetForm" class="btn main_btn up font10">مسح الكل</button>
+                <button type="button" @click="resetForm" class="btn main_btn up font10">{{ $t('layout.clear') }}</button>
               </div>
             </div>
           </div>

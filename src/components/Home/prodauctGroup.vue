@@ -1,7 +1,7 @@
 <template>
     <section class="p-5">
         <div class="container">
-            <h3 class="M_bottom_50 fontBold mainColor">الاقسام</h3>
+            <h3 class="M_bottom_50 fontBold mainColor">{{ $t('products.sections') }}</h3>
             <div class="d-flex align-items-center justify-content-center gap20" v-if="loader">
                 <div class="d-flex flex-column gap15" v-for="i in 5" :key="i">
                     <Skeleton width="10rem" class="mb-2"></Skeleton>
@@ -32,6 +32,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 37.5px 50px;
+    justify-items: center;
 
     .item_grid {
         display: flex;

@@ -1,7 +1,7 @@
 <template>
     <section class="our--massage">
         <div class="d-flex flex-column align-items-center gap20 w-75 M_auto">
-          <h4 class="mainColor">اهدافنا</h4>
+          <h4 class="mainColor">{{ $t('about.ourGoals') }}</h4>
           <div class="row mb-5 w-100" v-if="aboutData">
             <div class="col-lg-4 col-md-6 col-12 mb-2">
                 <p class="our--massage--txt" v-html="aboutData.goals_1"> </p>

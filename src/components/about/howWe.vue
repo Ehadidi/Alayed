@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-6 col-12">
                 <div class="aboutTxt">
-                    <h1>من نحن</h1>
+                    <h1>{{ $t('about.howWeAre') }}</h1>
                     <div v-if="aboutData">
                         <p v-html="aboutData.paragraph"></p>
                     </div>

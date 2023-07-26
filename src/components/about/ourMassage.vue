@@ -1,7 +1,7 @@
 <template>
   <section class="our--massage">
       <div class="d-flex flex-column align-items-center gap20 w-75 M_auto">
-        <h4>رسالتنا</h4>
+        <h4>{{ $t('about.ourMassage') }}</h4>
         <div v-if="aboutData">
             <p class="our--massage--txt" v-html="aboutData.message"></p>
         </div>

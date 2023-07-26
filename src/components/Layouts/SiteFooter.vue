@@ -10,16 +10,16 @@
                                 <topMenu>
                                     <template #btn>
                                         <button class="btn text-white font11">
-                                            اشترك في البريد
+                                            {{ $t('layout.footer.subscription') }}
                                         </button>
                                     </template>
                                     <div class="form__label">
-                                        <span class="fontBold">الإسم</span>
-                                        <input class="default_input" type="text" placeholder="يرجي كتابة الاسم هنا">
+                                        <span class="fontBold">{{ $t('layout.userName') }}</span>
+                                        <input class="default_input" type="text" :placeholder="$t('layout.writeUserName')">
                                     </div>
                                     <div class="form__label">
-                                        <span class="fontBold">البريد الإلكتروني</span>
-                                        <input class="default_input" type="text" placeholder="يرجي كتابة البريد الإلكتروني">
+                                        <span class="fontBold">{{ $t('layout.email')}}</span>
+                                        <input class="default_input" type="text" :placeholder="$t('layout.writeEmail')">
                                     </div>
                                 </topMenu>
                             </div>
@@ -27,27 +27,27 @@
                         <div class="col-md-9 col-sm-12">
                             <div class="navBar">
                                 <ul>
-                                    <li><router-link class="default_link" to="/">الرئيسية</router-link></li>
+                                    <li><router-link class="default_link" to="/">{{ $t('layout.header.home')}}</router-link></li>
                                     <li>
-                                        <router-link class="default_link" to="/about">من نحن</router-link>
+                                        <router-link class="default_link" to="/about">{{ $t('layout.header.howWe')}}</router-link>
                                     </li>
                                     <li>
-                                        <router-link class="default_link" to="/product">منتجاتنا</router-link>
+                                        <router-link class="default_link" to="/product">{{ $t('layout.header.products')}}</router-link>
                                     </li>
                                     <li>
-                                        <router-link class="default_link" to="/ChairmanSpeech">كلمة مجلس الادارة</router-link>
+                                        <router-link class="default_link" to="/ChairmanSpeech">{{ $t('layout.header.wordOfBoard')}}</router-link>
                                     </li>
                                     <li>
-                                        <router-link class="default_link" to="/news">الاخبار</router-link>
+                                        <router-link class="default_link" to="/news">{{ $t('layout.header.news')}}</router-link>
                                     </li>
                                     <li>
-                                        <router-link class="default_link" to="">الدعم</router-link>
+                                        <router-link class="default_link" to="/commonQuestions">{{ $t('layout.header.Support')}}</router-link>
                                     </li>
                                     <li>
-                                        <router-link class="default_link" to="/contact">تواصل معنا</router-link>
+                                        <router-link class="default_link" to="/contact">{{ $t('layout.header.Contact')}}</router-link>
                                     </li>
                                     <li>
-                                        <router-link class="default_link" to="/humanResources">الموارد البشرية</router-link>
+                                        <router-link class="default_link" to="/humanResources">{{ $t('layout.header.HumanResources')}}</router-link>
                                     </li>
                                 </ul>
                             </div>
@@ -56,20 +56,20 @@
                     <topMenu>
                         <template #btn>
                             <button class="btn radiuBtn up font11">
-                                ارسل لنا الان
+                                {{ $t('layout.footer.sendToUs') }}
                             </button>
                         </template>
                         <div class="form__label">
-                            <span class="fontBold">الإسم</span>
-                            <input class="default_input" type="text" placeholder="يرجي كتابة الاسم هنا">
+                            <span class="fontBold">{{ $t('layout.userName') }}</span>
+                            <input class="default_input" type="text" :placeholder="$t('layout.writeUserName')">
                         </div>
                         <div class="form__label">
-                            <span class="fontBold">البريد الإلكتروني</span>
-                            <input class="default_input" type="text" placeholder="يرجي كتابة البريد الإلكتروني">
+                            <span class="fontBold">{{ $t('layout.email') }}</span>
+                            <input class="default_input" type="text" :placeholder="$t('layout.writeEmail')">
                         </div>
                         <div class="form__label">
-                            <span class="fontBold">رسالتك</span>
-                            <textarea class="default_input" type="text" placeholder="يرجي كتابة رسالتك هنا"></textarea>
+                            <span class="fontBold">{{ $t('layout.yourMassage') }}</span>
+                            <textarea class="default_input" type="text" :placeholder="$t('layout.writeYourMassge')"></textarea>
                         </div>
                     </topMenu>
                     <div class="d-flex align-items-center justify-content-center gap15 w-100 pt-5">

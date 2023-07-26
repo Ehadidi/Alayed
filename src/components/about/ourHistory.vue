@@ -2,14 +2,14 @@
     <section class="P_top_50 P_bottom_50">
         <div class="container">
             <div class="title-sec">
-                <h4>تاريخنا</h4>
+                <h4>{{ $t('about.ourHistory') }}</h4>
                 <div v-if="aboutData">
                     <p v-html="aboutData.history"></p>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-lg-4 col-md-6 col-12 mb-2">
-                    <h6 class="txt_start fontBold">البداية</h6>
+                    <h6 class="txt_start fontBold">{{ $t('about.beginning') }}</h6>
                     <div v-if="aboutData">
                         <p v-html="aboutData.beginning"></p>
                     </div>
@@ -61,7 +61,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12 mb-2">
-                    <h6 class="txt_start fontBold">الحاضر</h6>
+                    <h6 class="txt_start fontBold">{{ $t('about.present') }}</h6>
                     <div v-if="aboutData">
                         <p v-html="aboutData.present"></p>
                     </div>

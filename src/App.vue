@@ -5,7 +5,7 @@
     <SiteHeader></SiteHeader>
 
     <v-main class="body-containt" :class="{ 'homeBody': isIndexPage }">
-      <router-view />
+      <router-view :Reffre="Reffre" />
     </v-main>
 
     <SiteFooter :socials="socials" :Partners="Partners"></SiteFooter>
@@ -30,22 +30,23 @@ export default {
     siteOption,
     // SemipolarSpinner
   },
-  data(){
-    return{
-      socials:[],
-      Partners:[]
+  data() {
+    return {
+      socials: [],
+      Partners: [],
+      Reffre: ''
     }
   },
   methods: {
-    async get_home(){
+    async get_home() {
       await axios.get('home')
-      .then( (res)=>{
+        .then((res) => {
           this.socials = res.data.data.socials
           this.Partners = res.data.data.Partners
-      } )
+        })
     }
   },
-  mounted(){
+  mounted() {
     this.get_home()
   },
   computed: {

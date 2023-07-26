@@ -1,13 +1,13 @@
 <template>
   <div>
-    <how-we :aboutData="aboutData"></how-we>
-    <our-massage :aboutData="aboutData"></our-massage>
-    <our-values :aboutData="aboutData"></our-values>
-    <our-identity :aboutData="aboutData"></our-identity>
-    <our-history :aboutData="aboutData"></our-history>
-    <our-target :aboutData="aboutData"></our-target>
-    <economic-activity :aboutData="aboutData"></economic-activity>
-    <legal-affairs :aboutData="aboutData"></legal-affairs>
+    <how-we id="howWe" :aboutData="aboutData"></how-we>
+    <our-massage id="ourMassage" :aboutData="aboutData"></our-massage>
+    <our-values id="ourValues" :aboutData="aboutData"></our-values>
+    <our-identity id="ourIdentity" :aboutData="aboutData"></our-identity>
+    <our-history id="ourHistory" :aboutData="aboutData"></our-history>
+    <our-target id="ourTarget" :aboutData="aboutData"></our-target>
+    <economic-activity id="economicActivity" :aboutData="aboutData"></economic-activity>
+    <legal-affairs id="legalAffairs" :aboutData="aboutData"></legal-affairs>
   </div>
 </template>
 
@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       loader: true,
-      aboutData : []
+      aboutData : [],
     }
   },
 
@@ -52,7 +52,7 @@ export default {
   },
   mounted(){
     this.get_aboutUs()
-  }
+  },
 }
 </script>
 

@@ -4,7 +4,7 @@
           <div class="row align-items-center pt-5 pb-5">
               <div class="col-lg-6 col-12">
                   <div class="aboutTxt">
-                      <h5>هويتنا</h5>
+                      <h5>{{ $t('about.ourIdentity') }}</h5>
                       <div v-if="aboutData">
                         <p v-html="aboutData.identity"></p>
                       </div>

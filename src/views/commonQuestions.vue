@@ -3,8 +3,8 @@
         <div class="bg-title">
             <div class="container h-100">
                 <div class="flex-end-content">
-                    <h1 class="font25 fontBold">الاسئلة الشائعه</h1>
-                    <p>هذا النص هو مثال لنص يمكن ان يستبدل</p>
+                    <h1 class="font25 fontBold">{{ $t('layout.header.fqs') }}</h1>
+                    <!-- <p>هذا النص هو مثال لنص يمكن ان يستبدل</p> -->
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-12">
                     <div class="aboutTxt">
-                        <h5>كلمة رئيس مجلس الإدارة</h5>
+                        <h5>{{ $t('layout.ChairmanSpeech') }}</h5>
                         <p v-html="dataWords.word"></p>
                     </div>
                 </div>

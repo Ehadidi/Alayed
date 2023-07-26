@@ -3,8 +3,8 @@
         <div class="bg-title">
             <div class="container h-100">
                 <div class="flex--start--title">
-                    <h1 class="font25 fontBold">{{ category }}</h1>
-                    <h5>{{ subSection }}</h5>
+                    <h1 class="font25 fontBold">{{ mainCategoryName }}</h1>
+                    <h5> {{ subCategoryName }}</h5>
                 </div>
             </div>
         </div>
@@ -12,7 +12,7 @@
             <div class="row justify-content-between align-items-center mb-4">
                 <div class="col-lg-2 col-md-3 col-6">
                     <select class="default_select" v-model="filterCategory" @change="filter" name="subCategory">
-                        <option disabled selected value="">اختر القسم</option>
+                        <option disabled selected value="">{{ $t('products.selectCategoey') }}</option>
                         <option :value="option.id" v-for="option in subCategory" :key="option">
                             {{ option.name }}
                         </option>
@@ -21,7 +21,7 @@
                 <div class="col-lg-3 col-md-4 col-6">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center gap5">
-                            <span class="fontBold">العرض</span>
+                            <span class="fontBold">{{ $t('products.view') }}</span>
                             <button type="button" class="btn grid p-0 height17 icon-btn" @click="graid">
                                 <img :src="require('@/assets/images/gridIcon.png')" alt="">
                             </button>
@@ -31,7 +31,7 @@
                         </div>
                         <button @click="sort" type="button"
                             class="btn p-0 height17 icon-btn d-flex align-items-center font13">
-                            <span>الترتيب بالإسم</span>
+                            <span>{{ $t('products.sortByName') }}</span>
                             <div class="d-flex align-items-center flex-column">
                                 <img :src="require('@/assets/images/Polygon1.png')" class="width10 actUp" alt="">
                                 <img :src="require('@/assets/images/Polygon2.png')" class="width10 actDown" alt="">
@@ -49,18 +49,12 @@
             </div>
             <div v-if="emptyData" class="">
                 <div class="alert alert-danger text-center w-100" role="alert">
-                    لا يوجد منتجات
+                    {{ $t('products.productNotFound') }}
                 </div>
             </div>
             <div v-else class="grid-wrapper" ref="test" :class="toggleStatus">
-                <router-link v-for="item in productsData" :key="item" class="default_link overflow_hid" :to="{
-                    name: 'productDetails', params: {
-                        id: item.id,
-                        mainCategory: category,
-                        productName: item.name,
-                        sub: item.category_name
-                    }
-                }">
+                <router-link v-for="item in productsData" :key="item" class="default_link overflow_hid"
+                    :to="{ name: 'productDetails', params: { id: item.id } }">
                     <div class="product_card">
                         <img :src="item.cover" alt="">
                         <div class="card-info">
@@ -85,10 +79,10 @@ export default {
             productsData: [],
             toggleStatus: sessionStorage.getItem("listed"),
             subCategory: [],
-            category: this.$route.params.mainCategory,
-            subSection: this.$route.params.sub,
             filterCategory: '',
-            emptyData: false
+            emptyData: false,
+            mainCategoryName: '',
+            subCategoryName: '',
         }
     },
     methods: {
@@ -120,7 +114,9 @@ export default {
         async get_products_group() {
             await axios.get(`products?category_id=${this.$route.params.id}`)
                 .then((res) => {
-                    this.productsData = res.data.data
+                    this.productsData = res.data.data.products
+                    this.mainCategoryName = res.data.data.mainCategoryName
+                    this.subCategoryName = res.data.data.subCategoryName
                     if (this.productsData.length === 0) {
                         this.emptyData = true
                     } else {
@@ -134,7 +130,7 @@ export default {
             await axios.get(`products?category_id=${this.filterCategory}`)
                 .then((response) => {
                     console.log(response);
-                    this.productsData = response.data.data
+                    this.productsData = response.data.data.products
                     if (this.productsData.length === 0) {
                         this.emptyData = true
                     } else {
@@ -154,6 +150,7 @@ export default {
     },
 
     mounted() {
+        console.log(this.subName, this.catName);
         this.toggleStatus = sessionStorage.getItem("listed");
         this.get_products_group()
         this.get_subCategory()

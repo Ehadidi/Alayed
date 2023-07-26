@@ -12,7 +12,7 @@
                 <newsCard v-for="item in news" :key="item" :item="item"></newsCard>
             </div>
         </div>
-        <router-link to="/news" class="btn main_btn up mt-5">المزيد من الاخبار</router-link>
+        <router-link to="/news" class="btn main_btn up mt-5">{{ $t('news.moreNews') }}</router-link>
     </section>
 </template>
 

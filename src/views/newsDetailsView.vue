@@ -2,8 +2,8 @@
     <div class="bg-title">
         <div class="container h-100">
             <div class="flex-end-content">
-                <h1 class="font25 fontBold">الاخبار</h1>
-                <p>هذا النص هو مثال لنص يمكن ان يستبدل</p>
+                <h1 class="font25 fontBold">{{ $t('news.newsTitle') }}</h1>
+                <!-- <p>هذا النص هو مثال لنص يمكن ان يستبدل</p> -->
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
     </div>
     <div class="P_top_60 P_bottom_60">
         <div class="container">
-            <h5 class="fontBold mainColor txt_start">اخبار اخري</h5>
+            <h5 class="fontBold mainColor txt_start">{{ $t('news.anotherNews') }}</h5>
             <div v-if="loader" class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3" v-for="item in 2" :key="item">
                     <Skeleton width="100%" height="200px" class="mb-2"></Skeleton>
@@ -48,7 +48,7 @@
             </div>
             <div v-else class="row pt-5 pb-5">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3" v-for="item in relatedNews" :key="item">
-                    <router-link :to="'/newsDetails/' + item.id" class="raise">
+                    <router-link :to="'/newsDetails/' + item.id" class="raise" @click="getNewData(item.id)">
                         <v-card>
                             <v-img class="mb-3" :src="item.image" height="200px" cover></v-img>
                             <div class="newsCard">
@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <router-link to="/news" class="btn main_btn up mt-5">المزيد من الاخبار</router-link>
+        <router-link to="/news" class="btn main_btn up mt-5">{{ $t('news.moreNews') }}</router-link>
     </div>
 </template>
 
@@ -90,19 +90,32 @@ export default {
         async get_newsDetails() {
             await axios.get(`news/details?id=${this.$route.params.id}`)
                 .then((res) => {
-                    // console.log(res.data.data);
                     this.description = res.data.data.detail.description
                     this.imageDetail = res.data.data.detail.image
                     this.relatedNews = res.data.data.related_news
-                    // this.newsData = res.data.data.news
                     this.loader = false
 
                 })
-        }
+                .catch(err => {
+                    console.log(err);
+                })
+        },
+        async getNewData(itemId) {
+            await axios.get(`news/details?id=${itemId}`)
+                .then((respone) => {
+                    this.description = respone.data.data.detail.description
+                    this.imageDetail = respone.data.data.detail.image
+                    this.relatedNews = respone.data.data.related_news
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        },
     },
     mounted() {
         this.get_newsDetails()
-    }
+    },
+
 }
 </script>
 

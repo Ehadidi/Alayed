@@ -14,16 +14,19 @@ const routes = [
   {
     path: '/product',
     name: 'product',
+    props: true,
     component: () => import('../views/ProductView.vue')
   },
   {
-    path: '/productsGroup/:mainCategory/:sub/:id',
+    path: '/productsGroup/:id',
     name: 'productsGroup',
+    props: true,
     component: () => import('../views/productsGroupView.vue')
   },
   {
-    path: '/productDetails/:mainCategory/:sub/:productName/:id',
+    path: '/productDetails/:id',
     name: 'productDetails',
+    props: true,
     component: () => import('../views/productDetailsView.vue')
   },
   {
@@ -60,6 +63,11 @@ const routes = [
     path: '/downloadSource',
     name: 'downloadSource',
     component: () => import('../views/downloadSource.vue')
+  },
+  {
+    path: '/searchView/:key',
+    name: 'searchView',
+    component: () => import('../views/searchView.vue')
   },
   {
     path: '/B2B',

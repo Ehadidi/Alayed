@@ -2,7 +2,7 @@
     <section class="how-we-are">
       <div class="container">
         <div class="aboutTxt" v-if="aboutData">
-            <h5>النشاط الإقتصادي</h5>
+            <h5>{{ $t('about.EconomicActivity') }}</h5>
             <p v-html="aboutData.economic_activity"> </p>
         </div>
         <div class="img-group">

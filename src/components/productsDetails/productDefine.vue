@@ -9,7 +9,7 @@
                         </span>
                         <div class="d-flex flex-column align-items-start gap10">
                             <h6 class="fontBold mainColor">{{ productName }}</h6>
-                            <span class="fontBold"> {{ category }} \ {{ subSection }}</span>
+                            <span class="fontBold">{{ categoryName }} / {{ mainCategoryName }}</span>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-    props:['icons' , 'subSection' , 'productName' , 'category']
+    props:['icons' , 'mainCategoryName' , 'categoryName' , 'productName']
 }
 </script>
 

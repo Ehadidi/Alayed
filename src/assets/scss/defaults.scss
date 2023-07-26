@@ -288,7 +288,7 @@ $main-gray: #9E9E9E;
 .bars span {
     width: 30px;
     height: 3px;
-    background-color: var(--main);
+    background-color: #fff;
     position: absolute;
     left: 0;
     right: 0;
@@ -311,11 +311,11 @@ $main-gray: #9E9E9E;
 }
 
 .x-bars {
-    z-index: 11;
+    z-index: 89;
 }
 
 .x-bars span {
-    background-color: var(--white);
+    background-color: #fff;
 }
 
 .x-bars span:first-child {
@@ -497,6 +497,7 @@ button:focus {
 .overflow_auto {
     overflow: auto;
 }
+
 .overflow_hid {
     overflow: hidden;
 }
@@ -732,6 +733,9 @@ textarea.default_input {
         }
     }
 
+    .bars span{
+        background-color: #000 ;
+    }
     .navBar {
         .dropBtnNav {
             position: relative;
@@ -784,6 +788,9 @@ textarea.default_input {
         background-color: transparent;
         box-shadow: none;
 
+        .bars span{
+            background-color: #fff ;
+        }
         .navBar {
             ul {
 
@@ -891,15 +898,121 @@ textarea.default_input {
         line-height: 35px;
     }
 }
-.v-expansion-panel__shadow{
+
+.v-expansion-panel__shadow {
     box-shadow: none !important;
 }
-.v-expansion-panel:not(:first-child)::after{
+
+.v-expansion-panel:not(:first-child)::after {
     display: none !important;
 }
-.v-expansion-panel--active > .v-expansion-panel-title{
+
+.v-expansion-panel--active>.v-expansion-panel-title {
     min-height: unset !important;
 }
-.v-expansion-panel-title{
+
+.v-expansion-panel-title {
     background-color: #F5F5F5;
+}
+
+.nastedExpand {
+    .v-expansion-panel-title {
+        background-color: transparent;
+        width: fit-content;
+    }
+
+    .v-expansion-panel-title--active>.v-expansion-panel-title__overlay,
+    .v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true]>.v-expansion-panel-title__overlay {
+        background-color: transparent;
+        opacity: unset !important;
+    }
+}
+
+.autoCompleteList{
+    background-color: #fff;
+    list-style: none;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    transition: .5s all ease;
+    // transform: translateY(-31px);
+    // opacity: 0;
+    // visibility: hidden;
+    // pointer-events: none;
+    li{
+        padding: 12px;
+    }
+    &.showen{
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: visible; 
+    }
+}
+
+@media (max-width : 992px) {
+    .header {
+        .navBar {
+            position: fixed;
+            width: 300px;
+            height: 100%;
+            right: 0;
+            top: 0;
+            background-color: rgb(6, 16, 55);
+            z-index: 999;
+            transform: translateX(110%);
+            transition: .5s all ease;
+            &.open{
+                transform: translateX(0); 
+            }
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 33px;
+                padding: 35px;
+
+                li {
+                    .drop-label {
+                        color: #fff;
+                    }
+
+                    .user_option {
+                        button {
+                            color: #fff;
+                        }
+                    }
+
+                    a {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        .nav-layer {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(77, 128, 153, 0.21);
+            z-index: 88;
+            position: fixed;
+            top: 0;
+            right: 0;
+            transform: translateX(110%);
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.5s all cubic-bezier(0, 0.11, 0.4, 1.29);
+            display: block;
+            &.open {
+                transform: translateX(0);
+                visibility: visible;
+                opacity: 1;
+                pointer-events: visible;
+            }
+        }
+    }
 }

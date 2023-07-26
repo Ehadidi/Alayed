@@ -2,12 +2,12 @@
     <section class="P_top_50 P_bottom_50">
         <div class="container">
             <div class="title--sec">
-                <h4 class="fontBold">قيمنا</h4>
+                <h4 class="fontBold">{{ $t('about.values') }}</h4>
                 <div class="features mainColor fontBold">
-                    <span>الجوده -</span>
-                    <span>العلم -</span>
-                    <span>الابتكار -</span>
-                    <span>الاداء</span>
+                    <span>{{ $t('about.quality') }} -</span>
+                    <span>{{ $t('about.science') }} -</span>
+                    <span>{{ $t('about.innovation') }} -</span>
+                    <span>{{ $t('about.performance') }}</span>
                 </div>
             </div>
             <div class="row M_top_50 M_bottom_50">
@@ -19,19 +19,19 @@
                 <div class="col-lg-8 col-md-9 col-12">
                     <div v-if="aboutData" class="values-content">
                         <div class="values-item">
-                            <h5>الجوده</h5>
+                            <h5>{{ $t('about.quality') }}</h5>
                             <p v-html="aboutData.quality_paragraph"></p>
                         </div>
                         <div class="values-item">
-                            <h5>العلم</h5>
+                            <h5>{{ $t('about.science') }}</h5>
                             <p v-html="aboutData.science"></p>
                         </div>
                         <div class="values-item">
-                            <h5>الابتكار</h5>
+                            <h5>{{ $t('about.innovation') }}</h5>
                             <p v-html="aboutData.innovation"></p>
                         </div>
                         <div class="values-item">
-                            <h5>الاداء</h5>
+                            <h5>{{ $t('about.performance') }}</h5>
                             <p v-html="aboutData.performance"></p>
                         </div>
                     </div>

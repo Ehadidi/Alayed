@@ -4,7 +4,7 @@
             <div class="categ_item">
                 <span class="fontBold mainColor font15">{{ item.name }}</span>
                 <span class="icon_round text-white">
-                    <img :src="item.item" alt="product image">
+                    <img :src="item.icon" alt="product image">
                     <!-- {{ item.name }} -->
                 </span>
             </div>
@@ -59,13 +59,15 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: hidden;
 
         &:hover {
             box-shadow: 0px 5px 10px 0px rgba(30, 54, 140, .69);
         }
 
         img {
-            width: 60%;
+            width: 100%;
+            height: 100%;
         }
     }
 
