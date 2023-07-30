@@ -44,16 +44,23 @@ export default {
           this.socials = res.data.data.socials
           this.Partners = res.data.data.Partners
         })
-    }
-  },
-  mounted() {
-    this.get_home()
+    },
   },
   computed: {
+    shouldAddClass() {
+      return this.$i18n.locale === 'en';
+    },
     isIndexPage() {
       return this.$route.path === '/';
     }
   },
+  mounted() {
+    if (this.shouldAddClass) {
+      document.body.classList.add('ltr');
+    }
+    this.get_home()
+  },
+
 }
 </script>
 <style lang="scss">
@@ -78,4 +85,5 @@ export default {
 a {
   text-decoration: none !important;
 }
+
 </style>

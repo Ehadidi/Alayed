@@ -599,7 +599,7 @@ textarea:focus {
 .default_input:focus,
 .default_input:not(:placeholder-shown) {
     &::placeholder {
-        transform: translateX(150%);
+        transform: translateX(110%);
     }
 }
 
@@ -937,10 +937,6 @@ textarea.default_input {
     display: flex;
     flex-direction: column;
     transition: .5s all ease;
-    // transform: translateY(-31px);
-    // opacity: 0;
-    // visibility: hidden;
-    // pointer-events: none;
     li{
         padding: 12px;
     }

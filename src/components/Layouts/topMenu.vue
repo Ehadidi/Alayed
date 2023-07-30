@@ -1,6 +1,6 @@
 <template>
     <div class="text-center">
-        <v-locale-provider rtl>
+        <v-locale-provider :rtl="$i18n.locale === 'ar'">
             <v-menu v-model="menu" :close-on-content-click="false" location="top center">
                 <template v-slot:activator="{ props }">
                     <div v-bind="props">
@@ -14,7 +14,7 @@
                     </div>
                     <v-card-actions>
                         <button class="btn main_btn fill up font14 w-50 M_auto" @click="menu = false">
-                            ارسال
+                            {{ $t('layout.send') }}
                         </button>
                     </v-card-actions>
                 </v-card>

@@ -5,8 +5,8 @@
                 <div class="footer--content">
                     <img class="width100 height55" :src="require('@/assets/images/logo.png')" alt="">
                     <div class="row w-100 align-items-center">
-                        <div class="col-md-3 col-sm-12">
-                            <div class="d-flex justify-content-start">
+                        <div class="col-lg-3 col-12">
+                            <div class="d-flex justify-content-lg-start justify-content-center">
                                 <topMenu>
                                     <template #btn>
                                         <button class="btn text-white font11">
@@ -24,7 +24,7 @@
                                 </topMenu>
                             </div>
                         </div>
-                        <div class="col-md-9 col-sm-12">
+                        <div class="col-lg-9 col-sm-12 d-lg-block d-none">
                             <div class="navBar">
                                 <ul>
                                     <li><router-link class="default_link" to="/">{{ $t('layout.header.home')}}</router-link></li>
@@ -75,8 +75,6 @@
                     <div class="d-flex align-items-center justify-content-center gap15 w-100 pt-5">
                         <span v-for="item in socials" :key="item">
                             <a :href="item.link" class="social-icon default_link">
-                                <!-- <img :src="item.src" :alt="item.name"> -->
-                                <!-- <font-awesome-icon :icon="item.name" /> -->
                                 <i :class="item.icon"></i>
                             </a>
                         </span>

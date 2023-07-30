@@ -25,7 +25,7 @@
             <div class="row">
                 <div v-for="img in images" :key="img" class="col-lg-3 col-md-4 col-6">
                     <a data-fancybox="gallery" :href='img'>
-                        <img class="w-75" :src="img" alt="products">
+                        <img class="w-75" style="height: 200px;" :src="img" alt="products">
                     </a>
                 </div>
             </div>

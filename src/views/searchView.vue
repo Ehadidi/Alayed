@@ -71,7 +71,7 @@ export default {
     justify-content: flex-end;
     gap: 10px;
     flex-direction: column;
-    width: 280px;
+    width: 100%;
     height: 340px;
     padding: 0 0 30px 0;
     transition: .6s all ease;
@@ -86,7 +86,8 @@ export default {
 
     img {
         width: 70%;
-        margin-bottom: 30px;
+        height: 100%;
+        margin: 10px 0 30px;
     }
 
     &:hover {
@@ -97,7 +98,7 @@ export default {
 
 .grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(243px, 1fr));
     gap: 30px;
 
     &.inline--cards {

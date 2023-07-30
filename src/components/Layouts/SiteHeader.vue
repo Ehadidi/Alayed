@@ -7,9 +7,10 @@
                 </div>
                 <div class="navBar" :class="{ 'open': sideStatus }">
                     <ul>
-                        <li><router-link @click="inActive" class="default_link" to="/">{{ $t('layout.header.home')}}</router-link></li>
+                        <li><router-link @click="inActive" class="default_link" to="/">{{
+                            $t('layout.header.home') }}</router-link></li>
                         <li>
-                            <v-locale-provider rtl>
+                            <v-locale-provider :rtl="$i18n.locale === 'ar'">
                                 <v-menu :offset-y="false">
                                     <template v-slot:activator="{ props }">
                                         <div v-bind="props">
@@ -25,7 +26,8 @@
                                     <v-list>
                                         <v-list-item @click="routeRef(item.ref)" v-for="(item, i) in items" :key="i">
                                             <v-list-item-title class="dropList">
-                                                <router-link @click="inActive" class="default_link" to="/about">{{ item.title }}</router-link>
+                                                <router-link @click="inActive" class="default_link" to="/about">{{
+                                                    item.title }}</router-link>
                                             </v-list-item-title>
                                         </v-list-item>
                                     </v-list>
@@ -33,21 +35,25 @@
                             </v-locale-provider>
                         </li>
                         <li>
-                            <router-link @click="inActive" class="default_link" to="/product">{{ $t('layout.header.products') }}</router-link>
+                            <router-link @click="inActive" class="default_link" to="/product">{{
+                                $t('layout.header.products') }}</router-link>
                         </li>
                         <li>
-                            <router-link @click="inActive" class="default_link" to="/ChairmanSpeech">{{ $t('layout.header.wordOfBoard') }}</router-link>
+                            <router-link @click="inActive" class="default_link" to="/ChairmanSpeech">{{
+                                $t('layout.header.wordOfBoard') }}</router-link>
                         </li>
                         <li>
-                            <router-link @click="inActive" class="default_link" to="/news">{{ $t('layout.header.news')}}</router-link>
+                            <router-link @click="inActive" class="default_link" to="/news">{{
+                                $t('layout.header.news') }}</router-link>
                         </li>
                         <li class="dropList">
-                            <v-locale-provider rtl>
+                            <v-locale-provider :rtl="$i18n.locale === 'ar'">
                                 <v-menu>
                                     <template v-slot:activator="{ props }">
                                         <div v-bind="props">
                                             <div class="d-flex align-items-center drop-label">
-                                                <span class="M_end_5 default_link drop-label">{{ $t('layout.header.Support')}}</span>
+                                                <span class="M_end_5 default_link drop-label">{{
+                                                    $t('layout.header.Support') }}</span>
                                                 <span class="mt-1"><font-awesome-icon
                                                         :icon="['fas', 'angle-down']" /></span>
                                             </div>
@@ -57,15 +63,16 @@
                                     <v-list>
                                         <v-list-item>
                                             <v-list-item-title class="dropList">
-                                                <router-link @click="inActive" class="default_link"
-                                                    to="/commonQuestions">{{ $t('layout.header.fqs')}}</router-link>
+                                                <router-link @click="inActive" class="default_link" to="/commonQuestions">{{
+                                                    $t('layout.header.fqs') }}</router-link>
+                                            </v-list-item-title>
+                                            <v-list-item-title class="dropList">
+                                                <router-link @click="inActive" class="default_link" to="/downloadSource">{{
+                                                    $t('layout.header.DownloadFiles') }}</router-link>
                                             </v-list-item-title>
                                             <v-list-item-title class="dropList">
                                                 <router-link @click="inActive" class="default_link"
-                                                    to="/downloadSource">{{ $t('layout.header.DownloadFiles')}}</router-link>
-                                            </v-list-item-title>
-                                            <v-list-item-title class="dropList">
-                                                <router-link @click="inActive" class="default_link" to="/B2B">B2B</router-link>
+                                                    to="/B2B">B2B</router-link>
                                             </v-list-item-title>
                                         </v-list-item>
                                     </v-list>
@@ -73,14 +80,16 @@
                             </v-locale-provider>
                         </li>
                         <li>
-                            <router-link @click="inActive" class="default_link" to="/contact">{{ $t('layout.header.Contact') }}</router-link>
+                            <router-link @click="inActive" class="default_link" to="/contact">{{ $t('layout.header.Contact')
+                            }}</router-link>
                         </li>
                         <li>
-                            <router-link @click="inActive" class="default_link" to="/humanResources">{{ $t('layout.header.HumanResources') }}</router-link>
+                            <router-link @click="inActive" class="default_link" to="/humanResources">{{
+                                $t('layout.header.HumanResources') }}</router-link>
                         </li>
                         <li>
                             <div class="user_option">
-                                <v-locale-provider rtl>
+                                <v-locale-provider :rtl="$i18n.locale === 'ar'">
                                     <div class="text-center" @click="showField">
                                         <v-btn size="x-small" variant="text" icon="$vuetify"
                                             :class="{ 'text-white': isIndexPage }" @click="overlay = !overlay">
@@ -129,7 +138,7 @@
                 </div>
                 <span class="nav-layer" :class="{ 'open': sideStatus }" @click="openSideOption"></span>
                 <div class="d-flex align-items-center gap10">
-                    <v-locale-provider rtl>
+                    <v-locale-provider :rtl="$i18n.locale === 'ar'">
                         <v-menu>
                             <template v-slot:activator="{ props }">
                                 <v-btn variant="text" :class="{ 'text-white': isIndexPage }" v-bind="props">
@@ -141,12 +150,12 @@
                             <v-list>
                                 <v-list-item v-if="$i18n.locale == 'en'">
                                     <v-list-item-title>
-                                        <button class="btn p-0 fontBold font11" @click="switchLang">العربيه</button>
+                                        <button class="btn p-0 fontBold font11 w-100" @click="switchLang">العربيه</button>
                                     </v-list-item-title>
                                 </v-list-item>
                                 <v-list-item v-else-if="$i18n.locale == 'ar'">
                                     <v-list-item-title>
-                                        <button class="btn p-0 fontBold font11" @click="switchLang">English</button>
+                                        <button class="btn p-0 fontBold font11 w-100" @click="switchLang">English</button>
                                     </v-list-item-title>
                                 </v-list-item>
                             </v-list>
@@ -203,6 +212,7 @@ export default {
 
             location.reload()
         },
+
         routeRef(targetRef) {
             this.Reffre = targetRef
             console.log(this.$route);
@@ -223,6 +233,7 @@ export default {
             }
 
         },
+        
         openSideOption() {
             this.sideStatus = !this.sideStatus
         },
@@ -246,6 +257,19 @@ export default {
                 this.query = ''
                 this.closeModal()
             }
+            if (this.$route.path.includes('searchView')) {
+                if (this.query) {
+                    this.$router.push({ name: 'searchView', params: { key: `${this.query}` } })
+                    this.query = ''
+                    this.closeModal()
+                    // window.location.reload()
+                }
+                setTimeout(() => {
+                    window.location.reload();
+                }, 50)
+                
+            }
+
         },
         clear() {
             this.query = ''

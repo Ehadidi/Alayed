@@ -5,9 +5,8 @@
                 <slot name="title"></slot>
             </h5>
             <div class="d-flex align-items-start gap6 mb-3 mt-3">
-                <span 
-                    class="width20 height20 text-white round bgMain font12 d-flex align-items-center justify-content-center"
-                >
+                <span
+                    class="width20 height20 text-white round bgMain font12 d-flex align-items-center justify-content-center">
                     <font-awesome-icon :icon="['fas', 'check']" />
                 </span>
                 <p class="mb-0 txt_start">
@@ -25,11 +24,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.txt-sec{
+.txt-sec {
     background-color: #fff;
     margin: 15px 0;
     padding: 40px 0;
 }
+
 h5 {
     position: relative;
     width: fit-content;
@@ -45,6 +45,16 @@ h5 {
         height: 3px;
         background-color: #ccc;
         border-radius: 5px;
+    }
+}
+
+body.ltr {
+    h5 {
+        &::after {
+            content: "";
+            right: unset;
+            left: 0;
+        }
     }
 }
 </style>

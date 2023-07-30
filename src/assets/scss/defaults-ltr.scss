@@ -1,0 +1,30 @@
+body.ltr {
+    .v-application {
+        direction: ltr !important;
+    }
+
+    .values-img::after {
+        left: -5%;
+        right: unset;
+    }
+
+    .default_input:focus,
+    .default_input:not(:placeholder-shown) {
+        &::placeholder {
+            transform: translateX(-110%);
+        }
+    }
+    .show-more {
+        left: unset;
+        right: -5px;
+    }
+    .modalSearch .v-overlay__content .modal_content .float_icon{
+        right: 4%;
+        left: unset;
+    }
+    .modalSearch .v-overlay__content .modal_content .float_btn{
+        right: 8%;
+        left: unset;
+    }
+
+}

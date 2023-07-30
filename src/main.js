@@ -11,6 +11,7 @@ import Toast from 'primevue/toast';
 
 // import my scss
 import '@/assets/scss/defaults.scss'
+import '@/assets/scss/defaults-ltr.scss'
 // import lightbox
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
