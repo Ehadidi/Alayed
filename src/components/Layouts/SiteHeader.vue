@@ -387,4 +387,18 @@ export default {
     transform: translateY(170px);
     opacity: 0;
 }
+// .header {
+//   .navBar {
+//     ul {
+//       li {
+//         a {
+//           &.router-link-exact {
+//             color: #1E368C !important;
+//             font-weight: 900;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 </style>

@@ -77,6 +77,8 @@ export default {
   text-align: center;
 }
 
+
+
 @font-face {
   font-family: 'main_font';
   src: url('@/assets/webfonts/URW-DIN-Arabic.ttf');
@@ -85,5 +87,4 @@ export default {
 a {
   text-decoration: none !important;
 }
-
 </style>
