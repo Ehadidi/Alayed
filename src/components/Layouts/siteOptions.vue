@@ -1,16 +1,30 @@
 <template>
     <div class="float-option">
-        <router-link class="watsapp" to=""><img :src="require('@/assets/images/watsapp.png')" alt=""></router-link>
+        <a class="watsapp" :href="watsapp"><img :src="require('@/assets/images/watsapp.png')" alt=""></a>
         <button class="btn upPage" @click="scrollToTop"><img :src="require('@/assets/images/arrowUp.png')" alt=""></button>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+    data: () => ({
+        watsapp:''
+    }),
     methods: {
+        async get_watts() {
+            await axios.get('home')
+                .then((res) => {
+                    this.watsapp = res.data.data.watsapp
+                })
+        },
         scrollToTop() {
             window.scrollTo(0, 0);
         }
+    },
+    mounted() {
+        this.get_watts()
     }
 }
 </script>

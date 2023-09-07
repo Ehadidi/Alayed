@@ -1,24 +1,26 @@
 <template>
-    <div class="ChairmanSpeech">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-12">
-                    <div class="aboutTxt">
-                        <h5>{{ $t('layout.ChairmanSpeech') }}</h5>
-                        <p v-html="dataWords.word"></p>
+    <div>
+        <div class="ChairmanSpeech">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-12">
+                        <div class="aboutTxt">
+                            <h5>{{ $t('layout.ChairmanSpeech') }}</h5>
+                            <p v-html="dataWords.word"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 d-lg-block d-none">
-                    <div class="d-flex flex-column align-items-center">
-                        <img :src="require('@/assets/images/alayed-logo.png')" alt="logo">
-                        <img class="Chairman-img" :src="require('@/assets/images/Chairman.png')" alt="Chairman">
+                    <div class="col-lg-6 d-lg-block d-none">
+                        <div class="d-flex flex-column align-items-center">
+                            <img :src="require('@/assets/images/alayed-logo.png')" alt="logo">
+                            <img class="Chairman-img" :src="require('@/assets/images/Chairman.png')" alt="Chairman">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="quoted-txt M_bottom_60">
-        <p v-html="dataWords.paragraph"></p>
+        <div class="quoted-txt M_bottom_60">
+            <p v-html="dataWords.paragraph"></p>
+        </div>
     </div>
 </template>
   
@@ -26,10 +28,10 @@
 import axios from 'axios';
 
 export default {
-    data(){
-        return{
-            loader :true,
-            dataWords : []
+    data() {
+        return {
+            loader: true,
+            dataWords: []
         }
     },
     methods: {

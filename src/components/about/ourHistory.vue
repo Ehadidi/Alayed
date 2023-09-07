@@ -11,7 +11,7 @@
                 <div class="col-lg-4 col-md-6 col-12 mb-2">
                     <h6 class="txt_start fontBold">{{ $t('about.beginning') }}</h6>
                     <div v-if="aboutData">
-                        <p v-html="aboutData.beginning"></p>
+                        <p class="txt_start" v-html="aboutData.beginning"></p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12 mb-2">
@@ -63,7 +63,7 @@
                 <div class="col-lg-4 col-md-6 col-12 mb-2">
                     <h6 class="txt_start fontBold">{{ $t('about.present') }}</h6>
                     <div v-if="aboutData">
-                        <p v-html="aboutData.present"></p>
+                        <p class="txt_start" v-html="aboutData.present"></p>
                     </div>
                 </div>
             </div>

@@ -3,8 +3,8 @@
         <div class="bg-title">
             <div class="container h-100">
                 <div class="flex--start--title">
-                    <h1 class="font25 fontBold">{{ mainCategoryName }}</h1>
-                    <h5> {{ subCategoryName }}</h5>
+                    <h1 class="font20 fontBold mb-5">{{ mainCategoryName }}</h1>
+                    <h6 class="font13"> {{ subCategoryName }}</h6>
                 </div>
             </div>
         </div>
@@ -88,15 +88,8 @@ export default {
     methods: {
         sort() {
             this.productsData.sort((a, b) => {
-                console.log('currunt', b);
-                console.log('next el', a);
-
-                if (a.name < b.name) {
-                    return -1
-                } else if (a.name > b.name) {
-                    return 1
-                } else {
-                    return 0
+                if (a.name && b.name) {
+                    return (-1)                    
                 }
             })
         },
@@ -131,6 +124,8 @@ export default {
                 .then((response) => {
                     console.log(response);
                     this.productsData = response.data.data.products
+                    this.mainCategoryName = response.data.data.mainCategoryName
+                    this.subCategoryName = response.data.data.subCategoryName
                     if (this.productsData.length === 0) {
                         this.emptyData = true
                     } else {
@@ -150,7 +145,7 @@ export default {
     },
 
     mounted() {
-        console.log(this.subName, this.catName);
+
         this.toggleStatus = sessionStorage.getItem("listed");
         this.get_products_group()
         this.get_subCategory()
@@ -224,7 +219,7 @@ export default {
 
     img {
         width: 70%;
-        height: 100%;
+        height: 200px;
         margin: 10px 0 30px;
     }
 

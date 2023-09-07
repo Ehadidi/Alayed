@@ -4,23 +4,20 @@
           <h4 class="mainColor">{{ $t('about.ourGoals') }}</h4>
           <div class="row mb-5 w-100" v-if="aboutData">
             <div class="col-lg-4 col-md-6 col-12 mb-2">
-                <p class="our--massage--txt" v-html="aboutData.goals_1"> </p>
+                <p class="our--massage--txt txt_start" v-html="aboutData.goals_1"> </p>
             </div>
             <div class="col-lg-4 col-md-6 col-12 mb-2">
-                <p class="our--massage--txt" v-html="aboutData.goals_2"> </p>
+                <p class="our--massage--txt txt_start" v-html="aboutData.goals_2"> </p>
             </div>
             <div class="col-lg-4 col-md-6 col-12 mb-2">
-                <p class="our--massage--txt" v-html="aboutData.goals_3"> </p>
+                <p class="our--massage--txt txt_start" v-html="aboutData.goals_3"> </p>
             </div>
           </div>
           <div class="quoted-txt" v-if="aboutData">
                 <p v-html="aboutData.goals_paragraph"></p>
             </div>
-            <v-img
-            class="siteImg"
-                cover
-                :src="require('@/assets/images/siteImg2.png')"
-            ></v-img>
+            <img class="siteImg M_top_30" alt="site image" :src="require('@/assets/images/siteImg2.png')"
+             />
             <!-- <img class="siteImg" :src="require('@/assets/images/siteImg2.png')" alt="site image"> -->
         </div>
     </section>

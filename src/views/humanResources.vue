@@ -10,7 +10,7 @@
         </div>
         <div class="container">
             <div class="txt">
-                <p>{{ hrData.paragraph }}</p>
+                <p v-html="hrData.paragraph"></p>
             </div>
             <div class="row justify-content-center P_bottom_50">
                 <div class="col-lg-6 col-12">
@@ -45,7 +45,7 @@
                                     <template #img><img :src="require('@/assets/images/sms2.png')" alt=""></template>
                                 </form-input>
 
-                                <file-uploader :label="$t('layout.CV')" name="cv" width="col-12 mb-3" refre="uploadCv"
+                                <file-uploader :label="$t('layout.CV')" name="cv" width="col-12 mb-3" ref="refreArea" :refre="uploadCv"
                                     :placeholder="$t('layout.enterCV')">
                                     <template #img><img :src="require('@/assets/images/attach-circle.png')"
                                             alt=""></template>
@@ -55,10 +55,8 @@
                                     <div class="fontBold txt_start d-block mb-2">{{ $t('products.sections') }}</div>
                                     <div class="input_select">
                                         <select name="category_id" >
-                                            <option selected disabled value="" hidden>{{ $t('products.selectCategoey') }}</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
+                                            <option selected value="" hidden>{{ $t('products.selectCategoey') }}</option>
+                                            <option v-for="categoryNaem in mainCategories" :key="categoryNaem">{{ categoryNaem.name }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -99,12 +97,16 @@ export default {
         return {
             hrData: [],
             loading: false,
-            vadlid: ''
+            vadlid: '',
+            uploadCv: 'uploadCv',
+            mainCategories: [],
         }
     },
     methods: {
         resetForm() {
             this.$refs.regestForm.reset();
+            this.$refs.refreArea.fileName = null
+            this.$refs.refreArea.showmark = false
         },
         showSuccess() {
             this.$toast.add({ severity: 'success', summary: '', detail: `${this.vadlid}`, life: 3000 })
@@ -118,6 +120,15 @@ export default {
                     this.hrData = res.data.data
                 })
         },
+
+        async mainCategory() {
+            await axios.get('mainCategory')
+                .then((resCategory) => {
+                    this.mainCategories = resCategory.data.data.category
+                })
+        },
+
+
         async submitForm() {
             this.loading = true
             const formData = new FormData(this.$refs.regestForm)
@@ -128,6 +139,8 @@ export default {
                         this.showSuccess()
                         this.loading = false
                         this.$refs.regestForm.reset();
+                        this.$refs.refreArea.fileName = null
+                        this.$refs.refreArea.showmark = false
                     }
                     else {
                         this.showFail()
@@ -140,6 +153,7 @@ export default {
     },
     mounted() {
         this.getHumanResources()
+        this.mainCategory()
     }
 }
 </script>

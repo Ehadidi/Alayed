@@ -1,9 +1,14 @@
 <template>
     <div class="slider-wrapper">
-        <Carousel id="gallery" :items-to-show="1" :autoplay="5000" :wrap-around="true" v-model="currentSlide">
+        <Skeleton v-if="loader" width="100%" height="100%" class="mb-2"></Skeleton>
+        <Carousel v-else id="gallery" :items-to-show="1" :autoplay="5000" :wrap-around="true" v-model="currentSlide">
             <Slide v-for="(slide) in sliders" :key="slide">
                 <div class="carousel__item slide">
+
                     <img :src="slide.image" alt="">
+
+                    <!-- <v-img class="bg-white" cover :aspect-ratio="1" :src="slide.image"></v-img> -->
+                    <!-- <v-img :src="slide.image" max-height="125" cover class="bg-grey-lighten-2"></v-img> -->
                     <div class="sliderCategory">
                         <h2>{{ slide.title }}</h2>
                         <span>
@@ -35,6 +40,7 @@
 import axios from 'axios'
 import { defineComponent } from 'vue'
 import { Carousel, Slide } from 'vue3-carousel'
+import Skeleton from 'primevue/skeleton';
 
 import 'vue3-carousel/dist/carousel.css'
 
@@ -42,14 +48,16 @@ export default defineComponent({
     components: {
         Carousel,
         Slide,
+        Skeleton
     },
     data: () => ({
         currentSlide: 0,
-        sliders: []
+        loader: true,
+
     }),
     methods: {
         skipSlider() {
-            window.scrollTo(0,600);
+            window.scrollTo(0, 600);
         },
         slideTo(val) {
             this.currentSlide = val
@@ -58,6 +66,7 @@ export default defineComponent({
             await axios.get('home')
                 .then((res) => {
                     this.sliders = res.data.data.slides
+                    this.loader = false
                 })
         }
     },
@@ -73,6 +82,10 @@ export default defineComponent({
     width: 100%;
     height: 100vh;
     position: relative;
+
+    .p-skeleton {
+        background-color: #7c7c7c;
+    }
 
     img {
         filter: brightness(0.7);
@@ -95,6 +108,7 @@ export default defineComponent({
             right: 5%;
             z-index: 7;
             color: #fff;
+            align-items: end;
 
             span {
                 background: #fff;
@@ -165,26 +179,28 @@ export default defineComponent({
         border-bottom: 2px solid #fff;
     }
 }
-.carousel__slide--active{
-    .pagination-bullet{
+
+.carousel__slide--active {
+    .pagination-bullet {
         background: none;
         color: #fff;
         border-bottom: 2px solid #fff;
     }
 }
-.skipSlider {
-        position: absolute;
-        bottom: 8%;
-        left: 0;
-        right: 0;
-        margin: auto;
-        z-index: 8;
-        font-size: 35px;
-        color: #fff;
-        width: fit-content;
 
-        &:hover {
-            color: #1E368C;
-        }
+.skipSlider {
+    position: absolute;
+    bottom: 8%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 8;
+    font-size: 35px;
+    color: #fff;
+    width: fit-content;
+
+    &:hover {
+        color: #1E368C;
     }
+}
 </style>

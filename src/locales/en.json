@@ -47,7 +47,8 @@
         "joinUs":"Join us",
         "HR":"Human Resources",
         "CV":"CV",
-        "enterCV":"Enter CV"
+        "enterCV":"Enter CV",
+        "validMailMsg" : "Please enter a valid email address"
     },
     "news":{
         "moreNews":"More News",

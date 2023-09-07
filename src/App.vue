@@ -1,11 +1,19 @@
 <template>
   <v-app>
-    <!-- <semipolar-spinner :animation-duration="2000" :size="65" color="#ff1d5e" /> -->
     <!-- <v-main> -->
     <SiteHeader></SiteHeader>
 
     <v-main class="body-containt" :class="{ 'homeBody': isIndexPage }">
-      <router-view :Reffre="Reffre" />
+      
+      <router-view v-slot="{ Component }">
+        <transition name="route" mode="out-in">
+          <component :is="Component"></component>
+        </transition>
+      </router-view>
+      <!-- <transition name="pageView">
+        <router-view :Reffre="Reffre" />
+      </transition> -->
+      
     </v-main>
 
     <SiteFooter :socials="socials" :Partners="Partners"></SiteFooter>
@@ -76,7 +84,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-
+.v-overlay__content{
+  font-family: 'main_font', sans-serif !important;
+}
 
 
 @font-face {
@@ -86,5 +96,37 @@ export default {
 
 a {
   text-decoration: none !important;
+}
+
+.pageView-enter-active {
+  animation: fadeDown .5s forwards;
+}
+
+.pageView-leave-active {
+  animation: fadeDown 0.5s reverse;
+}
+
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.route-enter-to,
+.route-leave-from {
+  opacity: 1;
+  transform: translateX(0);
 }
 </style>

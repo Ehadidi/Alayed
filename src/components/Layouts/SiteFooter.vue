@@ -17,11 +17,14 @@
                                     <form ref="joinForm" @submit.prevent="submitJoinForm">
                                         <div class="form__label">
                                             <span class="fontBold">{{ $t('layout.userName') }}</span>
-                                            <input class="default_input" type="text" v-model="name" name="name" :placeholder="$t('layout.writeUserName')">
+                                            <input class="default_input" type="text" v-model="name" name="name"
+                                                required
+                                                :placeholder="$t('layout.writeUserName')">
                                         </div>
                                         <div class="form__label">
                                             <span class="fontBold">{{ $t('layout.email') }}</span>
-                                            <input class="default_input" type="text" v-model="email" name="email" :placeholder="$t('layout.writeEmail')">
+                                            <input class="default_input" type="text" v-model="email" name="email"
+                                                @blur="validateEmail" :placeholder="$t('layout.writeEmail')">
                                         </div>
                                         <div class="d-flex justify-content-cneter">
                                             <button class="btn main_btn fill up font14 w-50 M_auto">
@@ -84,7 +87,7 @@
                             </div>
                             <div class="form__label">
                                 <span class="fontBold">{{ $t('layout.email') }}</span>
-                                <input class="default_input" v-html="email" name="email" type="text"
+                                <input class="default_input" v-html="email" name="email" v-model="email" type="text" @blur="validateEmail"
                                     :placeholder="$t('layout.writeEmail')">
                             </div>
                             <div class="form__label">
@@ -109,7 +112,7 @@
                 </div>
             </div>
         </footer>
-        <div class="d-flex align-items-center justify-content-center gap15 w-100 pt-5">
+        <div class="d-flex align-items-center justify-content-center gap40 w-100 pt-5">
             <img class="partener-img" v-for="Partner in Partners" :key="Partner" :src="Partner.image">
         </div>
     </section>
@@ -126,7 +129,8 @@ export default {
     data() {
         return {
             vadlid: '',
-            loading: false
+            loading: false,
+            emailVlidate: null
         }
     },
     methods: {
@@ -145,9 +149,15 @@ export default {
                     this.vadlid = response.data.msg
 
                     if (response.data.key == 'success') {
-                        this.showSuccess()
-                        this.loading = false
-                        this.$refs.sendForm.reset();
+                        if (this.emailVlidate) {
+                            this.vadlid = this.$t('layout.validMailMsg')
+                            this.showFail()
+                        } else {
+                            this.vadlid = response.data.msg
+                            this.showSuccess()
+                            this.loading = false
+                            this.$refs.sendForm.reset();
+                        }
                     }
                     else {
                         this.showFail()
@@ -166,9 +176,16 @@ export default {
                     this.vadlid = response.data.msg
 
                     if (response.data.key == 'success') {
-                        this.showSuccess()
-                        this.loading = false
-                        this.$refs.joinForm.reset();
+                        if (this.emailVlidate) {
+                            this.vadlid = this.$t('layout.validMailMsg')
+                            this.showFail()
+                        } else {
+                            this.vadlid = response.data.msg
+                            this.showSuccess()
+                            this.loading = false
+                            this.$refs.joinForm.reset();
+                        }
+
                     }
                     else {
                         this.showFail()
@@ -177,6 +194,13 @@ export default {
                 }).catch(e => {
                     console.error(e);
                 })
+        },
+        validateEmail() {
+            if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email)) {
+                this.emailVlidate = false
+            } else {
+                this.emailVlidate = true
+            }
         }
     }
 }

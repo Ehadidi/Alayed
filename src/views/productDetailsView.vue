@@ -1,5 +1,4 @@
 <template>
-    <!-- :productName="productName" :category="category" :subSection="subSection" -->
     <section class="details-sec">
         <img class="product--cover" :src="productDetails.cover" alt="">
         <product-define :icons="icons" :categoryName="categoryName" :mainCategoryName="mainCategoryName" :productName="productName"></product-define>
@@ -66,10 +65,10 @@
                             <!-- <td>{{ item.product_id }}</td> -->
                             <td>{{ item.product_number }}</td>
                             <td>{{ item.weight }}</td>
-                            <td>{{ item.height }}</td>
                             <td>{{ item.thickness }}</td>
                             <td>{{ item.color }}</td>
                             <td>{{ item.work_pressure }}</td>
+                            <td>{{ item.height }}</td>   
                         </tr>
                     </tbody>
                 </v-table>

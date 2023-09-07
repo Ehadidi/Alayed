@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "1b6f8310-1b49-4509-a03a-b60a7f12261b",
+		"name": "aleayid",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://aleayid.aait-sa.com/public/api/home",
+					"protocol": "http",
+					"host": [
+						"aleayid",
+						"aait-sa",
+						"com"
+					],
+					"path": [
+						"public",
+						"api",
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "aboutUs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}aboutUs",
+					"host": [
+						"{{url}}aboutUs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contactUsInfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mainCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}mainCategory",
+					"host": [
+						"{{url}}mainCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "news",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}news",
+					"host": [
+						"{{url}}news"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "news details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "lang",
+						"value": "en",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{url}}news/details?id=2",
+					"host": [
+						"{{url}}news"
+					],
+					"path": [
+						"details"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fqs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}fqs",
+					"host": [
+						"{{url}}fqs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "word-of-board",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}word-of-board",
+					"host": [
+						"{{url}}word-of-board"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hr",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "join us",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "sdaz",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "7894568512",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "fgdfs54@rfdsa.com",
+							"type": "default"
+						},
+						{
+							"key": "category_id",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "cv",
+							"type": "file",
+							"src": "/C:/Users/Atef/Desktop/افاق.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}joinUs",
+					"host": [
+						"{{url}}joinUs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "B2B",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "lang",
+						"value": "en",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{url}}search?name=jcm",
+					"host": [
+						"{{url}}search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "jcm"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}products?category_id=1",
+					"host": [
+						"{{url}}products"
+					],
+					"query": [
+						{
+							"key": "category_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}product/detail?id=52",
+					"host": [
+						"{{url}}product"
+					],
+					"path": [
+						"detail"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "52"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "test",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "0123456789",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "test@test.com",
+							"type": "default"
+						},
+						{
+							"key": "title",
+							"value": "title titel title",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "message message message message message message message message message message message message message message message message ",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}message",
+					"host": [
+						"{{url}}message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "product files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8000/api/",
+			"type": "default"
+		}
+	]
+}

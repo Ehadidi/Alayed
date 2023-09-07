@@ -12,7 +12,7 @@
                     <slot name="img"></slot>
                 </span>
             </div>
-            <div class="holder-area" v-if="showmark">
+            <div class="holder-area" :ref="refreArea" v-if="showmark">
                 {{ fileName }}
                 <button type="button" @click="removeFile">
                     <font-awesome-icon :icon="['fas', 'xmark']" />

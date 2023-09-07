@@ -1,30 +1,32 @@
 <template>
-    <div v-if="loader" class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3" v-for="item in 2" :key="item">
-            <Skeleton width="100%" height="200px" class="mb-2"></Skeleton>
-            <Skeleton width="5rem" class="mb-2"></Skeleton>
-            <Skeleton width="5rem" class="mb-2"></Skeleton>
-        </div>
-    </div>
-    <div class="container P_top_50 P_bottom_50">
-        <div v-if="emptyData" class="">
-            <div class="alert alert-danger text-center w-100" role="alert">
-                لا يوجد منتجات
+    <section class="search-sec">
+        <div v-if="loader" class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3" v-for="item in 2" :key="item">
+                <Skeleton width="100%" height="200px" class="mb-2"></Skeleton>
+                <Skeleton width="5rem" class="mb-2"></Skeleton>
+                <Skeleton width="5rem" class="mb-2"></Skeleton>
             </div>
         </div>
-        <div v-else class="grid-wrapper">
-            <router-link v-for="item in filterData" :key="item" class="default_link overflow_hid"
-                :to="{ name: 'productDetails', params: { id: item.id } }">
-                <div class="product_card">
-                    <img :src="item.cover" alt="">
-                    <div class="card-info">
-                        <h6 class="mainDark fontBold">{{ item.name }}</h6>
-                        <span class="mainColor fontBold">{{ item.category_name }}</span>
-                    </div>
+        <div class="container P_top_50 P_bottom_50">
+            <div v-if="emptyData" class="">
+                <div class="alert alert-danger text-center w-100" role="alert">
+                    لا يوجد منتجات
                 </div>
-            </router-link>
+            </div>
+            <div v-else class="grid-wrapper">
+                <router-link v-for="item in filterData" :key="item" class="default_link overflow_hid"
+                    :to="{ name: 'productDetails', params: { id: item.id } }">
+                    <div class="product_card">
+                        <img :src="item.cover" alt="">
+                        <div class="card-info">
+                            <h6 class="mainDark fontBold">{{ item.name }}</h6>
+                            <span class="mainColor fontBold">{{ item.category_name }}</span>
+                        </div>
+                    </div>
+                </router-link>
+            </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -86,7 +88,7 @@ export default {
 
     img {
         width: 70%;
-        height: 100%;
+        height: 200px;
         margin: 10px 0 30px;
     }
 

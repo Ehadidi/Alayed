@@ -1,21 +1,23 @@
 <template>
-  <div class="bg-title">
-    <div class="container h-100">
-      <div class="flex-end-content">
-        <h1 class="font25 fontBold">B2B</h1>
+  <section>
+    <div class="bg-title">
+      <div class="container h-100">
+        <div class="flex-end-content">
+          <h1 class="font25 fontBold">B2B</h1>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="b2b-txt">
-      <div v-if="b2bData">
-        <p v-html="b2bData"></p>
-      </div>
-      <div v-else>
-        <p></p>
+    <div class="container">
+      <div class="b2b-txt">
+        <div v-if="b2bData">
+          <p v-html="b2bData"></p>
+        </div>
+        <div v-else>
+          <p></p>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

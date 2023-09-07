@@ -42,7 +42,7 @@ export default {
           this.products = res.data.data.categories
           this.loader = false
       } )
-    }
+    },
   },
   mounted(){
     this.get_home()

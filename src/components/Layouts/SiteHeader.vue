@@ -113,9 +113,7 @@
                                                         </div>
                                                         <ul v-if="query" class="autoCompleteList">
                                                             <li v-for="i in searchDataArray" :key="i">
-                                                                <router-link @click="clear"
-                                                                    :to="'/productDetails/' + i.id">{{ i.name
-                                                                    }}</router-link>
+                                                                <router-link class="resultItem" @click="clear" :to="'/productDetails/' + i.id">{{ i.name}}</router-link>
                                                             </li>
                                                         </ul>
                                                     </form>
@@ -125,7 +123,7 @@
                                     </div>
                                 </v-locale-provider>
                                 <v-btn icon="$vuetify" color="#1E368C" class="width30 height30" size="x-small">
-                                    <router-link to="" class="text-white"><font-awesome-icon class="font10"
+                                    <router-link to="/humanResources" class="text-white"><font-awesome-icon class="font10"
                                             :icon="['fas', 'user']" /></router-link>
                                 </v-btn>
                                 <v-btn icon="$vuetify" color="#1E368C" class="width30 height30" size="x-small">
@@ -195,12 +193,14 @@ export default {
     }),
 
     methods: {
+        
         // switch lang     
         switchLang() {
             let lang = 'ar';
             if (this.$i18n.locale == 'ar') {
                 lang = 'en';
                 this.arabic = false;
+                
             }
 
             if (localStorage.getItem('locale')) {
@@ -311,94 +311,98 @@ export default {
         }
     },
 }
+
 </script> 
 
 
 <style lang="scss">
-.v-list-item--density-default.v-list-item--one-line {
-    min-height: unset !important;
-}
-
-.v-list-item-title {
-    a {
-        color: #000 !important;
-        font-size: 13px;
-        font-weight: 600;
+    .v-list-item--density-default.v-list-item--one-line {
+        min-height: unset !important;
     }
-}
 
-.modalSearch {
-    .v-overlay__content {
-        left: 0;
-        right: 0;
-        margin: auto;
-        top: 130px;
-        display: flex;
-        justify-content: center;
-        height: fit-content;
-        width: 50%;
 
-        .modal_content {
-            width: 100%;
+    .v-list-item-title {
+        a {
+            color: #000 !important;
+            font-size: 11px;
+            font-weight: 600;
+        }
+    }
 
-            .field_input_search {
-                background-color: rgba(0, 0, 0, .70) !important;
+    .modalSearch {
+        .v-overlay__content {
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 130px;
+            display: flex;
+            justify-content: center;
+            height: fit-content;
+            width: 50%;
+
+            .modal_content {
                 width: 100%;
-                height: 55px;
-                color: #fff;
-                padding: 10px;
 
-                &:focus {
-                    outline: none;
-                }
-
-                &::placeholder {
+                .field_input_search {
+                    background-color: rgba(0, 0, 0, .70) !important;
+                    width: 100%;
+                    height: 55px;
                     color: #fff;
+                    padding: 10px;
+
+                    &:focus {
+                        outline: none;
+                    }
+
+                    &::placeholder {
+                        color: #fff;
+                    }
                 }
-            }
 
-            .float_btn {
-                left: 8%;
-            }
+                .float_btn {
+                    left: 8%;
+                }
 
-            .float_icon {
-                position: absolute;
-                top: 0;
-                left: 4%;
-                height: 100%;
-                background-color: var(--main);
-                color: #fff;
-                border-radius: 4px 0 0 4px;
+                .float_icon {
+                    position: absolute;
+                    top: 0;
+                    left: 4%;
+                    height: 100%;
+                    background-color: var(--main);
+                    color: #fff;
+                    border-radius: 4px 0 0 4px;
+                }
             }
         }
     }
-}
 
-.slide-fade-enter-active {
-    transition: all 0.3s ease-out;
-}
+    .slide-fade-enter-active {
+        transition: all 0.3s ease-out;
+    }
 
-.slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
+    .slide-fade-leave-active {
+        transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+    }
 
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-    transform: translateY(170px);
-    opacity: 0;
-}
-// .header {
-//   .navBar {
-//     ul {
-//       li {
-//         a {
-//           &.router-link-exact {
-//             color: #1E368C !important;
-//             font-weight: 900;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+    .slide-fade-enter-from,
+    .slide-fade-leave-to {
+        transform: translateY(170px);
+        opacity: 0;
+    }
+    // .header {
+    //   .navBar {
+    //     ul {
+    //       li {
+    //         a {
+    //           &.router-link-exact {
+    //             color: #1E368C !important;
+    //             font-weight: 900;
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+
+
 </style>

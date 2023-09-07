@@ -162,7 +162,7 @@ $main-gray: #9E9E9E;
 @keyframes fadeDown {
     0% {
         opacity: 0;
-        transform: translateY(-100%);
+        transform: translateY(-20px);
     }
 
     100% {
@@ -863,29 +863,29 @@ textarea.default_input {
     width: 70%;
     margin: auto;
 
-    &::before {
-        position: absolute;
-        content: "";
-        top: -10px;
-        height: 1px;
-        left: 0;
-        right: 0;
-        margin: auto;
-        background-color: $main-color;
-        width: 75%;
-    }
+    // &::before {
+    //     position: absolute;
+    //     content: "";
+    //     top: -10px;
+    //     height: 1px;
+    //     left: 0;
+    //     right: 0;
+    //     margin: auto;
+    //     background-color: $main-color;
+    //     width: 75%;
+    // }
 
-    &::after {
-        position: absolute;
-        content: "";
-        bottom: -9px;
-        height: 1px;
-        left: 0;
-        right: 0;
-        margin: auto;
-        background-color: $main-color;
-        width: 50%;
-    }
+    // &::after {
+    //     position: absolute;
+    //     content: "";
+    //     bottom: -9px;
+    //     height: 1px;
+    //     left: 0;
+    //     right: 0;
+    //     margin: auto;
+    //     background-color: $main-color;
+    //     width: 50%;
+    // }
 
     p {
         font-size: 13px;
@@ -909,6 +909,9 @@ textarea.default_input {
 
 .v-expansion-panel-title {
     background-color: #F5F5F5;
+    line-height: 25px !important;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
 .nastedExpand {
@@ -934,7 +937,17 @@ textarea.default_input {
     flex-direction: column;
     transition: .5s all ease;
     li{
-        padding: 12px;
+        border-bottom: 1px solid #eee;
+        .resultItem{
+            color: #000;
+            display: block;
+            padding: 12px;
+            transition: .3s all ease;
+            &:hover{
+                background-color: #1e368c;
+                color: #fff;
+            }
+        }
     }
     &.showen{
         transform: translateY(0);

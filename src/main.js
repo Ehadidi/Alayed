@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import VueGoogleMaps from '@fawmi/vue-google-maps';
-import 'material-design-icons-iconfont/dist/material-design-icons.css';
+
 
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
@@ -18,6 +18,8 @@ import "@fancyapps/ui/dist/fancybox/fancybox.css";
 Fancybox.bind('[data-fancybox="gallery"]', {
   //
 });
+
+
 
 // import fontawesome 
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
@@ -43,16 +45,26 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import '@mdi/font/css/materialdesignicons.css'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
 const vuetify = createVuetify({
   components,
   directives,
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
+  },
 })
 
 import "primevue/resources/themes/lara-light-indigo/theme.css";
 
 // import axios 
 import axios from 'axios';
-axios.defaults.baseURL = 'http://aleayid.aait-sa.com/api/'
+axios.defaults.baseURL = 'https://backend.aleayid.aait-sa.com/api/'
 axios.defaults.headers.common['lang'] = `${localStorage.getItem('locale')}`;
 
 // createApp
