@@ -19,11 +19,13 @@
             "fqs":"Common questions",
             "DownloadFiles":"Download files",
             "searchForProduct":"Search for product",
-            "lang":"Language"
+            "lang":"Language",
+            "aboutGroup":"About Group"
         },
         "footer":{
             "subscription":"Subscribe To Mail",
-            "sendToUs":"Send to us"
+            "sendToUs":"Send to us",
+            "Partners":"Partners"
         },
         "userName":"User Name",
         "writeUserName":"Write User Name",

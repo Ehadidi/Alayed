@@ -21,7 +21,7 @@
 
 <script>
 export default {
-    props:['item'],
+    props: ['item'],
 
 }
 </script>
@@ -38,5 +38,17 @@ export default {
 .v-card {
     box-shadow: none;
     background-color: transparent;
+}
+
+.v-card-title {
+    width: 100%;
+    text-align: start;
+
+    span {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+    }
 }
 </style>

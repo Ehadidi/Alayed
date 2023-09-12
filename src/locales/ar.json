@@ -19,11 +19,13 @@
             "fqs":"الاسئلة الشائعه",
             "DownloadFiles":"ملفات للتحميل",
             "searchForProduct":"البحث عن منتج",
-            "lang":"اللغة"
+            "lang":"اللغة",
+            "aboutGroup":"عن المجموعة"
         },
         "footer":{
             "subscription":"اشترك في البريد",
-            "sendToUs":"ارسل لنا"
+            "sendToUs":"ارسل لنا",
+            "Partners":"شركائنا"
         },
         "userName":"الاسم",
         "writeUserName":"يرجي إدخال الاسم",

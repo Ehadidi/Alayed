@@ -43,7 +43,7 @@
                                     </li>
                                     <li>
                                         <router-link class="default_link" to="/about">{{
-                                            $t('layout.header.howWe') }}</router-link>
+                                            $t('layout.header.aboutGroup') }}</router-link>
                                     </li>
                                     <li>
                                         <router-link class="default_link" to="/product">{{
@@ -59,7 +59,7 @@
                                     </li>
                                     <li>
                                         <router-link class="default_link" to="/commonQuestions">{{
-                                            $t('layout.header.Support') }}</router-link>
+                                            $t('layout.footer.Partners') }}</router-link>
                                     </li>
                                     <li>
                                         <router-link class="default_link" to="/contact">{{
@@ -235,7 +235,7 @@ footer {
             align-items: center;
             gap: 20px;
             margin: 0;
-            padding: 0 40px;
+            // padding: 0 40px;
 
             li {
                 a {

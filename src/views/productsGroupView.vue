@@ -79,7 +79,7 @@ export default {
             productsData: [],
             toggleStatus: sessionStorage.getItem("listed"),
             subCategory: [],
-            filterCategory: '',
+            filterCategory: this.$route.params.id,
             emptyData: false,
             mainCategoryName: '',
             subCategoryName: '',

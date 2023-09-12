@@ -1,6 +1,6 @@
 <template>
     <div class="float-option">
-        <a class="watsapp" :href="watsapp"><img :src="require('@/assets/images/watsapp.png')" alt=""></a>
+        <a class="watsapp" :href="`http://wa.me/${watsapp}`" target="_blank"><img :src="require('@/assets/images/watsapp.png')" alt=""></a>
         <button class="btn upPage" @click="scrollToTop"><img :src="require('@/assets/images/arrowUp.png')" alt=""></button>
     </div>
 </template>
@@ -16,7 +16,8 @@ export default {
         async get_watts() {
             await axios.get('home')
                 .then((res) => {
-                    this.watsapp = res.data.data.watsapp
+                    this.watsapp = res.data.data.whatsapp
+                    console.log(this.watsapp);
                 })
         },
         scrollToTop() {

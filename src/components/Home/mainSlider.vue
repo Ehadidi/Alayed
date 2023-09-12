@@ -1,7 +1,7 @@
 <template>
     <div class="slider-wrapper">
         <Skeleton v-if="loader" width="100%" height="100%" class="mb-2"></Skeleton>
-        <Carousel v-else id="gallery" :items-to-show="1" :autoplay="5000" :wrap-around="true" v-model="currentSlide">
+        <Carousel v-else id="gallery" :autoplay="5000" :items-to-show="1" :wrap-around="true" v-model="currentSlide">
             <Slide v-for="(slide) in sliders" :key="slide">
                 <div class="carousel__item slide">
 
@@ -23,7 +23,8 @@
 
         <div class="thumbnails_carousel">
             <div class="container">
-                <Carousel id="thumbnails" :items-to-show="5" :wrap-around="true" v-model="currentSlide" ref="carousel">
+                <Carousel id="thumbnails" :breakpoints="breakpoints" :wrap-around="true"
+                    v-model="currentSlide" ref="carousel">
                     <Slide v-for="(slide, index) in sliders" :key="slide">
                         <div class="carousel__item" @click="slideTo(index)">
                             <button class="btn p-0 pagination-bullet">{{ slide.title }}</button>
@@ -41,7 +42,6 @@ import axios from 'axios'
 import { defineComponent } from 'vue'
 import { Carousel, Slide } from 'vue3-carousel'
 import Skeleton from 'primevue/skeleton';
-
 import 'vue3-carousel/dist/carousel.css'
 
 export default defineComponent({
@@ -53,6 +53,16 @@ export default defineComponent({
     data: () => ({
         currentSlide: 0,
         loader: true,
+        breakpoints: {
+            // 700px and up
+            700: {
+                itemsToShow: 3.5,
+            },
+            // 1024 and up
+            1024: {
+                itemsToShow: 5,
+            },
+        },
 
     }),
     methods: {
@@ -105,7 +115,7 @@ export default defineComponent({
             gap: 40px;
             position: absolute;
             top: 20%;
-            right: 5%;
+            right: 8%;
             z-index: 7;
             color: #fff;
             align-items: end;

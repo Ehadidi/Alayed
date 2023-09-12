@@ -41,7 +41,7 @@
                                             alt=""></template>
                                 </form-input>
 
-                                <form-input :label="$t('layout.email')" :placeholder="$t('layout.writeEmail')" name="email" vmodal="name" type="email" width="col-12 mb-3">
+                                <form-input :label="$t('layout.email')" :placeholder="$t('layout.writeEmail')" name="email" vmodal="email" type="email" width="col-12 mb-3">
                                     <template #img><img :src="require('@/assets/images/sms2.png')" alt=""></template>
                                 </form-input>
 
@@ -54,9 +54,9 @@
                                 <div class="col-12 mb-3">
                                     <div class="fontBold txt_start d-block mb-2">{{ $t('products.sections') }}</div>
                                     <div class="input_select">
-                                        <select name="category_id" >
+                                        <select v-model="category_id" name="category_id">
                                             <option selected value="" hidden>{{ $t('products.selectCategoey') }}</option>
-                                            <option v-for="categoryNaem in mainCategories" :key="categoryNaem">{{ categoryNaem.name }}</option>
+                                            <option v-for="categoryName in mainCategories" :value="categoryName.id" :key="categoryName">{{ categoryName.name }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -98,6 +98,7 @@ export default {
             hrData: [],
             loading: false,
             vadlid: '',
+            category_id:'',
             uploadCv: 'uploadCv',
             mainCategories: [],
         }
