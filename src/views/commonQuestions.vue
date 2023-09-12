@@ -14,13 +14,17 @@
                     <v-expansion-panel-title class="font12 mainColor fontBold">{{ item.question }}</v-expansion-panel-title>
                     <v-expansion-panel-text>
                         <div class="d-flex align-items-start gap30 position-relative">
-                            <p class="txt_start expansion_txt" ref="para" :id="'txt'+index">
-                                {{ item.answer }}
-                            </p>
-                            <button class="btn font10 show-more" @click="showToggle()"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>
+                            <div class="d-flex align-items-start gap10">
+                                <img class="width200 height160 radius6" :src="item.image" alt="fqs image">
+                                <p class="txt_start expansion_txt" ref="para" :id="'txt' + index">
+                                    {{ item.answer }}
+                                </p>
+                            </div>
+                            <button class="btn font10 show-more" @click="showToggle()"><i class="fa fa-angle-double-down"
+                                    aria-hidden="true"></i></button>
                         </div>
                     </v-expansion-panel-text>
-                </v-expansion-panel> 
+                </v-expansion-panel>
             </v-expansion-panels>
         </div>
     </section>
@@ -29,28 +33,28 @@
 <script>
 import axios from 'axios';
 export default {
-    data(){
-        return{
+    data() {
+        return {
             moreText: false,
             fqsData: []
         }
     },
 
     methods: {
-        showToggle(){
+        showToggle() {
             this.$refs.para.forEach(txt => {
                 txt.classList.toggle('active')
             });
         },
-        async get_fqs(){
+        async get_fqs() {
             await axios.get('fqs')
-            .then((res) => {
-                this.fqsData = res.data.data
-                console.log(res);
-            })
+                .then((res) => {
+                    this.fqsData = res.data.data.fqs
+                    console.log(res);
+                })
         }
     },
-    mounted(){
+    mounted() {
         this.get_fqs()
     }
 }
@@ -74,7 +78,8 @@ export default {
         align-items: flex-start;
     }
 }
-.expansion_txt{
+
+.expansion_txt {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -82,16 +87,17 @@ export default {
     max-height: 40px;
     transition: .3s all ease;
     -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical; 
-    &.active{
+    -webkit-box-orient: vertical;
+
+    &.active {
         max-height: max-content;
         overflow: visible;
         display: block;
     }
 }
-.show-more{
+
+.show-more {
     position: absolute;
-    bottom: 0; 
+    bottom: 0;
     left: -5px;
-}
-</style>
+}</style>
