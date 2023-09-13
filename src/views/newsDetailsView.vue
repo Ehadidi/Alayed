@@ -11,7 +11,6 @@
         <div class="P_top_60 P_bottom_60">
             <div class="container">
                 <div class="news-article">
-
                     <div class="row M_top_50 M_bottom_50">
                         <div class="col-lg-4 col-md-3 d-md-block d-none">
                             <Skeleton v-if="loader" width="100%" height="300px" class="mb-2"></Skeleton>
@@ -110,6 +109,7 @@ export default {
                     this.description = respone.data.data.detail.description
                     this.imageDetail = respone.data.data.detail.image
                     this.relatedNews = respone.data.data.related_news
+                    this.title = respone.data.data.detail.title
                 })
                 .catch(err => {
                     console.log(err);
@@ -130,6 +130,24 @@ export default {
     align-items: flex-start;
     padding: 10px;
     gap: 10px;
+    .v-card-title {
+        width: 100%;
+        text-align: start;
+
+        span {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: block;
+            white-space: nowrap;
+        }
+    }
+    .v-card-text{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+        width: 100%;
+    }
 }
 
 .v-card {

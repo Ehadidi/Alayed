@@ -92,6 +92,13 @@ export default {
             white-space: nowrap;
         }
     }
+    .v-card-text{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+        width: 100%;
+    }
 }
 
 .v-card {

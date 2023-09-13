@@ -33,6 +33,13 @@ export default {
     align-items: flex-start;
     padding: 10px;
     gap: 10px;
+    .v-card-text{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+        width: 100%;
+    }
 }
 
 .v-card {
