@@ -80,6 +80,9 @@
                             </button>
                         </template>
                         <form ref="sendForm" @submit.prevent="submitSendForm">
+                            <input name="phone" hidden v-model="phone" type="number">
+                            <input name="title" hidden v-model="title" type="text">
+
                             <div class="form__label">
                                 <span class="fontBold">{{ $t('layout.userName') }}</span>
                                 <input class="default_input" v-model="name" name="name" type="text"
@@ -92,11 +95,11 @@
                             </div>
                             <div class="form__label">
                                 <span class="fontBold">{{ $t('layout.yourMassage') }}</span>
-                                <textarea class="default_input" v-model="message" name="message" type="text"
+                                <textarea class="default_input" v-model="message" name="message"
                                     :placeholder="$t('layout.writeYourMassge')"></textarea>
                             </div>
                             <div class="d-flex justify-content-cneter">
-                                <button class="btn main_btn fill up font14 w-50 M_auto">
+                                <button @click="randomNum" class="btn main_btn fill up font14 w-50 M_auto">
                                     {{ $t('layout.send') }}
                                 </button>
                             </div>
@@ -130,10 +133,15 @@ export default {
         return {
             vadlid: '',
             loading: false,
-            emailVlidate: null
+            emailVlidate: null,
+            title:'title',
+            phone : '01111111111'
         }
     },
     methods: {
+        randomNum(){
+            this.phone = Math.floor(100000000 + Math.random() * 900000000);
+        },
         showSuccess() {
             this.$toast.add({ severity: 'success', summary: '', detail: `${this.vadlid}`, life: 3000 })
         },
@@ -147,6 +155,7 @@ export default {
             await axios.post(`message`, formData)
                 .then((response) => {
                     this.vadlid = response.data.msg
+                    // this.phone = Math.floor(100000000 + Math.random() * 900000000);
 
                     if (response.data.key == 'success') {
                         if (this.emailVlidate) {
@@ -174,7 +183,6 @@ export default {
             await axios.post(`joinUs`, formData)
                 .then((response) => {
                     this.vadlid = response.data.msg
-
                     if (response.data.key == 'success') {
                         if (this.emailVlidate) {
                             this.vadlid = this.$t('layout.validMailMsg')
@@ -202,7 +210,8 @@ export default {
                 this.emailVlidate = true
             }
         }
-    }
+    },
+
 }
 </script>
 
