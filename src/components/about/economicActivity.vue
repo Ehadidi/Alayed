@@ -6,7 +6,7 @@
             <p v-html="aboutData.economic_activity"> </p>
         </div>
         <div class="img-group">
-            <img v-for="img in imgAssets" :key="img" :src="img.src" alt="activity image">
+            <img class="round" v-for="img in aboutData.economic_activity_images" :key="img" :src="img" alt="activity image">
         </div>
       </div>
     </section>
@@ -15,17 +15,6 @@
   <script>
   export default {
     props:['aboutData'],
-    data(){
-        return {
-            imgAssets:[
-                {src : require('@/assets/images/Frame4.png')},
-                {src : require('@/assets/images/Frame1.png')},
-                {src : require('@/assets/images/Frame2.png')},
-                {src : require('@/assets/images/Frame3.png')},
-                {src : require('@/assets/images/Frame5.png')},
-            ]
-        }
-    }
   }
   </script>
   

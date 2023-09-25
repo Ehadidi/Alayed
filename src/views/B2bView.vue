@@ -1,6 +1,7 @@
 <template>
   <section>
     <div class="bg-title">
+      <img :src="b2bImage" alt="">
       <div class="container h-100">
         <div class="flex-end-content">
           <h1 class="font25 fontBold">B2B</h1>
@@ -9,8 +10,8 @@
     </div>
     <div class="container">
       <div class="b2b-txt">
-        <div v-if="b2bData">
-          <p v-html="b2bData"></p>
+        <div v-if="b2bPragraph">
+          <p v-html="b2bPragraph"></p>
         </div>
         <div v-else>
           <p></p>
@@ -26,7 +27,8 @@ export default {
   data() {
     return {
       loader: true,
-      b2bData: ''
+      b2bPragraph: '',
+      b2bImage: ''
     }
   },
 
@@ -34,8 +36,9 @@ export default {
     async get_b2b() {
       await axios.get('b2b')
         .then((res) => {
-          this.b2bData = res.data.data
-          console.log(this.b2bData);
+          this.b2bPragraph = res.data.data.paragraph
+          this.b2bImage = res.data.data.image
+
           this.loader = false
         })
     }
@@ -48,12 +51,22 @@ export default {
 
 <style lang="scss" scoped>
 .bg-title {
-  background: url('@/assets/images/hr.png') no-repeat center;
-  background-size: cover;
   height: 350px;
   gap: 25px;
   padding: 50px 0;
   color: #fff;
+  position: relative;
+
+  img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    object-fit: cover;
+    filter: brightness(0.6);
+  }
 
   .flex-end-content {
     width: 100%;
@@ -62,6 +75,8 @@ export default {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
+    position: relative;
+    z-index: 2;
   }
 }
 

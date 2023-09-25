@@ -13,7 +13,7 @@
             <div class="row M_top_50 M_bottom_50">
                 <div class="col-lg-4 col-md-3 d-md-block d-none">
                     <div class="values-img">
-                        <img :src="require('@/assets/images/siteImg.png')" alt="">
+                        <img :src="aboutData.value_image" alt="">
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-9 col-12">

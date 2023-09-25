@@ -17,8 +17,7 @@
                                             <div class="d-flex align-items-center drop-label">
                                                 <span class="M_end_5 default_link drop-label">{{ $t('layout.header.howWe')
                                                 }}</span>
-                                                <span class="mt-1"><font-awesome-icon
-                                                        :icon="['fas', 'angle-down']" /></span>
+                                                <span class="mt-1"><font-awesome-icon :icon="['fas', 'angle-down']" /></span>
                                             </div>
                                         </div>
                                     </template>
@@ -54,8 +53,7 @@
                                             <div class="d-flex align-items-center drop-label">
                                                 <span class="M_end_5 default_link drop-label">{{
                                                     $t('layout.header.Support') }}</span>
-                                                <span class="mt-1"><font-awesome-icon
-                                                        :icon="['fas', 'angle-down']" /></span>
+                                                <span class="mt-1"><font-awesome-icon :icon="['fas', 'angle-down']" /></span>
                                             </div>
                                         </div>
                                     </template>

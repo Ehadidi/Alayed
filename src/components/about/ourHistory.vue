@@ -16,47 +16,16 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-12 mb-2">
                     <ul class="map-list">
-                        <li class="left-list-item">
-                            <span class="date-hint">1992</span>
-                        </li>
-                        <li class="right-list-item">
-                            <span class="date-hint">1996</span>
-                        </li>
-                        <li class="photo-hint">
+                        <li v-for="hisItem in aboutData.history_images" :key="hisItem" class="photo-hint">
+                            <div class="right-list-item">
+                                <span class="date-hint">{{ hisItem.date }}</span>
+                            </div>
                             <div class="img-box">
-                                <a data-fancybox="gallery" :href='require("@/assets/images/siteImg.png")'>
+                                <a data-fancybox="gallery" :href='hisItem.image'>
                                     <span class="show--img"><font-awesome-icon :icon="['fas', 'magnifying-glass-plus']" /></span>
-                                    <img :src='require("@/assets/images/siteImg.png")' alt="site image">
+                                    <img :src='hisItem.image' alt="site image">
                                 </a>
                             </div>
-                        </li>
-                        <li class="left-list-item">
-                            <span class="date-hint">2004</span>
-                        </li>
-                        <li class="photo-hint">
-                            <div class="img-box">
-                                <a data-fancybox="gallery" :href='require("@/assets/images/siteImg.png")'>
-                                    <span class="show--img"><font-awesome-icon :icon="['fas', 'magnifying-glass-plus']" /></span>
-                                    <img :src='require("@/assets/images/siteImg.png")' alt="site image">
-                                </a>
-                            </div>
-                        </li>
-                        <li class="right-list-item">
-                            <span class="date-hint">2008</span>
-                        </li>
-                        <li class="left-list-item">
-                            <span class="date-hint">2016</span>
-                        </li>
-                        <li class="photo-hint">
-                            <div class="img-box">
-                                <a data-fancybox="gallery" :href='require("@/assets/images/siteImg.png")'>
-                                    <span class="show--img"><font-awesome-icon :icon="['fas', 'magnifying-glass-plus']" /></span>
-                                    <img :src='require("@/assets/images/siteImg.png")' alt="site image">
-                                </a>
-                            </div>
-                        </li>
-                        <li class="right-list-item">
-                            <span class="date-hint">2023</span>
                         </li>
                     </ul>
                 </div>
@@ -128,9 +97,12 @@ export default {
         height: 100px;
         position: relative;
 
+        .right-list-item{
+            position: relative;
+        }
         .date-hint {
             position: absolute;
-            top: 0;
+            top: 30px;
             bottom: 0;
             margin: auto;
             width: 70px;
@@ -157,7 +129,7 @@ export default {
             }
         }
         &.photo-hint{
-            height: 150px;
+            height: 200px;
             .img-box{
                 position: absolute;
                 top: 0;
@@ -166,7 +138,7 @@ export default {
                 bottom: 0;
                 margin: auto;
                 width: 100px;
-                height: 100px;
+                height: 60px;
                 img{
                     width: 100%;
                     height: 100%;

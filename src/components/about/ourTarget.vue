@@ -16,8 +16,7 @@
           <div class="quoted-txt" v-if="aboutData">
                 <p v-html="aboutData.goals_paragraph"></p>
             </div>
-            <img class="siteImg M_top_30" alt="site image" :src="require('@/assets/images/siteImg2.png')"
-             />
+            <img class="siteImg M_top_30" alt="site image" :src="aboutData.goals_image" />
             <!-- <img class="siteImg" :src="require('@/assets/images/siteImg2.png')" alt="site image"> -->
         </div>
     </section>

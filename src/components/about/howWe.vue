@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-lg-6 d-lg-block d-none">
-                <img :src="require('@/assets/images/generic.png')" alt="">
+                <img class="w-100" :src="aboutData.paragraph_image" alt="">
             </div>
         </div>
     </div>
