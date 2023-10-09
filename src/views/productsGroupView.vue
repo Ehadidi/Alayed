@@ -3,8 +3,8 @@
         <div class="bg-title">
             <div class="container h-100">
                 <div class="flex--start--title">
-                    <h1 class="font20 fontBold mb-5">{{ mainCategoryName }}</h1>
-                    <h6 class="font13"> {{ subCategoryName }}</h6>
+                    <h1 class="font20 fontBold mb-5">{{ subCategoryName }}</h1>
+                    <!-- <h6 class="font13"> {{ subCategoryName }}</h6> -->
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
                 <div class="col-lg-2 col-md-3 col-6">
                     <select class="default_select" v-model="filterCategory" @change="filter" name="subCategory">
                         <option disabled selected value="">{{ $t('products.selectCategoey') }}</option>
-                        <option :value="option.id" v-for="option in subCategory" :key="option">
+                        <option :value="option.id" v-for="option in category" :key="option">
                             {{ option.name }}
                         </option>
                     </select>
@@ -78,10 +78,10 @@ export default {
             loader: true,
             productsData: [],
             toggleStatus: sessionStorage.getItem("listed"),
-            subCategory: [],
+            category: [],
             filterCategory: this.$route.params.id,
             emptyData: false,
-            mainCategoryName: '',
+            // mainCategoryName: '',
             subCategoryName: '',
         }
     },
@@ -108,7 +108,7 @@ export default {
             await axios.get(`products?category_id=${this.$route.params.id}`)
                 .then((res) => {
                     this.productsData = res.data.data.products
-                    this.mainCategoryName = res.data.data.mainCategoryName
+                    // this.mainCategoryName = res.data.data.mainCategoryName
                     this.subCategoryName = res.data.data.subCategoryName
                     if (this.productsData.length === 0) {
                         this.emptyData = true
@@ -136,22 +136,20 @@ export default {
                     console.error(e);
                 })
         },
-        async get_subCategory() {
-            await axios.get(`sub/categories`)
+        async get_category() {
+            await axios.get(`mainCategory`)
                 .then((res) => {
-                    this.subCategory = res.data.data
+                    this.category = res.data.data.category
+                    console.log(this.category);
                 })
         }
     },
 
     mounted() {
-
         this.toggleStatus = sessionStorage.getItem("listed");
         this.get_products_group()
-        this.get_subCategory()
+        this.get_category()
     },
-
-
 }
 </script>
 

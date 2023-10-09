@@ -212,8 +212,8 @@ export default {
         },
 
         routeRef(targetRef) {
-            this.Reffre = targetRef
-            console.log(this.$route);
+            // this.Reffre = targetRef
+            // console.log(this.$route);
             if (this.$route === '/about') {
                 document.getElementById(`${targetRef}`).scrollIntoView({
                     behavior: 'smooth',
@@ -229,7 +229,6 @@ export default {
                     });
                 }, 400);
             }
-
         },
         
         openSideOption() {

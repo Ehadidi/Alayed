@@ -9,7 +9,7 @@
                         </span>
                         <div class="d-flex flex-column align-items-start gap10">
                             <h6 class="fontBold mainColor">{{ productName }}</h6>
-                            <span class="fontBold">{{ categoryName }} / {{ mainCategoryName }}</span>
+                            <span class="fontBold">{{ categoryName }}</span>
                         </div>
                     </div>
                 </div>

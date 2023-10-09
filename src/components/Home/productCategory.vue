@@ -1,6 +1,6 @@
 <template>
-    <div class="item_grid" v-for="item in products" :key="item">
-        <router-link to="/product">
+    <div class="item_grid" v-for="item in currentPageItems" :key="item">
+        <router-link :to="{name: 'productsGroup', params : { id: item.id}}">
             <div class="categ_item">
                 <span class="fontBold mainColor font15">{{ item.name }}</span>
                 <span class="icon_round text-white">
@@ -15,6 +15,13 @@
 <script>
 export default {
     props: ['products'],
+
+    computed: {
+        currentPageItems() {
+            return this.products.slice(0, 12)
+            
+        }
+    },
 }
 </script>
 
@@ -71,4 +78,5 @@ export default {
         }
     }
 
-}</style>
+}
+</style>

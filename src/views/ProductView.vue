@@ -18,15 +18,21 @@
           <div v-else class="row justify-content-center">
             <div class="col-lg-2 col-md-4 col-6" v-for="item in products" :key="item">
               <div class="categ_item">
-                <span class="fontBold mainColor font15">{{ item.name }}</span>
+                <router-link :to="{name: 'productsGroup', params : { id: item.id}}">
+                  <span class="fontBold mainColor font15">{{ item.name }}</span>
+                </router-link>
                 <div class="d-flex flex-column align-items-center gap15">
-                  <span class="icon_round">
-                    <img :src="item.image" alt="product image">
-                  </span>
-                  <img class="sub--img" :src="item.icon" alt="product image">
+                    <router-link :to="{name: 'productsGroup', params : { id: item.id}}">
+                        <span class="icon_round">
+                          <img :src="item.image" alt="product image">
+                        </span>
+                    </router-link>
+                    <router-link :to="{name: 'productsGroup', params : { id: item.id}}">
+                      <img class="sub--img" :src="item.icon" alt="product image">
+                    </router-link>
                   <ul class="sections-list">
-                    <li v-for="subItem in item.subCategories" :key="subItem">
-                      <router-link class="default_link" :to="{name: 'productsGroup', params : { id: subItem.id}}">{{ subItem.name }}</router-link>
+                    <li v-for="subItem in item.products" :key="subItem">
+                      <router-link class="default_link" :to="{ name: 'productDetails', params: { id: subItem.id } }">{{ subItem.name }}</router-link>
                     </li>
                   </ul>
                 </div>
@@ -144,6 +150,7 @@ export default {
     width: 130px;
     height: 130px;
     border-radius: 50%;
+    display: block;
     box-shadow: 0px 5px 10px 0px rgba(30, 54, 140, .69);
   }
 

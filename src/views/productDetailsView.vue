@@ -1,23 +1,33 @@
 <template>
     <section class="details-sec">
         <img class="product--cover" :src="productDetails.cover" alt="">
-        <product-define :icons="icons" :categoryName="categoryName" :mainCategoryName="mainCategoryName" :productName="productName"></product-define>
-        <txt-deatails>
-            <template #title>{{ $t('products.advantages') }}</template>
-            <template #txt>
-                {{ advantages }}
-            </template>
-        </txt-deatails>
+        <product-define :icons="icons" :categoryName="categoryName" :productName="productName"></product-define>
+        <div class="advantages-sec">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <txt-deatails>
+                            <template #title>{{ $t('products.advantages') }}</template>
+                            <template #txt>
+                                {{ advantages }}
+                            </template>
+                        </txt-deatails>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <txt-deatails>
+                            <template #title>{{ $t('products.uses') }}</template>
+                            <template #txt>
+                                {{ uses }}
+                            </template>
+                        </txt-deatails>
+                    </div>
+                </div>
+            </div>
+        </div>
         <txt-deatails>
             <template #title>{{ $t('products.useTemperature') }}</template>
             <template #txt>
                 {{ useTemperatures }}
-            </template>
-        </txt-deatails>
-        <txt-deatails>
-            <template #title>{{ $t('products.uses') }}</template>
-            <template #txt>
-                {{ uses }}
             </template>
         </txt-deatails>
         <div class="container">
@@ -36,7 +46,10 @@
         </div>
         <div class="container pt-5 pb-5">
             <h5 class="dash-title fontBold mainColor">{{ $t('products.StandardDetails') }}</h5>
-            <v-locale-provider rtl>
+            <div class="imageDetails" v-if="imageDetails">
+                <img :src="imageDetails" alt="">
+            </div>
+            <v-locale-provider rtl v-if="!imageDetails">
                 <v-table fixed-header height="300px">
                     <thead>
                         <tr>
@@ -68,7 +81,7 @@
                             <td>{{ item.thickness }}</td>
                             <td>{{ item.color }}</td>
                             <td>{{ item.work_pressure }}</td>
-                            <td>{{ item.height }}</td>   
+                            <td>{{ item.height }}</td>
                         </tr>
                     </tbody>
                 </v-table>
@@ -90,15 +103,16 @@ export default {
         return {
             productDetails: [],
             advantages: '',
-            useTemperatures:'',
-            uses:'',
+            useTemperatures: '',
+            uses: '',
             details: [],
             icons: [],
             images: [],
-            tickets:[],
+            tickets: [],
             categoryName: '',
-            mainCategoryName: '',
+            // mainCategoryName: '',
             productName: '',
+            imageDetails: ''
         }
     },
     methods: {
@@ -111,11 +125,12 @@ export default {
                     this.useTemperatures = this.productDetails.use_temperatures[0]
                     this.uses = this.productDetails.uses[0]
                     this.details = res.data.data.details
+                    this.imageDetails = res.data.data.imageDetails
                     this.icons = res.data.data.icons
                     this.images = res.data.data.images
                     this.tickets = res.data.data.tickets
                     this.categoryName = res.data.data.category_name
-                    this.mainCategoryName = res.data.data.main_category_name
+                    // this.mainCategoryName = res.data.data.main_category_name
                     this.productName = res.data.data.name
                 })
         },
@@ -127,6 +142,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.imageDetails{
+    img{
+        width: 100%;
+        height: 350px;
+    }
+}
+.advantages-sec{
+    background-color: #fff;
+}
 .grid-row {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -170,8 +194,9 @@ export default {
 .details-sec {
     background-color: #f5f5f5;
 }
-thead{
-    th{
+
+thead {
+    th {
         background-color: #1e368c !important;
         color: #fff !important;
         font-size: 14px;

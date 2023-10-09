@@ -58,6 +58,7 @@
         "anotherNews":"Another News"
     },
     "products":{
+        "moreCtegory":"More products",
         "sections":"Sections",
         "selectCategoey":"Select Categoey",
         "view":"view",

@@ -12,6 +12,7 @@
                 <productCategory :products="products"></productCategory>
             </div>
         </div>
+        <router-link to="/product" class="btn main_btn up mt-5">{{ $t('products.moreCtegory') }}</router-link>
     </section>
 </template>
 
