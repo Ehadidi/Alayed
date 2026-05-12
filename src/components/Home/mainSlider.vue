@@ -9,13 +9,13 @@
 
                     <!-- <v-img class="bg-white" cover :aspect-ratio="1" :src="slide.image"></v-img> -->
                     <!-- <v-img :src="slide.image" max-height="125" cover class="bg-grey-lighten-2"></v-img> -->
-                    <div class="sliderCategory">
+                    <!-- <div class="sliderCategory">
                         <h2>{{ slide.title }}</h2>
                         <span>
                             <img :src="require('@/assets/images/categoryicon.png')" alt="">
                         </span>
-                    </div>
-                    <img :src="require('@/assets/images/Intersect.png')" class="dropOver" alt="">
+                    </div> -->
+                    <!-- <img :src="require('@/assets/images/Intersect.png')" class="dropOver" alt=""> -->
                     <h1 class="swiper_title">{{ slide.title }}</h1>
                 </div>
             </Slide>
@@ -23,8 +23,8 @@
 
         <div class="thumbnails_carousel">
             <div class="container">
-                <Carousel id="thumbnails" :breakpoints="breakpoints" :wrap-around="true"
-                    v-model="currentSlide" ref="carousel">
+                <Carousel id="thumbnails" :breakpoints="breakpoints" :wrap-around="true" v-model="currentSlide"
+                    ref="carousel">
                     <Slide v-for="(slide, index) in sliders" :key="slide">
                         <div class="carousel__item" @click="slideTo(index)">
                             <button class="btn p-0 pagination-bullet">{{ slide.title }}</button>
@@ -90,11 +90,18 @@ export default defineComponent({
 <style lang="scss">
 .slider-wrapper {
     width: 100%;
-    height: 100vh;
+    // height: 100vh;
     position: relative;
 
     .p-skeleton {
         background-color: #7c7c7c;
+    }
+    .pagination-bullet{
+        text-overflow: ellipsis;
+        max-width: 200px;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
     }
 
     img {
@@ -151,6 +158,7 @@ export default defineComponent({
         width: fit-content;
         height: fit-content;
         color: #fff;
+        font-weight: 600;
     }
 }
 
@@ -201,6 +209,9 @@ export default defineComponent({
 .skipSlider {
     position: absolute;
     bottom: 8%;
+    @media (max-width : 576px) {
+        bottom: 0;
+    }
     left: 0;
     right: 0;
     margin: auto;

@@ -4,14 +4,20 @@
       <Toast />
       <!-- <Button @click="showSticky" label="Sticky" /> -->
     </div>
-    <div class="bg-title">
-      <div class="container h-100">
-        <div class="flex-end-content">
-          <h1 class="font25 fontBold">{{ $t('layout.contactUs') }}</h1>
+    <div class="bg-title" :style="`background: url('${banner}') no-repeat center; background-size: cover;`">
+      <div class="banner-content">
+        <div class="container h-100">
+          <div class="flex-end-content">
+            <h1 class="font25 fontBold">{{ $t('layout.contactUs') }}</h1>
+          </div>
         </div>
       </div>
     </div>
-    <map-component></map-component>
+    <div class="container P_bottom_50 P_top_50">
+      <a target="_blank" :href="static_map.static_location_map_url">
+        <img class="w-100" :src="static_map.static_google_map_banner" alt="">
+      </a>
+    </div>
     <div class="container P_bottom_50">
       <div class="row">
         <div class="col-lg-4 col-md-6 col-12 M_bottom_40" v-for="depart in departments" :key="depart">
@@ -78,8 +84,8 @@
           <div class="row align-items-center flex-column">
             <div class="col-lg-6 col-12 mb-5">
               <form-group>
-                <form-input :label="$t('layout.userName')" :placeholder="$t('layout.writeUserName')" vmodal="name" name="name" type="text"
-                  width="col-lg-6 col-12">
+                <form-input :label="$t('layout.userName')" :placeholder="$t('layout.writeUserName')" vmodal="name"
+                  name="name" type="text" width="col-lg-6 col-12">
                   <template #img><img :src="require('@/assets/images/profile-circle.png')" alt=""></template>
                 </form-input>
 
@@ -88,18 +94,18 @@
                   <template #img><img :src="require('@/assets/images/call-outgoing.png')" alt=""></template>
                 </form-input>
 
-                <form-input :label="$t('layout.email')" :placeholder="$t('layout.writeEmail')" vmodal="email"
-                  name="email" type="email" width="col-12">
+                <form-input :label="$t('layout.email')" :placeholder="$t('layout.writeEmail')" vmodal="email" name="email"
+                  type="email" width="col-12">
                   <template #img><img :src="require('@/assets/images/sms2.png')" alt=""></template>
                 </form-input>
 
-                <form-input :label="$t('layout.messageSubject')" :placeholder="$t('layout.writeMessageSubject')" type="text" vmodal="title"
-                  name="title" width="col-12">
+                <form-input :label="$t('layout.messageSubject')" :placeholder="$t('layout.writeMessageSubject')"
+                  type="text" vmodal="title" name="title" width="col-12">
                   <template #img><img :src="require('@/assets/images/message-question.png')" alt=""></template>
                 </form-input>
 
-                <form-input :label="$t('layout.yourMassage')" :placeholder="$t('layout.writeYourMassge')" width="col-12" vmodal="message"
-                  name="message" :textarea="true">
+                <form-input :label="$t('layout.yourMassage')" :placeholder="$t('layout.writeYourMassge')" width="col-12"
+                  vmodal="message" name="message" :textarea="true">
                   <template #img><img :src="require('@/assets/images/message-text.png')" alt=""></template>
                 </form-input>
               </form-group>
@@ -127,14 +133,12 @@
 
 <script>
 import axios from 'axios';
-import mapComponent from '@/components/contact/mapComponent.vue'
 import formGroup from '@/components/Layouts/formGroup.vue'
 import formInput from '@/components/Layouts/formInput.vue'
 
 // import { useToast } from 'primevue/usetoast';
 export default {
   components: {
-    mapComponent,
     formGroup,
     formInput,
   },
@@ -144,6 +148,7 @@ export default {
       loader: true,
       branchs: [],
       vadlid: '',
+      static_map: {},
       loading: false
     }
   },
@@ -163,6 +168,8 @@ export default {
         .then((res) => {
           this.departments = res.data.data.departments
           this.branchs = res.data.data.branchs
+          this.banner = res.data.data.banner
+          this.static_map = res.data.data.static_map
           this.loader = false
         })
     },
@@ -173,7 +180,7 @@ export default {
       await axios.post(`message`, formData)
         .then((response) => {
           this.vadlid = response.data.msg
-          
+
           if (response.data.key == 'success') {
             this.showSuccess()
             this.loading = false
@@ -196,12 +203,20 @@ export default {
 
 <style lang="scss" scoped>
 .bg-title {
-  background: url('@/assets/images/Frame.png') no-repeat center;
-  background-size: cover;
-  height: 350px;
+  // background: url('@/assets/images/Frame.png') no-repeat center;
+  // background-size: cover;
+  min-height: 350px;
+  max-height: fit-content;
   gap: 25px;
   padding: 50px 0;
   color: #fff;
+
+  .banner-content {
+    min-height: 300px;
+    max-height: fit-content;
+    display: flex;
+    align-items: flex-end;
+  }
 
   .flex-end-content {
     width: 100%;

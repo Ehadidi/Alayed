@@ -1,8 +1,8 @@
 <template>
   <div>
     <mainSlider :loader="loader" :sliders="sliders"></mainSlider>
-    <cardGroup :loader="loader" :news="news" class="offWhite p-5"></cardGroup>
     <prodauctGroup :loader="loader" :products="products"></prodauctGroup>
+    <cardGroup :loader="loader" :news="news" class="offWhite p-5"></cardGroup>
   </div>
 </template>
 

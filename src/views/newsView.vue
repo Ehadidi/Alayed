@@ -1,6 +1,18 @@
 <template>
     <div>
-        <div class="bg-title">
+        <div v-if="banner" class="bg-title"
+            :style="`background: url('${banner}') no-repeat center; background-size: cover;`">
+            <div class="banner-content">
+                <div class="container h-100">
+                    <div class="flex-end-content">
+                        <h1 class="font25 fontBold">{{ $t('news.newsTitle') }}</h1>
+                        <div class="tx_start" v-html="paragraph"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-if="!banner" class="bg-title"
+            style="background: url('@/assets/images/newsBg.png') no-repeat center; background-size: cover;">
             <div class="container h-100">
                 <div class="flex-end-content">
                     <h1 class="font25 fontBold">{{ $t('news.newsTitle') }}</h1>
@@ -54,6 +66,7 @@ export default {
             paragraph: '',
             newsData: [],
             loader: true,
+            banner: ''
         }
     },
 
@@ -61,6 +74,7 @@ export default {
         async get_news() {
             await axios.get('news')
                 .then((res) => {
+                    this.banner = res.data.data.news_banner
                     this.paragraph = res.data.data.paragraph
                     this.newsData = res.data.data.news
                     this.loader = false
@@ -92,7 +106,8 @@ export default {
             white-space: nowrap;
         }
     }
-    .v-card-text{
+
+    .v-card-text {
         text-overflow: ellipsis;
         overflow: hidden;
         display: block;
@@ -107,12 +122,17 @@ export default {
 }
 
 .bg-title {
-    background: url('@/assets/images/newsBg.png') no-repeat center;
-    background-size: cover;
-    height: 350px;
+    min-height: 350px;
+    max-height: fit-content;
     gap: 25px;
     padding: 50px 0;
     color: #fff;
+    .banner-content{
+        min-height: 300px;
+        max-height: fit-content;
+        display: flex;
+        align-items: flex-end;
+    }
 
     .flex-end-content {
         width: 100%;
@@ -122,5 +142,4 @@ export default {
         justify-content: flex-end;
         align-items: flex-start;
     }
-}
-</style>
+}</style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="header" :class="{ 'activeHome': isIndexPage }">
+    <div class="header" :class="{ 'activeHome': isIndexPage }" ref="headRef">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="logo">
@@ -17,7 +17,8 @@
                                             <div class="d-flex align-items-center drop-label">
                                                 <span class="M_end_5 default_link drop-label">{{ $t('layout.header.howWe')
                                                 }}</span>
-                                                <span class="mt-1"><font-awesome-icon :icon="['fas', 'angle-down']" /></span>
+                                                <span class="mt-1"><font-awesome-icon
+                                                        :icon="['fas', 'angle-down']" /></span>
                                             </div>
                                         </div>
                                     </template>
@@ -53,7 +54,8 @@
                                             <div class="d-flex align-items-center drop-label">
                                                 <span class="M_end_5 default_link drop-label">{{
                                                     $t('layout.header.Support') }}</span>
-                                                <span class="mt-1"><font-awesome-icon :icon="['fas', 'angle-down']" /></span>
+                                                <span class="mt-1"><font-awesome-icon
+                                                        :icon="['fas', 'angle-down']" /></span>
                                             </div>
                                         </div>
                                     </template>
@@ -111,7 +113,9 @@
                                                         </div>
                                                         <ul v-if="query" class="autoCompleteList">
                                                             <li v-for="i in searchDataArray" :key="i">
-                                                                <router-link class="resultItem" @click="clear" :to="'/productDetails/' + i.id">{{ i.name}}</router-link>
+                                                                <router-link class="resultItem" @click="clear"
+                                                                    :to="'/productDetails/' + i.id">{{
+                                                                        i.name }}</router-link>
                                                             </li>
                                                         </ul>
                                                     </form>
@@ -120,14 +124,16 @@
                                         </v-overlay>
                                     </div>
                                 </v-locale-provider>
-                                <v-btn icon="$vuetify" color="#1E368C" class="width30 height30" size="x-small">
+                                <span
+                                    class="width30 height30 bgMain round d-flex align-items-center justify-content-center">
                                     <router-link to="/humanResources" class="text-white"><font-awesome-icon class="font10"
                                             :icon="['fas', 'user']" /></router-link>
-                                </v-btn>
-                                <v-btn icon="$vuetify" color="#1E368C" class="width30 height30" size="x-small">
-                                    <router-link to="" class="text-white"><font-awesome-icon class="font10"
-                                            :icon="['fas', 'cart-shopping']" /></router-link>
-                                </v-btn>
+                                </span>
+                                <span
+                                    class="width30 height30 bgMain round d-flex align-items-center justify-content-center">
+                                    <a href="https://alayedhoses.com/" target="_blank" class="text-white"><font-awesome-icon
+                                            class="font10" :icon="['fas', 'cart-shopping']" /></a>
+                                </span>
                             </div>
                         </li>
                     </ul>
@@ -188,17 +194,22 @@ export default {
         sideStatus: null,
         searchDataArray: [],
         falseList: false,
+        scrollSet: 0
     }),
 
     methods: {
-        
+        onScroll(e) {
+            console.log(e);
+            this.windowTop = window.top.scrollY
+        },
+
         // switch lang     
         switchLang() {
             let lang = 'ar';
             if (this.$i18n.locale == 'ar') {
                 lang = 'en';
                 this.arabic = false;
-                
+
             }
 
             if (localStorage.getItem('locale')) {
@@ -230,7 +241,7 @@ export default {
                 }, 400);
             }
         },
-        
+
         openSideOption() {
             this.sideStatus = !this.sideStatus
         },
@@ -264,7 +275,7 @@ export default {
                 setTimeout(() => {
                     window.location.reload();
                 }, 50)
-                
+
             }
 
         },
@@ -286,7 +297,29 @@ export default {
         closeModal() {
             this.overlay = false
             this.showModalSearch = false
-        }
+        },
+
+        HandellScroll() {
+            let prev = window.pageYOffset;
+            let refs = this.$refs.headRef;
+            window.addEventListener("scroll", () => {
+                let curr = window.pageYOffset;
+                console.log("curr", curr);
+                console.log("prev", prev);
+                if (prev > curr) {
+                    refs.classList.add("scrolled");
+                    refs.classList.remove("scrollDown");
+                } else {
+                    refs.classList.add("scrollDown");
+                    refs.classList.remove("scrolled");
+                }
+                if (curr === 0) {
+                    refs.classList.remove("scrollDown");
+                    refs.classList.remove("scrolled");
+                }
+                prev = curr;
+            });
+        },
 
     },
 
@@ -307,99 +340,101 @@ export default {
             return this.$route.path === '/';
         }
     },
+    mounted() {
+        this.HandellScroll();
+    }
 }
 
 </script> 
 
 
 <style lang="scss">
-    .v-list-item--density-default.v-list-item--one-line {
-        min-height: unset !important;
+.v-list-item--density-default.v-list-item--one-line {
+    min-height: unset !important;
+}
+
+
+.v-list-item-title {
+    a {
+        color: #000 !important;
+        font-size: 11px;
+        font-weight: 600;
     }
+}
 
+.modalSearch {
+    .v-overlay__content {
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 130px;
+        display: flex;
+        justify-content: center;
+        height: fit-content;
+        width: 50%;
 
-    .v-list-item-title {
-        a {
-            color: #000 !important;
-            font-size: 11px;
-            font-weight: 600;
-        }
-    }
+        .modal_content {
+            width: 100%;
 
-    .modalSearch {
-        .v-overlay__content {
-            left: 0;
-            right: 0;
-            margin: auto;
-            top: 130px;
-            display: flex;
-            justify-content: center;
-            height: fit-content;
-            width: 50%;
-
-            .modal_content {
+            .field_input_search {
+                background-color: rgba(0, 0, 0, .70) !important;
                 width: 100%;
+                height: 55px;
+                color: #fff;
+                padding: 10px;
 
-                .field_input_search {
-                    background-color: rgba(0, 0, 0, .70) !important;
-                    width: 100%;
-                    height: 55px;
+                &:focus {
+                    outline: none;
+                }
+
+                &::placeholder {
                     color: #fff;
-                    padding: 10px;
-
-                    &:focus {
-                        outline: none;
-                    }
-
-                    &::placeholder {
-                        color: #fff;
-                    }
                 }
+            }
 
-                .float_btn {
-                    left: 8%;
-                }
+            .float_btn {
+                left: 8%;
+            }
 
-                .float_icon {
-                    position: absolute;
-                    top: 0;
-                    left: 4%;
-                    height: 100%;
-                    background-color: var(--main);
-                    color: #fff;
-                    border-radius: 4px 0 0 4px;
-                }
+            .float_icon {
+                position: absolute;
+                top: 0;
+                left: 4%;
+                height: 100%;
+                background-color: var(--main);
+                color: #fff;
+                border-radius: 4px 0 0 4px;
             }
         }
     }
+}
 
-    .slide-fade-enter-active {
-        transition: all 0.3s ease-out;
-    }
+.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+}
 
-    .slide-fade-leave-active {
-        transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-    }
+.slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
 
-    .slide-fade-enter-from,
-    .slide-fade-leave-to {
-        transform: translateY(170px);
-        opacity: 0;
-    }
-    // .header {
-    //   .navBar {
-    //     ul {
-    //       li {
-    //         a {
-    //           &.router-link-exact {
-    //             color: #1E368C !important;
-    //             font-weight: 900;
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateY(170px);
+    opacity: 0;
+}
 
-
+// .header {
+//   .navBar {
+//     ul {
+//       li {
+//         a {
+//           &.router-link-exact {
+//             color: #1E368C !important;
+//             font-weight: 900;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 </style>

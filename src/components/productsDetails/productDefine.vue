@@ -4,8 +4,9 @@
             <div class="row align-items-center">
                 <div class="col-lg-4 col-md-6 col-12 mb-3">
                     <div class="d-flex align-items-center gap20">
-                        <span class="width70 height70 round d-flex align-items-center justify-content-center bgMain">
-                            <img :src="require('@/assets/images/Group2.png')" class="w-50" alt="">
+                        <span>
+                            <img class="width70 height70 round" v-if="product_icon" :src="product_icon" alt="">
+                            <img v-else :src="require('@/assets/images/Group2.png')" class="width70 height70 round" alt="">
                         </span>
                         <div class="d-flex flex-column align-items-start gap10">
                             <h6 class="fontBold mainColor">{{ productName }}</h6>
@@ -18,7 +19,7 @@
                         <span v-for="ico in icons" :key="ico" 
                             class="width60 height60 round d-flex align-items-center justify-content-center bgMain"
                          >
-                            <img :src="ico" class="w-50" alt="">
+                            <img :src="ico" class="w-75" alt="">
                             <!-- <v-tooltip activator="parent" location="bottom">
                                 un burnable
                             </v-tooltip> -->
@@ -32,7 +33,7 @@
 
 <script>
 export default {
-    props:['icons' , 'mainCategoryName' , 'categoryName' , 'productName']
+    props:['icons' , 'mainCategoryName' , 'categoryName' , 'productName' , "product_icon"]
 }
 </script>
 

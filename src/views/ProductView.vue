@@ -3,7 +3,8 @@
     <div class="container">
       <div class="title--sec">
         <h1 class="fontBold font25 mainColor">{{ title }}</h1>
-        <p class="mb-0 font12 fontBold mb-5 P_top_40 P_bottom_50 w-50">{{ txt }}</p>
+        <div class="mb-0 font12 fontBold mb-5 P_top_40 P_bottom_50 w-50" style="word-break: break-word;" v-html="txt"></div>
+        <!-- <p class="mb-0 font12 fontBold mb-5 P_top_40 P_bottom_50 w-50">{{  }}</p> -->
       </div>
     </div>
     <div class="categories">
@@ -15,20 +16,20 @@
               <Skeleton shape="circle" size="10rem" class="mr-2"></Skeleton>
             </div>
           </div>
-          <div v-else class="row justify-content-center">
-            <div class="col-lg-2 col-md-4 col-6" v-for="item in products" :key="item">
+          <div v-else class="row justify-content-center product_row">
+            <div class="col-lg-2 col-md-4 col-6 col_row" v-for="item in products" :key="item">
               <div class="categ_item">
-                <router-link :to="{name: 'productsGroup', params : { id: item.id}}">
-                  <span class="fontBold mainColor font15">{{ item.name }}</span>
+                <router-link class="default_link text_link" :to="{name: 'productsGroup', params : { id: item.id}}">
+                  <span class="fontBold font15">{{ item.name }}</span>
                 </router-link>
                 <div class="d-flex flex-column align-items-center gap15">
+                  <router-link :to="{name: 'productsGroup', params : { id: item.id}}">
+                      <img class="sub--img" :src="item.icon" alt="product image">
+                    </router-link>
                     <router-link :to="{name: 'productsGroup', params : { id: item.id}}">
                         <span class="icon_round">
                           <img :src="item.image" alt="product image">
                         </span>
-                    </router-link>
-                    <router-link :to="{name: 'productsGroup', params : { id: item.id}}">
-                      <img class="sub--img" :src="item.icon" alt="product image">
                     </router-link>
                   <ul class="sections-list">
                     <li v-for="subItem in item.products" :key="subItem">
@@ -80,6 +81,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.product_row{
+  .text_link{
+    color: honeydew;
+  }
+  .col_row{
+    &:nth-child(-n + 6){
+      .text_link{
+        color: #1E368C;
+      }
+    }
+  }
+}
 .wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

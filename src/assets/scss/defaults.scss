@@ -8,6 +8,10 @@
 {//////////////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\}
 */
 
+@use 'vuetify' with (
+  $body-font-family: ('main_font', sans-serif)
+);
+
 body {
     font-weight: 300;
     padding: 0;
@@ -695,12 +699,9 @@ textarea.default_input {
     border-radius: 0;
 }
 
-
-@use 'vuetify' with ($body-font-family: main_font);
-
 @font-face {
     font-family: 'main_font';
-    src: url('@/assets/webfonts/URW-DIN-Arabic.ttf');
+    src: url('@/assets/webfonts/TheSansArabic-Plain.otf');
 }
 
 
@@ -729,9 +730,10 @@ textarea.default_input {
         }
     }
 
-    .bars span{
-        background-color: #000 ;
+    .bars span {
+        background-color: #000;
     }
+
     .navBar {
         .dropBtnNav {
             position: relative;
@@ -776,17 +778,19 @@ textarea.default_input {
     }
 
     &.activeHome {
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         width: 100%;
         z-index: 8;
         background-color: transparent;
         box-shadow: none;
+        transition: .3s all ease;
 
-        .bars span{
-            background-color: #fff ;
+        .bars span {
+            background-color: #fff;
         }
+
         .navBar {
             ul {
 
@@ -801,6 +805,43 @@ textarea.default_input {
                 }
             }
         }
+
+        &.scrollDown,
+        &.scrolled {
+            background-color: #fff;
+            box-shadow: 2px -3px 11px 0px #656565;
+            
+            .navBar {
+                ul {
+                    li {
+                        a {
+                            color: #000;
+                        }
+
+                        .drop-label {
+                            color: #000;
+                        }
+                    }
+                }
+            }
+
+            button {
+                color: #000 !important;
+            }
+        }
+
+        // &.scrolled{
+        //     background-color: #fff;
+        //     .navBar{
+        //         ul {
+        //             li {
+        //                 a{
+        //                     color: #000;
+        //                 }
+        //             }
+        //         }
+        //     } 
+        // }
     }
 }
 
@@ -892,6 +933,7 @@ textarea.default_input {
         font-weight: 600;
         color: $main-color;
         line-height: 35px;
+        word-break: break-word;
     }
 }
 
@@ -927,7 +969,7 @@ textarea.default_input {
     }
 }
 
-.autoCompleteList{
+.autoCompleteList {
     background-color: #fff;
     list-style: none;
     font-weight: 600;
@@ -936,24 +978,28 @@ textarea.default_input {
     display: flex;
     flex-direction: column;
     transition: .5s all ease;
-    li{
+
+    li {
         border-bottom: 1px solid #eee;
-        .resultItem{
+
+        .resultItem {
             color: #000;
             display: block;
             padding: 12px;
             transition: .3s all ease;
-            &:hover{
+
+            &:hover {
                 background-color: #1e368c;
                 color: #fff;
             }
         }
     }
-    &.showen{
+
+    &.showen {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
-        pointer-events: visible; 
+        pointer-events: visible;
     }
 }
 
@@ -971,8 +1017,9 @@ textarea.default_input {
             z-index: 999;
             transform: translateX(110%);
             transition: .5s all ease;
-            &.open{
-                transform: translateX(0); 
+
+            &.open {
+                transform: translateX(0);
             }
 
             ul {
@@ -1014,6 +1061,7 @@ textarea.default_input {
             pointer-events: none;
             transition: 0.5s all cubic-bezier(0, 0.11, 0.4, 1.29);
             display: block;
+
             &.open {
                 transform: translateX(0);
                 visibility: visible;

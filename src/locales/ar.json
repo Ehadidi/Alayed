@@ -1,5 +1,6 @@
 {
     "layout" : {
+        "product_imgs":"صور المنتج",
         "header" : {
             "home":"الرئيسيه",
             "howWe":"من نحن",
@@ -59,7 +60,7 @@
         "anotherNews":"اخبار اخري"
     },
     "products":{
-        "moreCtegory":"المزيد من المنتجات",
+        "moreCtegory":"المزيد من الاقسام",
         "sections":"الأقسام",
         "selectCategoey":"اختر القسم",
         "view":"العرض",
@@ -69,12 +70,13 @@
         "useTemperature":"درجة حرارة الاستخدام",
         "uses":"الاستخدامات",
         "StandardDetails":"تفاصيل قياسية",
-        "productNumber":"رقم المنتج",
-        "weight":"الوزن",
-        "thickness":"السُمك",
+        "productNumber":"كود المنتج",
+        "weight":"القطر الداخلي( ملم )",
+        "thickness":"الضغط التشغيلي",
         "color":"اللون",
-        "workPressure":"ضغط العمل",
-        "height":"الطول"
+        "workPressure":"السماكة ( ملم )",
+        "height":"الطول ( متر )",
+        "explosive_pressure":"الضغط الانفجاري"
     },
     "about":{
         "howWeAre":"من نحن",
@@ -93,5 +95,14 @@
         "legalAffairs":"الشؤون القانونيه",
         "legalAffairsNo":"رقم الشؤون القانونية",
         "email":"البريد الالكتروني"
+    },
+    "help":{
+        "weight":"القطر الداخلي( ملم )",
+        "thickness":"السماكة ( ملم )",
+        "color":"اللون",
+        "workPressure":"الضغط التشغيلي",
+        "height":"الطول ( متر )",
+        "explosive_pressure":"الضغط الانفجاري"
     }
 }
+

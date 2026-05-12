@@ -59,7 +59,7 @@
                                     </li>
                                     <li>
                                         <router-link class="default_link" to="/commonQuestions">{{
-                                            $t('layout.footer.Partners') }}</router-link>
+                                            $t('layout.header.fqs') }}</router-link>
                                     </li>
                                     <li>
                                         <router-link class="default_link" to="/contact">{{
@@ -108,7 +108,8 @@
                     <div class="d-flex align-items-center justify-content-center gap15 w-100 pt-5">
                         <span v-for="item in socials" :key="item">
                             <a :href="item.link" class="social-icon default_link">
-                                <i :class="item.icon"></i>
+                                <!-- <i :class="item.icon"></i> -->
+                                <img class="width20" :src="item.icon" alt="">
                             </a>
                         </span>
                     </div>

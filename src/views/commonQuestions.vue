@@ -1,10 +1,10 @@
 <template>
     <section>
-        <div class="bg-title">
+        <div class="bg-title" :style="`background: url('${data_get.image}') no-repeat center;background-size: cover;`">
             <div class="container h-100">
                 <div class="flex-end-content">
                     <h1 class="font25 fontBold">{{ $t('layout.header.fqs') }}</h1>
-                    <!-- <p>هذا النص هو مثال لنص يمكن ان يستبدل</p> -->
+                    <div v-html="data_get.paragraph"></div>
                 </div>
             </div>
         </div>
@@ -36,7 +36,8 @@ export default {
     data() {
         return {
             moreText: false,
-            fqsData: []
+            fqsData: [],
+            data_get: {}
         }
     },
 
@@ -49,6 +50,7 @@ export default {
         async get_fqs() {
             await axios.get('fqs')
                 .then((res) => {
+                    this.data_get = res.data.data
                     this.fqsData = res.data.data.fqs
                     console.log(res);
                 })
@@ -62,8 +64,6 @@ export default {
 
 <style lang="scss" scoped>
 .bg-title {
-    background: url('@/assets/images/Frame.png') no-repeat center;
-    background-size: cover;
     height: 350px;
     gap: 25px;
     padding: 50px 0;

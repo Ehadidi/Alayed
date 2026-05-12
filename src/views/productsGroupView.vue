@@ -1,22 +1,27 @@
 <template>
     <section class="products-sec">
-        <div class="bg-title">
-            <div class="container h-100">
-                <div class="flex--start--title">
-                    <h1 class="font20 fontBold mb-5">{{ subCategoryName }}</h1>
-                    <!-- <h6 class="font13"> {{ subCategoryName }}</h6> -->
+        <div class="bg-title" :style="`background: url('${banner}') no-repeat center; background-size: cover;`">
+            <div class="banner-content">
+                <div class="container h-100">
+                    <div class="flex--start--title">
+                        <h1 class="font20 fontBold mb-5">{{ subCategoryName }}</h1>
+                        <!-- <h6 class="font13"> {{ subCategoryName }}</h6> -->
+                    </div>
                 </div>
             </div>
         </div>
         <div class="container P_top_60 P_bottom_60">
             <div class="row justify-content-between align-items-center mb-4">
                 <div class="col-lg-2 col-md-3 col-6">
-                    <select class="default_select" v-model="filterCategory" @change="filter" name="subCategory">
-                        <option disabled selected value="">{{ $t('products.selectCategoey') }}</option>
-                        <option :value="option.id" v-for="option in category" :key="option">
-                            {{ option.name }}
-                        </option>
-                    </select>
+                    <div class="w-100 position-relative">
+                        <select class="default_select" v-model="filterCategory" @change="filter" name="subCategory">
+                            <option disabled selected value="">{{ $t('products.selectCategoey') }}</option>
+                            <option :value="option.id" v-for="option in category" :key="option">
+                                {{ option.name }}
+                            </option>
+                        </select>
+                        <span class="down_icon"><font-awesome-icon :icon="['fas', 'sort-down']" /></span>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6">
                     <div class="d-flex align-items-center justify-content-between">
@@ -81,6 +86,7 @@ export default {
             category: [],
             filterCategory: this.$route.params.id,
             emptyData: false,
+            banner: '',
             // mainCategoryName: '',
             subCategoryName: '',
         }
@@ -89,7 +95,7 @@ export default {
         sort() {
             this.productsData.sort((a, b) => {
                 if (a.name && b.name) {
-                    return (-1)                    
+                    return (-1)
                 }
             })
         },
@@ -107,6 +113,7 @@ export default {
         async get_products_group() {
             await axios.get(`products?category_id=${this.$route.params.id}`)
                 .then((res) => {
+                    this.banner = res.data.data.banner
                     this.productsData = res.data.data.products
                     // this.mainCategoryName = res.data.data.mainCategoryName
                     this.subCategoryName = res.data.data.subCategoryName
@@ -121,11 +128,11 @@ export default {
         async filter() {
             this.loader = true
             await axios.get(`products?category_id=${this.filterCategory}`)
-                .then((response) => {
-                    console.log(response);
-                    this.productsData = response.data.data.products
-                    this.mainCategoryName = response.data.data.mainCategoryName
-                    this.subCategoryName = response.data.data.subCategoryName
+                .then((res) => {
+                    this.banner = res.data.data.banner
+                    this.productsData = res.data.data.products
+                    this.mainCategoryName = res.data.data.mainCategoryName
+                    this.subCategoryName = res.data.data.subCategoryName
                     if (this.productsData.length === 0) {
                         this.emptyData = true
                     } else {
@@ -155,11 +162,16 @@ export default {
 
 <style lang="scss">
 .bg-title {
-    background: url('@/assets/images/bgTitle.png') no-repeat center;
-    background-size: cover;
     height: 350px;
     padding: 40px;
     color: #fff;
+
+    .banner-content{
+        min-height: 300px;
+        max-height: fit-content;
+        display: flex;
+        align-items: flex-end;
+    }
 
     .flex--start--title {
         height: 100%;
@@ -199,7 +211,7 @@ export default {
     box-shadow: 0 0 5px 0px #eee;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 10px;
     flex-direction: column;
     width: 100%;
@@ -216,9 +228,10 @@ export default {
     }
 
     img {
-        width: 70%;
-        height: 200px;
+        width: 85%;
+        // height: 200px;
         margin: 10px 0 30px;
+        object-fit: cover;
     }
 
     &:hover {
@@ -250,6 +263,7 @@ export default {
                 width: 150px;
                 margin: 0;
                 height: 105px;
+                object-fit: cover;
                 padding: 13px;
                 background-color: #fff;
                 border-radius: 5px;
@@ -268,5 +282,12 @@ export default {
             }
         }
     }
+}
+
+.down_icon {
+    position: absolute;
+    top: 30%;
+    left: 15px;
+    color: #1e368c;
 }
 </style>

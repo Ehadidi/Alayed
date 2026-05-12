@@ -1,13 +1,16 @@
 <template>
     <section>
         <Toast />
-        <div class="bg-title">
-            <div class="container h-100">
-                <div class="flex-end-content">
-                    <h1 class="font25 fontBold">{{ $t('layout.HR') }}</h1>
+        <div class="bg-title" :style="`background: url('${banner}') no-repeat center; background-size: cover`">
+            <div class="banner-content">
+                <div class="container h-100">
+                    <div class="flex-end-content">
+                        <h1 class="font25 fontBold">{{ $t('layout.HR') }}</h1>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="container">
             <div class="txt">
                 <p v-html="hrData.paragraph"></p>
@@ -30,23 +33,25 @@
                     <div class="row align-items-center flex-column">
                         <div class="col-lg-6 col-12 mb-5">
                             <form-group>
-                                <form-input :label="$t('layout.userName')" :placeholder="$t('layout.writeUserName')" name="name" vmodal="name"
-                                    type="text" width="col-lg-6 col-12 mb-3">
+                                <form-input :label="$t('layout.userName')" :placeholder="$t('layout.writeUserName')"
+                                    name="name" vmodal="name" type="text" width="col-lg-6 col-12 mb-3">
                                     <template #img><img :src="require('@/assets/images/profile-circle.png')"
                                             alt=""></template>
                                 </form-input>
 
-                                <form-input name="phone" vmodal="phone" :label="$t('layout.phone')" :placeholder="$t('layout.writePhone')" type="number" width="col-lg-6 col-12 mb-3">
+                                <form-input name="phone" vmodal="phone" :label="$t('layout.phone')"
+                                    :placeholder="$t('layout.writePhone')" type="number" width="col-lg-6 col-12 mb-3">
                                     <template #img><img :src="require('@/assets/images/call-outgoing.png')"
                                             alt=""></template>
                                 </form-input>
 
-                                <form-input :label="$t('layout.email')" :placeholder="$t('layout.writeEmail')" name="email" vmodal="email" type="email" width="col-12 mb-3">
+                                <form-input :label="$t('layout.email')" :placeholder="$t('layout.writeEmail')" name="email"
+                                    vmodal="email" type="email" width="col-12 mb-3">
                                     <template #img><img :src="require('@/assets/images/sms2.png')" alt=""></template>
                                 </form-input>
 
-                                <file-uploader :label="$t('layout.CV')" name="cv" width="col-12 mb-3" ref="refreArea" :refre="uploadCv"
-                                    :placeholder="$t('layout.enterCV')">
+                                <file-uploader :label="$t('layout.CV')" name="cv" width="col-12 mb-3" ref="refreArea"
+                                    :refre="uploadCv" :placeholder="$t('layout.enterCV')">
                                     <template #img><img :src="require('@/assets/images/attach-circle.png')"
                                             alt=""></template>
                                 </file-uploader>
@@ -54,9 +59,10 @@
                                 <div class="col-12 mb-3">
                                     <div class="fontBold txt_start d-block mb-2">{{ $t('products.sections') }}</div>
                                     <div class="input_select">
-                                        <select v-model="category_id" name="category_id">
+                                        <select v-model="department_id" name="department_id">
                                             <option selected value="" hidden>{{ $t('products.selectCategoey') }}</option>
-                                            <option v-for="categoryName in mainCategories" :value="categoryName.id" :key="categoryName">{{ categoryName.name }}</option>
+                                            <option v-for="item in hrDepartments" :value="item.id"
+                                                :key="item">{{ item.title }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -64,15 +70,18 @@
                         </div>
                         <div class="col-lg-4 col-6">
                             <div class="d-flex align-items-center justify-content-center gap15">
-                                <button class="btn main_btn up fill font10 width100" :loading="loading" :disabled="loading === true">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <div class="spinner-border spinner-border-sm d-none" :class="{ 'd-block': loading }" role="status">
-                                    <span class="sr-only">Loading...</span>
+                                <button class="btn main_btn up fill font10 width100" :loading="loading"
+                                    :disabled="loading === true">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="spinner-border spinner-border-sm d-none" :class="{ 'd-block': loading }"
+                                            role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <span>{{ $t('layout.send') }}</span>
                                     </div>
-                                    <span>{{ $t('layout.send') }}</span>
-                                </div>
                                 </button>
-                                <button type="button" @click="resetForm" class="btn main_btn up font10">{{ $t('layout.clear') }}</button>
+                                <button type="button" @click="resetForm" class="btn main_btn up font10">{{
+                                    $t('layout.clear') }}</button>
                             </div>
                         </div>
                     </div>
@@ -98,9 +107,10 @@ export default {
             hrData: [],
             loading: false,
             vadlid: '',
-            category_id:'',
+            department_id: '',
             uploadCv: 'uploadCv',
-            mainCategories: [],
+            hrDepartments: [],
+            banner: ''
         }
     },
     methods: {
@@ -118,17 +128,11 @@ export default {
         async getHumanResources() {
             await axios.get('hr')
                 .then((res) => {
+                    this.banner = res.data.data.banner
                     this.hrData = res.data.data
+                    this.hrDepartments = res.data.data.hrDepartments
                 })
         },
-
-        async mainCategory() {
-            await axios.get('mainCategory')
-                .then((resCategory) => {
-                    this.mainCategories = resCategory.data.data.category
-                })
-        },
-
 
         async submitForm() {
             this.loading = true
@@ -154,19 +158,26 @@ export default {
     },
     mounted() {
         this.getHumanResources()
-        this.mainCategory()
     }
 }
 </script>
 
 <style lang="scss" scoped>
+// .v-img__img--cover{
+//     filter: brightness(0.7) !important;
+// }
 .bg-title {
-    background: url('@/assets/images/hr.png') no-repeat center;
-    background-size: cover;
-    height: 350px;
+    min-height: 350px;
+    max-height: fit-content;
     gap: 25px;
     padding: 50px 0;
     color: #fff;
+    .banner-content{
+        min-height: 270px;
+        max-height: fit-content;
+        display: flex;
+        align-items: flex-end;
+    }
 
     .flex-end-content {
         width: 100%;

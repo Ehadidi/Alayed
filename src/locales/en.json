@@ -1,5 +1,6 @@
 {
     "layout" : {
+        "product_imgs":"Product images",
         "header": {
             "home":"Home",
             "howWe":"How we wre",
@@ -31,7 +32,7 @@
         "writeUserName":"Write User Name",
         "email":"Email",
         "phone":"phone",
-        "writePhone":"Wite Phone",
+        "writePhone":"Write Phone",
         "writeEmail":"Write Email",
         "yourMassage":"Your Massage",
         "messageSubject":"Message Subject",
@@ -58,7 +59,7 @@
         "anotherNews":"Another News"
     },
     "products":{
-        "moreCtegory":"More products",
+        "moreCtegory":"More Categories",
         "sections":"Sections",
         "selectCategoey":"Select Categoey",
         "view":"view",
@@ -68,12 +69,13 @@
         "useTemperature":"Use Temperature",
         "uses":"Uses",
         "StandardDetails":"Standard details",
-        "productNumber":"Product number",
-        "weight":"Weight",
-        "thickness":"thickness",
+        "productNumber":"product code",
+        "weight":"inside ( mm )",
+        "thickness":"Lenght ( mm )",
         "color":"Color",
-        "workPressure":"Work Pressure",
-        "height":"Height"
+        "workPressure":"Tickness ( mm )",
+        "height":"working pressure ( mm )",
+        "explosive_pressure":"Explosive pressure"
     },
     "about":{
         "howWeAre":"How we are",
@@ -92,5 +94,13 @@
         "legalAffairs":"Legal Affairs",
         "legalAffairsNo":"Legal Affairs No",
         "email":"Email"
+    },
+    "help":{
+        "weight":"inside ( mm )",
+        "thickness":"Tickness ( mm )",
+        "color":"Color",
+        "workPressure":"working pressure ( mm )",
+        "height":"Height ( meter )",
+        "explosive_pressure":"Explosive pressure"
     }
 }

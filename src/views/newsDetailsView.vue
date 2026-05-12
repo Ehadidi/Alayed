@@ -1,10 +1,12 @@
 <template>
     <div>
-        <div class="bg-title">
-            <div class="container h-100">
-                <div class="flex-end-content">
-                    <h1 class="font25 fontBold">{{ $t('news.newsTitle') }}</h1>
-                    <p>{{ title }}</p>
+        <div class="bg-title" :style="`background: url('${banner}') no-repeat center; background-size: cover;`">
+            <div class="banner-content">
+                <div class="container h-100">
+                    <div class="flex-end-content">
+                        <h1 class="font25 fontBold">{{ $t('news.newsTitle') }}</h1>
+                        <p>{{ title }}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -12,7 +14,7 @@
             <div class="container">
                 <div class="news-article">
                     <div class="row M_top_50 M_bottom_50">
-                        <div class="col-lg-4 col-md-3 d-md-block d-none">
+                        <div class="col-lg-4 col-md-3 mb-8">
                             <Skeleton v-if="loader" width="100%" height="300px" class="mb-2"></Skeleton>
                             <div class="values-img" v-else>
                                 <img :src="imageDetail" alt="">
@@ -85,6 +87,7 @@ export default {
             title: '',
             relatedNews: [],
             loader: true,
+            banner: ''
         }
     },
 
@@ -96,6 +99,7 @@ export default {
                     this.title = res.data.data.detail.title
                     this.imageDetail = res.data.data.detail.image
                     this.relatedNews = res.data.data.related_news
+                    this.banner = res.data.data.detail.banner
                     this.loader = false
 
                 })
@@ -130,6 +134,7 @@ export default {
     align-items: flex-start;
     padding: 10px;
     gap: 10px;
+
     .v-card-title {
         width: 100%;
         text-align: start;
@@ -141,7 +146,8 @@ export default {
             white-space: nowrap;
         }
     }
-    .v-card-text{
+
+    .v-card-text {
         text-overflow: ellipsis;
         overflow: hidden;
         display: block;
@@ -156,12 +162,17 @@ export default {
 }
 
 .bg-title {
-    background: url('@/assets/images/newsBg.png') no-repeat center;
-    background-size: cover;
-    height: 350px;
+    min-height: 350px;
+    max-height: fit-content;
     gap: 25px;
     padding: 50px 0;
     color: #fff;
+    .banner-content{
+        min-height: 300px;
+        max-height: fit-content;
+        display: flex;
+        align-items: flex-end;
+    }
 
     .flex-end-content {
         width: 100%;
@@ -176,5 +187,15 @@ export default {
 .values-item {
     font-size: 15px;
     line-height: 35px;
+}
+
+@media (max-width : 767px) {
+    .bg-title{
+        background-position: right center !important;
+        min-height: auto;
+        .banner-content{
+            min-height: auto;
+        }
+    }
 }
 </style>

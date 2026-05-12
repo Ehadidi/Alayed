@@ -1,12 +1,12 @@
 <template>
   <div>
-    <how-we id="howWe" :aboutData="aboutData"></how-we>
+    <how-we id="howWe" :paragraph_banner="paragraph_banner" :aboutData="aboutData"></how-we>
     <our-massage id="ourMassage" :aboutData="aboutData"></our-massage>
     <our-values id="ourValues" :aboutData="aboutData"></our-values>
-    <our-identity id="ourIdentity" :aboutData="aboutData"></our-identity>
+    <our-identity id="ourIdentity" :identity_banner="identity_banner" :aboutData="aboutData"></our-identity>
     <our-history id="ourHistory" :aboutData="aboutData"></our-history>
     <our-target id="ourTarget" :aboutData="aboutData"></our-target>
-    <economic-activity id="economicActivity" :aboutData="aboutData"></economic-activity>
+    <economic-activity id="economicActivity" :economic_banner="economic_banner" :aboutData="aboutData"></economic-activity>
     <legal-affairs id="legalAffairs" :aboutData="aboutData"></legal-affairs>
   </div>
 </template>
@@ -37,6 +37,9 @@ export default {
     return {
       loader: true,
       aboutData : [],
+      paragraph_banner:'',
+      economic_banner:'',
+      identity_banner:''
     }
   },
 
@@ -44,7 +47,10 @@ export default {
     async get_aboutUs(){
       await axios.get('aboutUs')
       .then( (res)=>{
+        this.economic_banner = res.data.data.economic_banner
+        this.identity_banner = res.data.data.identity_banner
         this.aboutData = res.data.data
+        this.paragraph_banner = res.data.data.paragraph_banner
         console.log(this.aboutData);
           this.loader = false
       } )

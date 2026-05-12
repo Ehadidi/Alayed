@@ -91,7 +91,7 @@ export default {
 
 @font-face {
   font-family: 'main_font';
-  src: url('@/assets/webfonts/URW-DIN-Arabic.ttf');
+  src: url('@/assets/webfonts/TheSansArabic-Plain.otf');
 }
 
 a {

@@ -17,7 +17,6 @@ export default {
             await axios.get('home')
                 .then((res) => {
                     this.watsapp = res.data.data.whatsapp
-                    console.log(this.watsapp);
                 })
         },
         scrollToTop() {

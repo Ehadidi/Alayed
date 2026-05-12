@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="row M_top_50 M_bottom_50">
-                <div class="col-lg-4 col-md-3 d-md-block d-none">
+                <div class="col-lg-4 col-md-3 col-12 mb-8">
                     <div class="values-img">
                         <img :src="aboutData.value_image" alt="">
                     </div>

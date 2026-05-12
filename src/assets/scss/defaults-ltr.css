@@ -1,0 +1,25 @@
+body.ltr .v-application {
+  direction: ltr !important;
+}
+body.ltr .values-img::after {
+  left: -5%;
+  right: unset;
+}
+body.ltr .default_input:focus::placeholder,
+body.ltr .default_input:not(:placeholder-shown)::placeholder {
+  transform: translateX(-110%);
+}
+body.ltr .show-more {
+  left: unset;
+  right: -5px;
+}
+body.ltr .modalSearch .v-overlay__content .modal_content .float_icon {
+  right: 4%;
+  left: unset;
+}
+body.ltr .modalSearch .v-overlay__content .modal_content .float_btn {
+  right: 8%;
+  left: unset;
+}
+
+/*# sourceMappingURL=defaults-ltr.css.map */
