@@ -63,8 +63,9 @@ const vuetify = createVuetify({
 import "primevue/resources/themes/lara-light-indigo/theme.css";
 
 // import axios 
+
 import axios from 'axios';
-axios.defaults.baseURL = 'https://backend.aleayid.aait-sa.com/api/'
+axios.defaults.baseURL = 'https://backend.ayed-sa.com/api/'
 axios.defaults.headers.common['lang'] = `${localStorage.getItem('locale')}`;
 
 // createApp
